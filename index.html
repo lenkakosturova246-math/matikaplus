@@ -1,110 +1,290 @@
 <!DOCTYPE html>
 <html lang="sk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MATIKA + - Matematika pre deti</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #202d3a;
-            color: white;
-        }
-        .logo {
-            max-width: 300px;
-            margin-bottom: 20px;
-        }
-        .navbar {
-            background-color: #1a212a !important;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MATIKA + - Matematika pre deti</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    background-color: #202d3a;
+    color: #202d3a;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: #202d3a !important;
+}
+
+.background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+}
+
+#kurzy {
+    background-color: #202d3a !important;
+}
+
+.card {
+    background-color: #64b1ce !important;
+    color: #202d3a;
+    cursor: pointer;
+}
+
+/* presne tvoj štýl textu */
+.card-title {
+    font-size: 1.6rem;
+    color: #ffffff !important;
+    font-weight: 700;
+
+    -webkit-text-stroke: 0.8px #202d3a;
+
+    text-shadow:
+        -0.6px -0.6px 0 #202d3a,
+         0.6px -0.6px 0 #202d3a,
+        -0.6px  0.6px 0 #202d3a,
+         0.6px  0.6px 0 #202d3a;
+}
+
+/* POPUP */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.75);
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay-content {
+    background: #fff;
+    color: #202d3a;
+    padding: 25px;
+    border-radius: 12px;
+    max-width: 800px;
+    width: 92%;
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
+.close-btn {
+    margin-top: 15px;
+    background: #202d3a;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+}
+</style>
 </head>
+
 <body>
 
-    <!-- Navigácia -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">MATIKA +</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#home">Domov</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#kurzy">Kurzy</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#kontakt">Kontakt</a></li>
-                </ul>
+<!-- VIDEO -->
+<video class="background-video" autoplay muted loop>
+    <source src="matikavideo.mp4" type="video/mp4">
+</video>
+
+<div class="content">
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">MATIKA +</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="#home">Domov</a></li>
+                <li class="nav-item"><a class="nav-link" href="#kurzy">Kurzy</a></li>
+                <li class="nav-item"><a class="nav-link" href="#kontakt">Kontakt</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- HOME -->
+<section id="home" class="py-5 text-center">
+<div class="container-fluid">
+
+    <div class="bg-white py-3" style="color:#202d3a;">
+        <h1 class="display-1">Matika <span style="color:#64b1ce;">+</span></h1>
+    </div>
+
+    <p class="display-4">Matematika pre deti od 2–15 rokov</p>
+
+    <button id="prihlasitSaBtn" class="btn btn-lg"
+            style="background-color:#202d3a; color:white;">
+        Prihlásiť sa
+    </button>
+
+</div>
+</section>
+
+<!-- KURZY -->
+<section id="kurzy" class="py-5">
+<div class="container">
+
+<h2 class="text-center mb-5" style="color:white;">Naše kurzy</h2>
+
+<div class="row">
+
+    <div class="col-md-4" onclick="openModal(0)">
+        <div class="card bg-secondary text-white">
+            <div class="card-body">
+                <h5 class="card-title">
+                    Matematika pre deti od 3-6 rokov s využitím pomocok numicon
+                </h5>
+                <p class="card-text">GRAFOMOTORIKA, ZÁKLADNÉ PLUS A MÍNUS, NUMICON</p>
             </div>
         </div>
-    </nav>
+    </div>
 
-    <!-- Hlavná sekcia -->
-    <section id="home" class="py-5 text-center">
-        <div class="container">
-            <img src="matika.png" alt="Logo" class="logo">
-            <h1 class="display-4">MATIKA +</h1>
-            <p class="lead">Matematika pre deti od 2–15 rokov</p>
-            <button class="btn btn-primary btn-lg">Skúsiť bezplatne</button>
-        </div>
-    </section>
-
-    <!-- Kurzy -->
-    <section id="kurzy" class="py-5 bg-dark">
-        <div class="container">
-            <h2 class="text-center mb-5">Naše kurzy</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card bg-secondary text-white">
-                        <div class="card-body">
-                            <h5 class="card-title">Základy (2-5 r.)</h5>
-                            <p class="card-text">Počítanie, čísla, základné operácie</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card bg-secondary text-white">
-                        <div class="card-body">
-                            <h5 class="card-title">Stredný úroveň (6-10 r.)</h5>
-                            <p class="card-text">Geometria, zlomky, rovnice</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card bg-secondary text-white">
-                        <div class="card-body">
-                            <h5 class="card-title">Pokročilý (11-15 r.)</h5>
-                            <p class="card-text">Algebra, trigonometria, funkcie</p>
-                        </div>
-                    </div>
-                </div>
+    <div class="col-md-4" onclick="openModal(1)">
+        <div class="card bg-secondary text-white">
+            <div class="card-body">
+                <h5 class="card-title">
+                    Matematika pre deti od 2.-3. ročník ZŠ
+                </h5>
+                <p class="card-text">NÁSOBENIE, PLUS/MÍNUS, ROVNICE, GEOMETRIA</p>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Kontakt -->
-    <section id="kontakt" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-5">Kontaktuj nás</h2>
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <form>
-                        <div class="mb-3">
-                            <input type="text" class="form-control" placeholder="Meno" required>
-                        </div>
-                        <div class="mb-3">
-                            <input type="email" class="form-control" placeholder="Email" required>
-                        </div>
-                        <div class="mb-3">
-                            <textarea class="form-control" rows="5" placeholder="Správa" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Poslať</button>
-                    </form>
-                </div>
+    <div class="col-md-4" onclick="openModal(2)">
+        <div class="card bg-secondary text-white">
+            <div class="card-body">
+                <h5 class="card-title">
+                    Matematika pre deti od 8 do 15 rokov
+                </h5>
+                <p class="card-text">ZLOMKY, ÚMERNOSTI, GEOMETRIA, ROVNICE</p>
             </div>
         </div>
-    </section>
+    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</div>
+
+</div>
+</section>
+
+<!-- POPUP -->
+<div id="overlay" class="overlay" onclick="closeModal(event)">
+    <div class="overlay-content" onclick="event.stopPropagation()">
+        <h2 id="modalTitle"></h2>
+        <p id="modalText"></p>
+        <button class="close-btn" onclick="closeModal()">Zavrieť</button>
+    </div>
+</div>
+
+<!-- KONTAKT -->
+<section id="kontakt" class="py-5">
+<div class="container">
+
+<h2 class="text-center mb-5">Kontaktuj nás</h2>
+
+<div class="text-center mb-4">
+    <p><strong>Ján Buľka riaditeľ</strong></p>
+    <p>0918597403</p>
+    <p>bulka@matika.com</p>
+</div>
+
+<div class="row justify-content-center">
+<div class="col-md-6">
+
+<form>
+    <input class="form-control mb-2" placeholder="Meno">
+    <input class="form-control mb-2" placeholder="Email">
+    <textarea class="form-control mb-2" placeholder="Správa"></textarea>
+    <button class="btn w-100" style="background:#202d3a; color:white;">Poslať</button>
+</form>
+
+</div>
+</div>
+
+</div>
+</section>
+
+</div>
+
+<script>
+const data = [
+{
+title: "🔢 Matematika s Numiconom (3–6 rokov – predškolský vek)",
+text: `Matematika s Numiconom je hravý a vizuálny spôsob učenia matematiky pre deti v predškolskom veku. Využíva farebné plastové dieliky s otvormi, ktoré reprezentujú čísla a pomáhajú deťom „vidieť“ matematiku.
+
+Deti sa učia:
+- rozpoznávať čísla a ich hodnoty
+- spájať množstvo s číslom
+- sčítanie a odčítanie
+- porovnávanie
+- vzory a sekvencie
+- priestorové vnímanie
+
+➡️ Hlavný cieľ je učenie cez hru.`
+},
+{
+title: "🔢 Matematika (2.–3. ročník ZŠ)",
+text: `V 2.–3. ročníku sa žiaci učia:
+- prirodzené čísla
+- sčítanie a odčítanie do 100
+- násobenie
+- delenie
+- slovné úlohy
+- geometria
+
+➡️ Cieľ: základné matematické zručnosti.`
+},
+{
+title: "📊 Matematika (8–15 rokov)",
+text: `Na vyšších ročníkoch:
+- zlomky
+- rovnice
+- pomery
+- geometria
+
+➡️ Cieľ: abstraktné myslenie.`
+}
+];
+
+function openModal(i){
+    document.getElementById('modalTitle').innerText = data[i].title;
+    document.getElementById('modalText').innerText = data[i].text;
+    document.getElementById('overlay').style.display = 'flex';
+}
+
+function closeModal(e){
+    if(!e || e.target.id === 'overlay'){
+        document.getElementById('overlay').style.display = 'none';
+    }
+}
+
+document.getElementById('prihlasitSaBtn').addEventListener('click', function() {
+    document.getElementById('kontakt').scrollIntoView({ behavior: 'smooth' });
+});
+</script>
 
 </body>
 </html>
