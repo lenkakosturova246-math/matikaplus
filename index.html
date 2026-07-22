@@ -6,7 +6,7 @@
 <title>MATIKA +</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 html { scroll-behavior: smooth; }
@@ -14,8 +14,8 @@ html { scroll-behavior: smooth; }
 body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
-    background: #202d3a;
-    color: white;
+    background: linear-gradient(135deg, #f7fbff 0%, #eef6fb 100%);
+    color: #203040;
 }
 
 .background-video {
@@ -24,15 +24,29 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    z-index: -2;
+}
+
+.video-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(255,255,255,0.78);
     z-index: -1;
 }
 
 @media (max-width: 768px) {
     .background-video { display: none; }
+    .video-overlay { display: none; }
 }
 
 .navbar {
-    background: rgba(32,45,58,0.95) !important;
+    background: rgba(32,45,58,0.96) !important;
+    backdrop-filter: blur(10px);
+}
+
+.navbar-brand {
+    font-weight: 800;
+    letter-spacing: 0.04em;
 }
 
 .navbar-brand .plus {
@@ -41,113 +55,234 @@ body {
 }
 
 .hero {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    text-align: center;
+    padding: 100px 0 70px;
 }
 
-/* SLABÝ PODKLADOVÝ PÁS PRE LEPŠIU ČITATEĽNOSŤ */
-.hero::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 260px;
-    background: rgba(0,0,0,0.35);
-    z-index: 0;
-}
-
-.hero h1,
-.hero p,
-.hero button {
-    position: relative;
-    z-index: 1;
+.hero-card {
+    background: rgba(255,255,255,0.92);
+    border: 1px solid rgba(100,177,206,0.18);
+    border-radius: 28px;
+    box-shadow: 0 20px 45px rgba(32,45,58,0.12);
+    padding: 42px;
 }
 
 .hero h1 {
-    font-size: 6.5rem;
-    font-weight: 600;
+    font-size: clamp(2.8rem, 5vw, 4.4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 16px;
 }
 
-.hero span { color: #64b1ce; }
+.hero h1 span {
+    color: #64b1ce;
+}
 
 .hero p {
-    font-size: 1.8rem;
+    font-size: 1.08rem;
+    color: #516273;
+    line-height: 1.7;
 }
 
-.card {
-    background: #4f8fbf;
-    color: white;
-    cursor: pointer;
-    transition: 0.3s;
-    border: none;
+.hero .lead {
+    font-size: 1.2rem;
+    color: #304255;
 }
 
-.card:hover { transform: scale(1.05); }
+.hero .btn {
+    border-radius: 999px;
+    padding: 12px 24px;
+    font-weight: 700;
+}
 
-.overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.7);
-    justify-content: center;
+.hero .btn-primary {
+    background: #64b1ce;
+    border-color: #64b1ce;
+}
+
+.hero .btn-outline-dark {
+    border-color: #203040;
+    color: #203040;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    color: #203040;
+}
+
+.section-subtitle {
+    color: #5b6b7a;
+    max-width: 700px;
+    margin: 0 auto 30px;
+}
+
+.service-card {
+    background: white;
+    border-radius: 20px;
+    padding: 24px;
+    height: 100%;
+    box-shadow: 0 10px 25px rgba(32,45,58,0.08);
+    border: 1px solid #eef5fb;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(32,45,58,0.12);
+}
+
+.service-card h4 {
+    font-weight: 700;
+    color: #203040;
+    margin-top: 10px;
+}
+
+.service-card p {
+    color: #5b6b7a;
+    margin-bottom: 0;
+}
+
+.service-card .icon {
+    width: 48px;
+    height: 48px;
+    display: inline-flex;
     align-items: center;
-    z-index: 999;
+    justify-content: center;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #64b1ce 0%, #4f8fbf 100%);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 700;
 }
 
-.overlay-content {
-    position: relative;
-    background: rgba(255,255,255,0.95);
-    color: #202d3a;
-    padding: 25px;
-    max-width: 750px;
-    width: 90%;
-    border-radius: 10px;
+    .service-card .mathematik-title-row {
+        display: flex;
+        align-items: flex-end;
+        gap: 8px;
+        margin-bottom: 8px;
+        margin-left: auto;
+        justify-content: flex-end;
+    }
+
+    .service-card .mathematik-title-row img {
+        object-fit: contain;
+        flex-shrink: 0;
+    }
+
+    .service-card .mathematik-title-row img:first-child {
+        width: 48px;
+        height: 48px;
+        transform: rotate(-8deg);
+        margin-left: -6px;
+        margin-top: 2px;
+    }
+
+    .service-card .mathematik-title-row img:last-child {
+        width: 38px;
+        height: 38px;
+        transform: rotate(8deg);
+        margin-bottom: -18px;
+        margin-right: -2px;
+    }
+
+.info-box ul {
+    padding-left: 1.2rem;
+    color: #516273;
+    line-height: 1.8;
 }
 
-.overlay-content.numicon::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: url('numicon.png') center/cover no-repeat;
-    opacity: 0.15;
-    z-index: 0;
-    pointer-events: none;
+.form-card {
+    background: white;
+    border-radius: 22px;
+    padding: 30px;
+    box-shadow: 0 12px 30px rgba(32,45,58,0.08);
+    border: 1px solid #eef5fb;
 }
 
-.overlay-content > * {
-    position: relative;
-    z-index: 1;
+.form-control {
+    border-radius: 999px;
+    padding: 12px 16px;
+    border-color: #dbe7f0;
 }
 
-#kontakt {
-    background: rgba(255,255,255,0.9);
-    color: black;
-    padding: 60px 0;
-    border-radius: 10px;
+.btn-dark {
+    border-radius: 999px;
+    padding: 10px 20px;
+    background: #203040;
+    border-color: #203040;
 }
 
 .btn-dark:hover {
     background: #64b1ce;
     border-color: #64b1ce;
 }
+
+.contact-card {
+    background: linear-gradient(135deg, #203040 0%, #2b4354 100%);
+    color: white;
+    border-radius: 28px;
+    padding: 36px;
+    box-shadow: 0 18px 38px rgba(32,45,58,0.18);
+}
+
+.contact-card a {
+    color: #aee4f7;
+    text-decoration: none;
+}
+
+.contact-card a:hover {
+    color: #ffffff;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 16px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.08);
+}
+
+.contact-item .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #64b1ce;
+    margin-top: 8px;
+    flex-shrink: 0;
+}
+
+.map-frame {
+    width: 100%;
+    height: 220px;
+    border: 0;
+    border-radius: 16px;
+    margin-top: 10px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+}
+
+footer {
+    padding: 20px 0 40px;
+    color: #6d7b8a;
+    font-size: 0.95rem;
+}
 </style>
 </head>
 
 <body>
-
 <video class="background-video" autoplay muted loop playsinline preload="none">
     <source src="matikavideo.mp4" type="video/mp4">
 </video>
+<div class="video-overlay"></div>
 
-<nav class="navbar navbar-expand-lg navbar-dark">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
 <div class="container">
-    <a class="navbar-brand" href="#">MATIKA <span class="plus">+</span></a>
+    <a class="navbar-brand" href="#home">MATIKA <span class="plus">+</span></a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
         <span class="navbar-toggler-icon"></span>
@@ -157,6 +292,7 @@ body {
         <ul class="navbar-nav ms-auto">
             <li class="nav-item"><a class="nav-link" href="#home">Domov</a></li>
             <li class="nav-item"><a class="nav-link" href="#kurzy">Kurzy</a></li>
+            <li class="nav-item"><a class="nav-link" href="#pribeh">Prístup</a></li>
             <li class="nav-item"><a class="nav-link" href="#registracia">Registrácia</a></li>
             <li class="nav-item"><a class="nav-link" href="#kontakt">Kontakt</a></li>
         </ul>
@@ -165,167 +301,208 @@ body {
 </nav>
 
 <section id="home" class="hero">
-<h1>MATIKA <span>+</span></h1>
-<p>Rozvíjame matematické myslenie detí hravou formou</p>
-<p style="font-size:1.2rem; opacity:0.9;">Výučba prebieha aj online aj prezenčne</p>
-<button class="btn btn-dark mt-3" onclick="document.getElementById('kurzy').scrollIntoView()">
-Pozrieť kurzy
-</button>
+<div class="container">
+    <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+            <div class="hero-card">
+                <h1>MATIKA <span>+</span></h1>
+                <p class="lead">Pomáhame s matematikou tým, ktorí s ňou majú problém, ale sme tu aj pre tých, ktorí chcú od klasickej matematiky niečo viac.</p>
+                <p>Výučba prebieha online i prezenčne, prispôsobene veku, tempu a potrebám každého dieťaťa.</p>
+                <div class="d-flex flex-wrap gap-2 mt-4">
+                    <a class="btn btn-primary" href="#registracia">Chcem sa prihlásiť</a>
+                    <a class="btn btn-outline-dark" href="#kurzy">Pozrieť kurzy</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="info-box">
+                <ul>
+                    <li>Individuálny prístup a malé skupiny</li>
+                    <li>Štruktúrovaná pomoc pri pochopení učiva</li>
+                    <li>Podpora pre deti od 3 do 15 rokov</li>
+                    <li>Možnosť online aj prezenčne</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 </section>
 
 <section id="kurzy" class="py-5">
-<div class="container text-center">
-<h2 class="mb-4">Kurzy</h2>
+<div class="container">
+    <h2 class="section-title text-center">Naše kurzy</h2>
+    <p class="section-subtitle text-center">Vyberte si program podľa veku a potrieb vášho dieťaťa.</p>
 
-<div class="row g-3">
+    <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+            <a class="service-card text-decoration-none d-block position-relative overflow-hidden" href="mathematik-3-7.html" target="_blank" rel="noopener noreferrer">
+                <img src="Numi Mathematik.png" alt="Mathematík" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.18; pointer-events:none;">
+                <div class="position-relative">
+                    <div class="d-flex align-items-center justify-content-between gap-2 mb-2">
+                        <div class="icon" style="background: #b1d8b7;">01</div>
+                        <div class="mathematik-title-row">
+                            <img src="Numicon Math1.png" alt="Numicon Math 1">
+                            <img src="Numicon Math2.png" alt="Numicon Math 2">
+                        </div>
+                    </div>
+                    <h4>Mathematík</h4>
+                    <p>3–7 rokov · 1. ročník ZŠ</p>
+                </div>
+            </a>
+        </div>
 
-<div class="col-md-4">
-<div class="card p-3" role="button" tabindex="0" onclick="openModal(0)">
-<h4>3-6 rokov</h4>
-</div>
-</div>
+        <div class="col-md-6 col-lg-3">
+            <a class="service-card text-decoration-none d-block" href="mezimath-2-3.html" target="_blank" rel="noopener noreferrer">
+                <div class="icon" style="background: #51b7c9;">02</div>
+                <h4>MedziMath</h4>
+                <p>2.–3. ročník ZŠ</p>
+            </a>
+        </div>
 
-<div class="col-md-4">
-<div class="card p-3" role="button" tabindex="0" onclick="openModal(1)">
-<h4>6-8 rokov</h4>
-</div>
-</div>
+        <div class="col-md-6 col-lg-3">
+            <a class="service-card text-decoration-none d-block" href="math-plus-4-7.html" target="_blank" rel="noopener noreferrer">
+                <div class="icon" style="background: #2f5f9f; color: #ffffff;">03</div>
+                <h4>Math+</h4>
+                <p>4.–7. ročník ZŠ</p>
+            </a>
+        </div>
 
-<div class="col-md-4">
-<div class="card p-3" role="button" tabindex="0" onclick="openModal(2)">
-<h4>8-15 rokov</h4>
-</div>
-</div>
-
-</div>
+        <div class="col-md-6 col-lg-3">
+            <a class="service-card text-decoration-none d-block" href="doucovanie-math.html" target="_blank" rel="noopener noreferrer">
+                <div class="icon" style="background: #169d53;">04</div>
+                <h4>Doučovanie</h4>
+                <p>Osobitné podporu a príprava</p>
+            </a>
+        </div>
+    </div>
 </div>
 </section>
 
-<div class="overlay" id="overlay">
-<div class="overlay-content" id="modalBox">
-<button type="button" style="position:absolute;top:10px;right:15px;border:none;background:none;font-size:22px;cursor:pointer;" onclick="closeModal()">×</button>
-<h3 id="title"></h3>
-<p id="text" style="white-space: pre-line;"></p>
-<button class="btn btn-dark mt-2" type="button" onclick="closeModal()">Zavrieť</button>
+<section id="pribeh" class="py-5">
+<div class="container">
+    <div class="row g-4 align-items-center">
+        <div class="col-lg-6">
+            <div class="info-box">
+                <h3 class="section-title">Ako kurz prebieha</h3>
+                <ul>
+                    <li>Malé skupiny podľa veku a úrovne</li>
+                    <li>Jedna hodina týždenne, prípadne aj viackrát</li>
+                    <li>Praktické aktivity, hry a postupné budovanie vedomostí</li>
+                    <li>Vždy s dôrazom na porozumenie, nie len memorovanie</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="info-box">
+                <h3 class="section-title">Čo deti získajú</h3>
+                <ul>
+                    <li>Sebadôveru pri riešení úloh</li>
+                    <li>Logické myslenie a sústredenie</li>
+                    <li>Schopnosť pracovať s číslami a pojmami</li>
+                    <li>Príjemné vzdelávacie prostredie bez stresu</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
-</div>
+</section>
 
 <section id="registracia" class="py-5">
-<div class="container text-center">
-<h2 class="mb-4">Registrácia</h2>
+<div class="container">
+    <div class="row g-4 align-items-start">
+        <div class="col-lg-5">
+            <div class="info-box">
+                <h3 class="section-title">Zaregistrujte dieťa</h3>
+                <p>Vyplňte formulár a my sa vám ozveme s informáciami o vhodnom programe.</p>
+            </div>
+        </div>
+        <div class="col-lg-7">
+            <div class="form-card">
+                <form action="https://formsubmit.co/info@matikaplus.sk" method="POST">
+                    <input type="hidden" name="_subject" value="Nová registrácia - Matika+">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="https://matikaplus.sk/thank-you.html">
 
-<form action="https://formsubmit.co/info@matikaplus.sk" method="POST" style="max-width:600px;margin:auto;">
-<input type="hidden" name="_subject" value="Nová registrácia - Matika+">
-<input type="hidden" name="_template" value="table">
-<input type="hidden" name="_captcha" value="false">
-<input type="hidden" name="_next" value="https://matikaplus.sk/thank-you.html">
-
-<input class="form-control mb-2" 
-       type="text"
-       name="Meno rodiča" 
-       placeholder="Meno rodiča" 
-       required>
-
-<input class="form-control mb-2" 
-       type="text"
-       name="Meno dieťaťa" 
-       placeholder="Meno dieťaťa" 
-       required>
-
-<input type="date" 
-       name="Dátum narodenia" 
-       class="form-control mb-2" 
-       required>
-
-<input class="form-control mb-2" 
-       type="tel"
-       name="Telefón" 
-       placeholder="Telefón" 
-       required>
-
-<input type="email" 
-       name="Email" 
-       class="form-control mb-2" 
-       placeholder="Email" 
-       required>
-
-<input class="form-control mb-2" 
-       type="text"
-       name="Mesto" 
-       placeholder="Mesto" 
-       required>
-
-<button class="btn btn-dark w-100" type="submit">
-Odoslať
-</button>
-</form>
-
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <input class="form-control" type="text" name="Meno rodiča" placeholder="Meno rodiča" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control" type="text" name="Meno dieťaťa" placeholder="Meno dieťaťa" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control" type="date" name="Dátum narodenia" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control" type="tel" name="Telefón" placeholder="Telefón" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control" type="email" name="Email" placeholder="Email" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control" type="text" name="Mesto" placeholder="Mesto" required>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-dark w-100" type="submit">Odoslať</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 </section>
 
-<section id="kontakt">
-<div class="container text-center">
-<h2 class="mb-4">Kontakt</h2>
-
-<p><strong>Lenka Kosturová</strong><br>0908 618 586</p>
-<p><strong>Barbora Almášiová</strong><br>0918 502 669</p>
-
-<p style="margin-top:20px;">
-<strong>Adresa:</strong><br>
-<a href="https://www.google.com/maps/search/?api=1&query=Rázusova+9,+Piešťany" target="_blank" style="color:black; text-decoration:underline;">
-Rázusova 9, Piešťany
-</a>
-</p>
-
+<section id="kontakt" class="py-5">
+<div class="container">
+    <div class="contact-card">
+        <div class="row g-4 align-items-start">
+            <div class="col-lg-7">
+                <h3 class="mb-3">Kontakt</h3>
+                <p class="mb-3">Ak máš záujem o kurz alebo chceš doplniť informácie, napíš nám.</p>
+                <div class="contact-item">
+                    <span class="dot"></span>
+                    <div>
+                        <strong>Lenka Kosturová</strong><br>
+                        0908 618 586
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <span class="dot"></span>
+                    <div>
+                        <strong>Barbora Almášiová</strong><br>
+                        0918 502 669
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="contact-item">
+                    <span class="dot"></span>
+                    <div style="width: 100%;">
+                        <strong>Adresa</strong><br>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Rázusova+9,+Piešťany" target="_blank">
+                            Rázusova 9, Piešťany
+                        </a>
+                        <iframe class="map-frame"
+                            src="https://www.google.com/maps?q=R%C3%A1zusova%209,%20Pie%C5%A1%C5%A5any&z=15&output=embed"
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Mapa adresa Rázusova 9, Piešťany">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </section>
 
-<script>
-const data = [
-{
-title: "Matematický krúžok s využitím pomôcky Numicon",
-text: `Krúžok je zameraný na rozvoj matematických predstáv a raných numerických schopností u detí vo veku 3 až 6 rokov...
-
-Obsah:
-• rozvoj vnímania množstva
-• plus/mínus
-• dvojciferné čísla
-• grafomotorika`
-},
-{
-title: "Matematika 6-8 rokov",
-text: `Rozvoj logického myslenia.
-
-• sčítanie a odčítanie
-• základy násobenia`
-},
-{
-title: "Matematika 8-15 rokov",
-text: `Prehlbovanie vedomostí.
-
-• zlomky
-• rovnice
-• slovné úlohy`
-}
-];
-
-function openModal(i){
-const box = document.getElementById("modalBox");
-box.classList.remove("numicon");
-if(i === 0){ box.classList.add("numicon"); }
-document.getElementById("title").innerText = data[i].title;
-document.getElementById("text").innerText = data[i].text;
-document.getElementById("overlay").style.display = "flex";
-}
-
-function closeModal(){
- document.getElementById("overlay").style.display = "none";
-}
-
-document.addEventListener("keydown", e => {
-if(e.key === "Escape") closeModal();
-});
-</script>
+<footer>
+<div class="container text-center">
+    © 2026 MATIKA +
+</div>
+</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
