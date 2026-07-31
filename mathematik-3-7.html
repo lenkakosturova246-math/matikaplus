@@ -11,67 +11,72 @@
       --blue: #64b1ce;
       --light: #f8fbff;
       --accent: #ffd166;
+      --video-bg: #f4f8fc;
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     body {
       margin: 0;
       font-family: 'Fredoka', 'Montserrat', Arial, sans-serif;
-      color: white;
+      color: var(--dark);
       padding: 0;
+      background: transparent;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
     }
 
-    .video-bg {
+    .page-background {
       position: fixed;
       inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      z-index: -3;
+      background-image: url('NUMI pozadie.jpg');
+      background-size: cover;
+      background-position: center 40%;
+      background-repeat: no-repeat;
+      opacity: 0.28;
+      transform: scale(1.06);
+    }
+
+    .page-overlay {
+      position: fixed;
+      inset: 0;
       z-index: -2;
-    }
-
-    .overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(255, 255, 255, 0.18);
-      z-index: -1;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.26) 100%);
+      pointer-events: none;
     }
 
     .page {
-      padding: 40px 20px 70px;
+      padding: 0;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      width: 100%;
     }
 
     .box {
-      max-width: 960px;
-      margin: 0 auto 30px;
-      background: rgba(255, 255, 255, 0.96);
+      width: 100%;
+      margin: 0;
+      background: transparent;
       color: var(--dark);
-      padding: 35px 40px;
-      border-radius: 18px;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
+      padding: 0;
+      border-radius: 0;
+      box-shadow: none;
       line-height: 1.75;
-    }
-
-    h1 {
-      color: var(--dark);
-      margin-top: 0;
-      font-size: 2.3rem;
-      margin-bottom: 12px;
-      letter-spacing: 0.02em;
-      font-weight: 700;
-    }
-
-    h3 {
-      color: var(--blue);
-      margin-top: 22px;
     }
 
     .badge {
       display: inline-block;
       color: var(--blue);
-      font-size: 1.4rem;
+      font-size: clamp(2.1rem, 5.2vw, 3.4rem);
       font-weight: 700;
-      margin-bottom: 12px;
+      margin-bottom: 0;
       letter-spacing: 0.03em;
+      line-height: 1;
     }
 
     .highlight {
@@ -79,32 +84,234 @@
       font-weight: 700;
     }
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-      max-width: 960px;
-      margin: 24px 0;
-      align-items: start;
-    }
-
-    .photo-card {
-      background: rgba(255,255,255,0.95);
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.14);
-      color: var(--dark);
-      padding: 0;
-      max-width: 100%;
-    }
-
-    .photo-card img {
+    .story {
       width: 100%;
-      height: auto;
-      max-height: 240px;
-      object-fit: contain;
+      scroll-snap-type: y mandatory;
+    }
+
+    .story-section {
+      min-height: 100vh;
+      scroll-snap-align: start;
+      display: grid;
+      place-items: center;
+      padding: 48px 24px;
+      position: relative;
+    }
+
+    .story-section:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      left: 6vw;
+      right: 6vw;
+      bottom: 0;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(32, 45, 58, 0) 0%, rgba(32, 45, 58, 0.32) 12%, rgba(32, 45, 58, 0.32) 88%, rgba(32, 45, 58, 0) 100%);
+      z-index: 3;
+    }
+
+    .story-section.text-section {
+      background: linear-gradient(180deg, rgba(249, 253, 255, 0.58) 0%, rgba(238, 247, 253, 0.64) 100%);
+      background-blend-mode: multiply;
+    }
+
+    .story-section.background-section {
+      background: transparent;
+    }
+
+    .text-panel {
+      width: min(980px, 100%);
+      background: transparent;
+      border: 2px solid rgba(100, 177, 206, 0.5);
+      border-radius: 20px;
+      box-shadow: 0 10px 26px rgba(32, 45, 58, 0.1);
+      padding: clamp(12px, 2.4vw, 24px);
+    }
+
+    .text-panel h2 {
+      margin: 0 0 16px;
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      line-height: 1.1;
+      color: var(--dark);
+    }
+
+    .text-panel h3 {
+      margin: 24px 0 12px;
+      font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+      color: var(--blue);
+    }
+
+    .text-panel p,
+    .text-panel li {
+      font-size: clamp(1.03rem, 1.9vw, 1.24rem);
+      color: #273747;
+      margin: 0 0 14px;
+      text-wrap: pretty;
+    }
+
+    .text-panel ul {
+      margin: 0;
+      padding-left: 1.3rem;
+    }
+
+    .text-panel li {
+      margin-bottom: 8px;
+    }
+
+    .title-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .story-section.image-section {
+      padding: 0;
+      background: transparent;
+    }
+
+    .story-section.image-section::before {
+      content: none;
+    }
+
+    .full-image {
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
       display: block;
-      background: #f3f7fb;
+      position: relative;
+      z-index: 0;
+    }
+
+    .image-frame {
+      width: 100%;
+      border-radius: 0;
+      overflow: visible;
+      border: 0;
+      box-shadow: none;
+      background: transparent;
+    }
+
+    .price-panel {
+      text-align: left;
+      width: min(860px, 100%);
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(100, 177, 206, 0.35);
+      border-radius: 24px;
+      box-shadow: 0 16px 34px rgba(32, 45, 58, 0.14);
+      padding: clamp(20px, 4vw, 36px);
+    }
+
+    .price-section {
+      place-items: start center;
+      padding-top: 14vh;
+    }
+
+    .price {
+      font-size: clamp(1.03rem, 1.9vw, 1.24rem);
+      color: #273747;
+      font-weight: 500;
+      margin: 0 0 6px;
+    }
+
+    .intro-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      opacity: 1;
+      transition: opacity 0.18s ease, visibility 0.18s ease;
+      visibility: visible;
+      padding: 0;
+    }
+
+    .intro-screen.is-hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .intro-video-frame {
+      overflow: hidden;
+      line-height: 0;
+      background: transparent;
+      border: 0 solid var(--dark);
+      border-radius: 18px;
+      opacity: 0;
+      transition: opacity 0.08s ease, border 0.08s ease;
+    }
+
+    .intro-video-frame.is-ready {
+      opacity: 1;
+      border-width: 3px;
+    }
+
+    .intro-screen.is-fading .intro-video-frame {
+      opacity: 0;
+    }
+
+    .intro-screen video {
+      width: min(76vw, 860px);
+      max-height: 80vh;
+      object-fit: cover;
+      display: block;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+      background: transparent;
+      outline: none;
+      filter: saturate(1.02);
+      transform: scale(1.02);
+      opacity: 0;
+      transition: opacity 0.08s ease;
+    }
+
+    .intro-screen video.is-ready {
+      opacity: 1;
+    }
+
+    .skip-intro-btn {
+      position: fixed;
+      right: 20px;
+      bottom: 16px;
+      transform: none;
+      z-index: 25;
+      border: 2px solid var(--blue);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.9);
+      color: #111;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 10px 16px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.16);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .skip-intro-btn:hover {
+      transform: translateX(-2px);
+      background: #fff;
+    }
+
+    .intro-screen.is-fading video {
+      opacity: 0;
+    }
+
+    .page-content {
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      pointer-events: none;
+    }
+
+    .page-content.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
     }
 
     a {
@@ -123,66 +330,315 @@
       transform: translateY(-2px);
     }
 
+    .action-row {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .scroll-arrow {
+      position: fixed;
+      right: 20px;
+      bottom: 16px;
+      z-index: 12;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid rgba(32, 45, 58, 0.26);
+      background: rgba(255, 255, 255, 0.78);
+      color: var(--dark);
+      display: grid;
+      place-items: center;
+      font-size: 1.35rem;
+      line-height: 1;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      pointer-events: auto;
+      cursor: pointer;
+      user-select: none;
+      backdrop-filter: blur(3px);
+    }
+
+    .scroll-arrow.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .home-arrow {
+      position: fixed;
+      left: 20px;
+      top: 16px;
+      z-index: 12;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 0;
+      background: linear-gradient(135deg, #64b1ce 0%, #4f8fbf 100%);
+      color: #ffffff;
+      display: grid;
+      place-items: center;
+      font-size: 1.4rem;
+      line-height: 1;
+      opacity: 0;
+      transform: translateX(-8px) scale(0.96);
+      transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+      pointer-events: none;
+      cursor: pointer;
+      user-select: none;
+      text-decoration: none;
+      box-shadow: 0 8px 18px rgba(100, 177, 206, 0.28);
+    }
+
+    .home-arrow:hover {
+      transform: translateX(0) scale(1.03);
+      box-shadow: 0 10px 22px rgba(100, 177, 206, 0.34);
+    }
+
+    .home-arrow.is-visible {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+      pointer-events: auto;
+    }
+
     @media (max-width: 768px) {
-      .gallery {
-        grid-template-columns: 1fr;
+      .story {
+        scroll-snap-type: y proximity;
+      }
+
+      .story-section {
+        min-height: auto;
+        padding: 34px 14px;
+      }
+
+      .story-section.image-section {
+        min-height: 72vh;
+      }
+
+      .full-image {
+        width: 100%;
+        height: 72vh;
+      }
+
+      .scroll-arrow {
+        right: 12px;
+        bottom: 10px;
+        width: 38px;
+        height: 38px;
+      }
+
+      .skip-intro-btn {
+        right: 12px;
+        bottom: 14px;
+        padding: 9px 14px;
+      }
+
+      .skip-intro-btn:hover {
+        transform: translateX(-2px);
       }
     }
   </style>
 </head>
 <body>
-  <video class="video-bg" autoplay muted loop playsinline>
-    <source src="Mathematík video.mp4" type="video/mp4">
-  </video>
-  <div class="overlay"></div>
+  <div class="page-background" aria-hidden="true"></div>
+  <div class="page-overlay" aria-hidden="true"></div>
+
+  <div class="intro-screen" id="introScreen">
+    <button type="button" class="skip-intro-btn" id="skipIntroBtn">Preskočiť</button>
+    <div class="intro-video-frame">
+      <video id="introVideo" autoplay muted playsinline>
+        <source src="3+5.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
 
   <div class="page">
-    <div class="box">
-      <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom: 12px;">
-        <span class="badge">Mathematík</span>
-        <img src="Numi Mathematik.png" alt="Numi Mathematik" style="max-height:70px; width:auto; border-radius:10px;">
+    <div class="box page-content" id="pageContent">
+      <div class="story">
+        <section class="story-section background-section">
+          <article class="text-panel" style="background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(2px);">
+            <div class="title-row">
+              <span class="badge">Mathematík</span>
+              <img src="Numi Mathematik.png" alt="Numi Mathematik" style="max-height:70px; width:auto; border-radius:10px;">
+            </div>
+            <p>Kurz <strong>Mathematík</strong> je určený pre deti od <strong>3 do 7 rokov</strong>, ktoré si chcú vytvoriť pevné základy matematického myslenia ešte pred nástupom do školy alebo si rozvíjať svoje schopnosti zábavnou a prirodzenou formou.</p>
+            <p>V hodinách využívame <span class="highlight">Oxfordskú matematickú pomôcku Numicon</span>, ktorá pomáha deťom pochopiť čísla nielen vizuálne, ale aj prostredníctvom hmatu a praktickej skúsenosti. Deti si vďaka nej postupne vytvárajú predstavu o množstve, porovnávaní čísel, rozklade čísel a základných matematických vzťahoch.</p>
+            <p>Matematiku prepájame s pohybom, hrou, tvorivými aktivitami a rôznymi pomôckami, aby deti matematické pojmy skutočne pochopili – nielen si ich zapamätali.</p>
+          </article>
+        </section>
+
+        <section class="story-section image-section">
+          <div class="image-frame">
+            <img class="full-image" src="Mathematík 1.jpg" alt="Mathematík aktivita 1">
+          </div>
+        </section>
+
+        <section class="story-section text-section">
+          <article class="text-panel">
+            <h3>Na kurze deti rozvíjajú</h3>
+            <ul>
+              <li>✓ poznávanie a porozumenie číslam</li>
+              <li>✓ počítanie a prácu s množstvom</li>
+              <li>✓ rozklad a skladanie čísel</li>
+              <li>✓ základy sčítania a odčítania</li>
+              <li>✓ logické myslenie a riešenie problémov</li>
+              <li>✓ grafomotorické zručnosti</li>
+              <li>✓ priestorové vnímanie a základy geometrie</li>
+            </ul>
+            <p><strong>Pre staršie deti postupne pridávame:</strong></p>
+            <ul>
+              <li>✓ prácu s dvojcifernými číslami</li>
+              <li>✓ jednoduché slovné úlohy</li>
+              <li>✓ základy násobenia a delenia</li>
+              <li>✓ matematické stratégie a hľadanie rôznych riešení</li>
+            </ul>
+          </article>
+        </section>
+
+        <section class="story-section image-section">
+          <div class="image-frame">
+            <img class="full-image" src="Mathematík 2.jpg" alt="Mathematík aktivita 2">
+          </div>
+        </section>
+
+        <section class="story-section text-section price-section">
+          <article class="text-panel price-panel">
+            <h3>Ako kurz prebieha?</h3>
+            <p>Deti pracujú v malých skupinách <strong>6–8 detí</strong>, rozdelených podľa veku a aktuálnej úrovne. Každá hodina trvá <strong>60 minút</strong> a prebieha <strong>1× týždenne</strong>. V prípade záujmu je možné navštevovať kurz aj <strong>2× týždenne</strong>.</p>
+            <p class="price"><strong>Cena:</strong> 49€/mesiac (4 lekcie)</p>
+            <div class="action-row">
+              <a href="index.html">Späť na hlavnú stránku</a>
+              <a href="index.html#registracia">Zaregistrovať sa</a>
+            </div>
+          </article>
+        </section>
       </div>
-      <p>Kurz <strong>Matematik</strong> je určený pre deti od <strong>3 do 7 rokov</strong>, ktoré si chcú vytvoriť pevné základy matematického myslenia ešte pred nástupom do školy alebo si rozvíjať svoje schopnosti zábavnou a prirodzenou formou.</p>
-
-      <p>V hodinách využívame <span class="highlight">Oxfordskú matematickú pomôcku Numicon</span>, ktorá pomáha deťom pochopiť čísla nielen vizuálne, ale aj prostredníctvom hmatu a praktickej skúsenosti. Deti si vďaka nej postupne vytvárajú predstavu o množstve, porovnávaní čísel, rozklade čísel a základných matematických vzťahoch.</p>
-
-      <p>Matematiku prepájame s pohybom, hrou, tvorivými aktivitami a rôznymi pomôckami, aby deti matematické pojmy skutočne pochopili – nielen si ich zapamätali.</p>
-
-      <div class="gallery">
-        <div class="photo-card">
-          <img src="Mathematík 1.jpg" alt="Mathematík 1">
-        </div>
-        <div class="photo-card">
-          <img src="Mathematík 2.jpg" alt="Mathematík 2">
-        </div>
-        <div class="photo-card">
-          <img src="Mathematík 3.jpg" alt="Mathematík 3">
-        </div>
-      </div>
-
-      <h3>Na kurze deti rozvíjajú:</h3>
-      <p>✓ poznávanie a porozumenie číslam<br>
-      ✓ počítanie a prácu s množstvom<br>
-      ✓ rozklad a skladanie čísel<br>
-      ✓ základy sčítania a odčítania<br>
-      ✓ logické myslenie a riešenie problémov<br>
-      ✓ grafomotorické zručnosti<br>
-      ✓ priestorové vnímanie a základy geometrie</p>
-
-      <p><strong>Pre staršie deti postupne pridávame:</strong><br>
-      ✓ prácu s dvojcifernými číslami<br>
-      ✓ jednoduché slovné úlohy<br>
-      ✓ základy násobenia a delenia<br>
-      ✓ matematické stratégie a hľadanie rôznych riešení</p>
-
-      <h3>Ako kurz prebieha?</h3>
-      <p>Deti pracujú v malých skupinách <strong>6–8 detí</strong>, rozdelených podľa veku a aktuálnej úrovne. Každá hodina trvá <strong>60 minút</strong> a prebieha <strong>1× týždenne</strong>. V prípade záujmu je možné navštevovať kurz aj <strong>2× týždenne</strong>.</p>
-
-      <p><strong>Cena:</strong> 49€/mesiac (4 lekcie)</p>
-
-      <a href="index.html">Späť na hlavnú stránku</a>
     </div>
-
   </div>
+
+  <div class="scroll-arrow" id="scrollArrow" aria-hidden="true">↓</div>
+  <a class="home-arrow" id="homeArrow" href="index.html" aria-label="Späť na hlavnú stránku" title="Späť na hlavnú stránku">←</a>
+
+  <script>
+    const introScreen = document.getElementById('introScreen');
+    const introVideo = document.getElementById('introVideo');
+    const skipIntroBtn = document.getElementById('skipIntroBtn');
+    const pageContent = document.getElementById('pageContent');
+    const scrollArrow = document.getElementById('scrollArrow');
+    const homeArrow = document.getElementById('homeArrow');
+    const rootStyle = document.documentElement.style;
+    let hasRevealed = false;
+    let hasTransitionStarted = false;
+
+    const syncBackgroundFromVideo = () => {
+      if (!introVideo.videoWidth || !introVideo.videoHeight) return;
+
+      const canvas = document.createElement('canvas');
+      canvas.width = 1;
+      canvas.height = 1;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      try {
+        // Use center pixel to match the dominant visible tone around transition.
+        const sx = Math.floor(introVideo.videoWidth / 2);
+        const sy = Math.floor(introVideo.videoHeight / 2);
+        ctx.drawImage(introVideo, sx, sy, 1, 1, 0, 0, 1, 1);
+        const pixel = ctx.getImageData(0, 0, 1, 1).data;
+        const bg = `rgb(${pixel[0]}, ${pixel[1]}, ${pixel[2]})`;
+        rootStyle.setProperty('--video-bg', bg);
+      } catch (_) {
+        // Ignore sampling errors so the reveal transition still runs.
+      }
+    };
+
+    const revealContent = () => {
+      if (hasRevealed) return;
+      hasRevealed = true;
+      pageContent.classList.add('is-visible');
+      scrollArrow.classList.add('is-visible');
+      homeArrow.classList.add('is-visible');
+      requestAnimationFrame(() => {
+        introScreen.classList.add('is-hidden');
+      });
+    };
+
+    const updateArrowVisibility = () => {
+      if (!hasRevealed) {
+        scrollArrow.classList.remove('is-visible');
+        return;
+      }
+
+      const nearBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight - 140;
+      scrollArrow.classList.toggle('is-visible', !nearBottom);
+    };
+
+    const jumpToNextSection = () => {
+      const sections = Array.from(document.querySelectorAll('.story-section'));
+      if (!sections.length) return;
+
+      const currentY = window.scrollY + window.innerHeight * 0.25;
+      let next = sections.find((section) => section.offsetTop > currentY);
+
+      if (!next) {
+        next = sections[sections.length - 1];
+      }
+
+      next.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+
+    const startOutroTransition = () => {
+      if (hasTransitionStarted) return;
+      hasTransitionStarted = true;
+      revealContent();
+    };
+
+    window.addEventListener('load', () => {
+      const startPlayback = () => {
+        introVideo.preload = 'auto';
+        introVideo.load();
+        introVideo.play().catch(() => {});
+      };
+
+      introVideo.addEventListener('timeupdate', () => {
+        if (introVideo.currentTime >= 15) {
+          introVideo.pause();
+          startOutroTransition();
+        }
+      });
+
+      introVideo.addEventListener('ended', startOutroTransition, { once: true });
+      introVideo.addEventListener('error', startOutroTransition, { once: true });
+
+      const revealVideo = () => {
+        introVideo.classList.add('is-ready');
+        introVideo.parentElement.classList.add('is-ready');
+      };
+
+      if (introVideo.readyState >= 2) {
+        syncBackgroundFromVideo();
+        revealVideo();
+        startPlayback();
+      } else {
+        introVideo.addEventListener('canplay', () => {
+          syncBackgroundFromVideo();
+          revealVideo();
+          startPlayback();
+        }, { once: true });
+      }
+
+      setTimeout(startOutroTransition, 16000);
+
+      window.addEventListener('scroll', updateArrowVisibility, { passive: true });
+      window.addEventListener('resize', updateArrowVisibility);
+      scrollArrow.addEventListener('click', jumpToNextSection);
+      skipIntroBtn.addEventListener('click', () => {
+        introVideo.pause();
+        startOutroTransition();
+      });
+    });
+  </script>
 </body>
 </html>

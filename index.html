@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MATIKA +</title>
+<title>MATIKA+</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -264,13 +264,13 @@ body {
 
 .emotion-icon {
     flex-shrink: 0;
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.95rem;
-    line-height: 1;
+    font-size: 1.35rem;
+    font-weight: 800;
     color: #64b1ce;
 }
 
@@ -298,6 +298,12 @@ body {
     border-radius: 999px;
     padding: 12px 16px;
     border-color: #dbe7f0;
+}
+
+.form-control:focus,
+.form-control:focus-visible {
+    border-color: #64b1ce;
+    box-shadow: 0 0 0 0.2rem rgba(100, 177, 206, 0.16);
 }
 
 .btn-dark {
@@ -362,6 +368,10 @@ footer {
     color: #6d7b8a;
     font-size: 0.95rem;
 }
+
+#registracia {
+    scroll-margin-top: 90px;
+}
 </style>
 </head>
 
@@ -373,7 +383,7 @@ footer {
 
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
 <div class="container">
-    <a class="navbar-brand" href="#home">MATIKA <span class="plus">+</span></a>
+    <a class="navbar-brand" href="#home">MATIKA<span class="plus">+</span></a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
         <span class="navbar-toggler-icon"></span>
@@ -398,7 +408,7 @@ footer {
             <div class="hero-card">
                 <div class="row align-items-center g-4">
                     <div class="col-lg-7">
-                        <h1>MATIKA <span>+</span></h1>
+                        <h1>MATIKA<span>+</span></h1>
                         <p class="lead">Pomáhame s matematikou tým, ktorí s ňou majú problém, ale sme tu aj pre tých, ktorí majú na matematiku nadanie a chcú od klasickej matematiky niečo viac.</p>
                         <p>Výučba prebieha online i prezenčne, prispôsobené veku, tempu a potrebám každého dieťaťa.</p>
                         <div class="d-flex flex-wrap gap-2 mt-4">
@@ -431,7 +441,7 @@ footer {
     <div class="row g-4">
         <div class="col-md-6 col-lg-3">
             <a class="service-card text-decoration-none d-block position-relative overflow-hidden" href="mathematik-3-7.html" target="_blank" rel="noopener noreferrer">
-                <img src="Numi Mathematik.png" alt="Mathematík" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.18; pointer-events:none;">
+                <img src="Numi Mathematik.png" alt="Mathematík" style="position:absolute; inset:-2px; width:calc(100% + 4px); height:calc(100% + 4px); object-fit:cover; object-position:center; opacity:0.18; pointer-events:none;">
                 <div class="position-relative">
                     <div class="d-flex align-items-center justify-content-between gap-2 mb-2">
                         <div class="icon" style="background: #b1d8b7;">01</div>
@@ -491,11 +501,11 @@ footer {
             <div class="info-box info-panel">
                 <h3 class="section-title handwriting-title">K čomu deti vedieme</h3>
                 <ul class="emotion-list">
-                    <li><span class="emotion-icon">✦</span> Radosť z matiky a objavovanie matematických vzťahov v malých skupinách</li>
-                    <li><span class="emotion-icon">✦</span> Pocit, že matematika je jednoduchá a že je možné ju zvládnuť</li>
-                    <li><span class="emotion-icon">✦</span> Príjemné, komorné prostredie oproti klasickej základnej škole</li>
-                    <li><span class="emotion-icon">✦</span> Dobrú skúsenosť s učiteľom – láskaví a empatickí pedagógovia a prístup bez tlaku</li>
-                    <li><span class="emotion-icon">✦</span> Učivo nad rámec a popredu – aby deti nevideli učivo v škole prvýkrát a neučili sa ho v škole pod tlakom za krátky čas</li>
+                    <li><span class="emotion-icon">+</span> Radosť z matiky a objavovanie matematických vzťahov v malých skupinách</li>
+                    <li><span class="emotion-icon">+</span> Pocit, že matematika je jednoduchá a že je možné ju zvládnuť</li>
+                    <li><span class="emotion-icon">+</span> Príjemné, komorné prostredie oproti klasickej základnej škole</li>
+                    <li><span class="emotion-icon">+</span> Dobrú skúsenosť s učiteľom – láskaví a empatickí pedagógovia a prístup bez tlaku</li>
+                    <li><span class="emotion-icon">+</span> Učivo nad rámec a popredu – aby deti nevideli učivo v škole prvýkrát a neučili sa ho v škole pod tlakom za krátky čas</li>
                 </ul>
             </div>
         </div>
@@ -513,37 +523,36 @@ footer {
             </div>
         </div>
         <div class="col-lg-7">
-            <div class="form-card">
-                <form action="https://formsubmit.co/info@matikaplus.sk" method="POST">
-                    <input type="hidden" name="_subject" value="Nová registrácia - Matika+">
-                    <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_next" value="https://matikaplus.sk/thank-you.html">
+            <div class="form-card" id="registracia-form-card">
+                <form id="registracia-form" method="POST" novalidate target="registracia-target">
 
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <input class="form-control" type="text" name="Meno rodiča" placeholder="Meno rodiča" required>
+                            <input class="form-control" type="text" name="parent_name" placeholder="Meno rodiča" required>
                         </div>
                         <div class="col-md-6">
-                            <input class="form-control" type="text" name="Meno dieťaťa" placeholder="Meno dieťaťa" required>
+                            <input class="form-control" type="text" name="child_name" placeholder="Meno dieťaťa" required>
                         </div>
                         <div class="col-md-6">
-                            <input class="form-control" type="date" name="Dátum narodenia" required>
+                            <input class="form-control" type="date" name="birth_date" required>
                         </div>
                         <div class="col-md-6">
-                            <input class="form-control" type="tel" name="Telefón" placeholder="Telefón" required>
+                            <input class="form-control" type="tel" name="phone" placeholder="Telefón" required>
                         </div>
                         <div class="col-md-6">
-                            <input class="form-control" type="email" name="Email" placeholder="Email" required>
+                            <input class="form-control" type="email" name="email" placeholder="Email" required>
                         </div>
                         <div class="col-md-6">
-                            <input class="form-control" type="text" name="Mesto" placeholder="Mesto" required>
+                            <input class="form-control" type="text" name="city" placeholder="Mesto" required>
                         </div>
+                        <input type="hidden" name="source" value="matikaplus-web">
+                        <input type="hidden" name="submitted_at" id="submitted-at-field" value="">
                         <div class="col-12">
-                            <button class="btn btn-dark w-100" type="submit">Odoslať</button>
+                            <button class="btn btn-dark w-100" type="submit" id="registracia-submit">Odoslať</button>
                         </div>
                     </div>
                 </form>
+                <iframe name="registracia-target" style="display:none;"></iframe>
             </div>
         </div>
     </div>
@@ -596,10 +605,60 @@ footer {
 
 <footer>
 <div class="container text-center">
-    © 2026 MATIKA +
+    © 2026 MATIKA+
 </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwk36rQUQCoQV1KEEwG5aOmLWXR_xYJXHZ4gQ59gQmBSalrS5aavWWAJImdE4Yfnl6GxQ/exec';
+
+window.addEventListener('load', () => {
+    if (window.location.hash !== '#registracia') return;
+
+    const card = document.getElementById('registracia-form-card');
+    if (!card) return;
+
+    setTimeout(() => {
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 120);
+});
+
+const registraciaForm = document.getElementById('registracia-form');
+const registraciaSubmit = document.getElementById('registracia-submit');
+const submittedAtField = document.getElementById('submitted-at-field');
+
+if (registraciaForm && registraciaSubmit && submittedAtField) {
+    registraciaForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        if (!registraciaForm.checkValidity()) {
+            registraciaForm.reportValidity();
+            return;
+        }
+
+        if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.includes('PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE')) {
+            alert('Doplňte URL Google Apps Script web app do APPS_SCRIPT_URL v index.html.');
+            return;
+        }
+
+        registraciaSubmit.disabled = true;
+        registraciaSubmit.textContent = 'Odosiela sa...';
+        submittedAtField.value = new Date().toISOString();
+        registraciaForm.action = APPS_SCRIPT_URL;
+
+        try {
+            registraciaForm.submit();
+            setTimeout(() => {
+                window.location.href = 'thank-you.html';
+            }, 900);
+        } catch (error) {
+            alert('Formulár sa nepodarilo odoslať. Skúste to prosím znova.');
+            registraciaSubmit.disabled = false;
+            registraciaSubmit.textContent = 'Odoslať';
+        }
+    });
+}
+</script>
 </body>
 </html>

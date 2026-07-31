@@ -3,41 +3,112 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MedziMath 2.-3.r. ZŠ</title>
+  <title>MedziMath 2.–3. ročník ZŠ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --dark: #203040;
+      --blue: #64b1ce;
+      --light: #f6fbff;
+    }
+
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #202d3a;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: linear-gradient(135deg, #f4faff 0%, #e8f4fb 100%);
+      color: var(--dark);
       min-height: 100vh;
-      padding: 20px;
+      padding: 24px;
     }
-    .box {
-      max-width: 700px;
-      background: white;
-      color: #202d3a;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
     }
+
+    .card {
+      background: rgba(255,255,255,0.96);
+      border-radius: 24px;
+      box-shadow: 0 16px 36px rgba(32, 48, 64, 0.12);
+      padding: 32px;
+      line-height: 1.75;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #e8f7fc;
+      color: var(--blue);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 2.1rem;
+      color: var(--dark);
+    }
+
+    h3 {
+      color: var(--blue);
+      margin-top: 22px;
+      margin-bottom: 8px;
+    }
+
+    .highlight {
+      color: var(--blue);
+      font-weight: 700;
+    }
+
+    ul {
+      padding-left: 1.1rem;
+      margin: 0;
+    }
+
+    li { margin-bottom: 0.45rem; }
+
     a {
       display: inline-block;
       margin-top: 20px;
-      color: #64b1ce;
-      font-weight: 600;
+      color: white;
+      background: var(--blue);
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-weight: 700;
       text-decoration: none;
+      transition: transform 0.2s ease;
     }
+
+    a:hover { transform: translateY(-2px); }
   </style>
 </head>
 <body>
-  <div class="box">
-    <h1>MedziMath 2.-3.r. ZŠ</h1>
-    <p>Popis kurzu bude doplnený neskôr.</p>
-    <a href="index.html">Späť na hlavnú stránku</a>
+  <div class="page">
+    <div class="card">
+      <div class="badge">MedziMath</div>
+      <h1>MedziMath 2.–3. ročník ZŠ</h1>
+      <p>Kurz <strong>MedziMath</strong> je určený pre deti, ktoré už zvládajú základy matematiky a chcú si upevniť vedomosti v príjemnom, nenútenom prostredí.</p>
+
+      <p>V hodinách pracujeme s <span class="highlight">logickým myslením</span>, postupným budovaním matematických stratégií a s rôznymi praktickými aktivitami, ktoré pomáhajú deťom pochopiť učivo hlbšie, nie len naspamäť.</p>
+
+      <h3>Na kurze rozvíjame</h3>
+      <ul>
+        <li>pocit prehľadu v základných počtových operáciách</li>
+        <li>riešenie slovných úloh a jednoduchých problémov</li>
+        <li>presnosť, koncentráciu a samostatné uvažovanie</li>
+        <li>sebadôveru pri práci s číslami</li>
+      </ul>
+
+      <h3>Ako kurz prebieha</h3>
+      <p>Deti pracujú v malých skupinách, podľa veku a aktuálnej úrovne. Jedna hodina trvá <strong>60 minút</strong> a prebieha <strong>1× týždenne</strong>, v prípade záujmu aj <strong>2× týždenne</strong>.</p>
+
+      <p><strong>Cena:</strong> 59 €/mesiac (4 lekcie)</p>
+
+      <a href="index.html">Späť na hlavnú stránku</a>
+    </div>
   </div>
 </body>
 </html>

@@ -3,41 +3,112 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Doučovanie Math</title>
+  <title>Doučovanie matematiky</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --dark: #203040;
+      --blue: #64b1ce;
+      --green: #169d53;
+    }
+
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #202d3a;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: linear-gradient(135deg, #f8fcff 0%, #edf8fb 100%);
+      color: var(--dark);
       min-height: 100vh;
-      padding: 20px;
+      padding: 24px;
     }
-    .box {
-      max-width: 700px;
-      background: white;
-      color: #202d3a;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
     }
+
+    .card {
+      background: rgba(255,255,255,0.96);
+      border-radius: 24px;
+      box-shadow: 0 16px 36px rgba(32, 48, 64, 0.12);
+      padding: 32px;
+      line-height: 1.75;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #eaf8f0;
+      color: var(--green);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 2.1rem;
+      color: var(--dark);
+    }
+
+    h3 {
+      color: var(--blue);
+      margin-top: 22px;
+      margin-bottom: 8px;
+    }
+
+    .highlight {
+      color: var(--blue);
+      font-weight: 700;
+    }
+
+    ul {
+      padding-left: 1.1rem;
+      margin: 0;
+    }
+
+    li { margin-bottom: 0.45rem; }
+
     a {
       display: inline-block;
       margin-top: 20px;
-      color: #64b1ce;
-      font-weight: 600;
+      color: white;
+      background: var(--green);
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-weight: 700;
       text-decoration: none;
+      transition: transform 0.2s ease;
     }
+
+    a:hover { transform: translateY(-2px); }
   </style>
 </head>
 <body>
-  <div class="box">
-    <h1>Doučovanie Math</h1>
-    <p>Popis doučovania bude doplnený neskôr.</p>
-    <a href="index.html">Späť na hlavnú stránku</a>
+  <div class="page">
+    <div class="card">
+      <div class="badge">Doučovanie</div>
+      <h1>Doučovanie matematiky</h1>
+      <p>Individuálne doučovanie je vhodné pre deti, ktoré potrebujú <span class="highlight">viac času, vysvetlenie alebo osobitnú podporu</span> pri zvládnutí školského učiva.</p>
+
+      <p>V rámci doučovania sa zameriavame na pochopenie, nie len na memorovanie. Pomáhame deťom rozvíjať postupy riešenia úloh, pracovať s chybami a budovať istotu pri počítaní.</p>
+
+      <h3>Čo ponúkame</h3>
+      <ul>
+        <li>pripravu na školu a na kontrolné práce</li>
+        <li>opakovanie a upevňovanie učiva</li>
+        <li>pomoc pri problémoch s porozumením</li>
+        <li>prípravu na testy a písomky</li>
+      </ul>
+
+      <h3>Forma</h3>
+      <p>Doučovanie je možné realizovať <strong>online alebo prezenčne</strong>, podľa potrieb dieťaťa a rodiny.</p>
+
+      <p><strong>Cena:</strong> individuálne hodiny na dohodu</p>
+
+      <a href="index.html">Späť na hlavnú stránku</a>
+    </div>
   </div>
 </body>
 </html>

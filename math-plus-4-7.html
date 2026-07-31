@@ -4,40 +4,439 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Math+ 4.-7.r.ZŠ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --dark: #202d3a;
+      --blue: #64b1ce;
+      --light: #f8fbff;
+      --accent: #ffd166;
+      --video-bg: #f4f8fc;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #202d3a;
+      font-family: 'Fredoka', 'Montserrat', Arial, sans-serif;
+      color: var(--dark);
+      padding: 0;
+      background: linear-gradient(180deg, #f9fdff 0%, #eef7fd 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .page {
+      padding: 0;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .box {
+      width: 100%;
+      margin: 0;
+      background: transparent;
+      color: var(--dark);
+      padding: 0;
+      border-radius: 0;
+      box-shadow: none;
+      line-height: 1.75;
+    }
+
+    .story {
+      width: 100%;
+      scroll-snap-type: y proximity;
+    }
+
+    .story-section {
+      min-height: 100vh;
+      scroll-snap-align: start;
+      display: grid;
+      place-items: center;
+      padding: 48px 24px;
+      position: relative;
+    }
+
+    .story-section:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      left: 6vw;
+      right: 6vw;
+      bottom: 0;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(32, 45, 58, 0) 0%, rgba(32, 45, 58, 0.24) 12%, rgba(32, 45, 58, 0.24) 88%, rgba(32, 45, 58, 0) 100%);
+      z-index: 3;
+    }
+
+    .story-section.text-section {
+      background: linear-gradient(180deg, #f9fdff 0%, #eef7fd 100%);
+    }
+
+    .text-panel {
+      width: min(980px, 100%);
+      background: rgba(255, 255, 255, 0.93);
+      border: 2px solid rgba(100, 177, 206, 0.45);
+      border-radius: 24px;
+      box-shadow: 0 10px 28px rgba(32, 45, 58, 0.1);
+      padding: clamp(18px, 3vw, 32px);
+    }
+
+    .text-panel h2,
+    .text-panel h3 {
+      margin: 0 0 16px;
+      color: var(--dark);
+    }
+
+    .text-panel h2 {
+      font-size: clamp(1.9rem, 3.8vw, 3rem);
+      line-height: 1.1;
+    }
+
+    .text-panel h3 {
+      font-size: clamp(1.3rem, 2.4vw, 1.9rem);
+      color: var(--blue);
+      margin-top: 24px;
+    }
+
+    .text-panel p,
+    .text-panel li {
+      font-size: clamp(1.05rem, 1.9vw, 1.24rem);
+      color: #273747;
+      margin: 0 0 14px;
+      text-wrap: pretty;
+    }
+
+    .text-panel ul {
+      margin: 0;
+      padding-left: 1.3rem;
+    }
+
+    .text-panel li {
+      margin-bottom: 8px;
+    }
+
+    .badge {
+      display: inline-block;
+      color: var(--blue);
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: 0.03em;
+      line-height: 1;
+    }
+
+    .highlight {
+      color: var(--blue);
+      font-weight: 700;
+    }
+
+    .action-row {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    a {
+      display: inline-block;
       color: white;
+      background: var(--blue);
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 8px 20px rgba(100, 177, 206, 0.2);
+    }
+
+    a:hover {
+      transform: translateY(-2px);
+    }
+
+    .intro-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      padding: 20px;
+      background: var(--video-bg);
+      opacity: 1;
+      transition: opacity 0.9s ease, visibility 0.9s ease;
+      visibility: visible;
+      padding: 0;
     }
-    .box {
-      max-width: 700px;
-      background: white;
-      color: #202d3a;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+
+    .intro-screen.is-hidden {
+      opacity: 0;
+      visibility: hidden;
     }
-    a {
-      display: inline-block;
-      margin-top: 20px;
-      color: #64b1ce;
+
+    .intro-screen.is-fading .intro-video-frame {
+      opacity: 0;
+    }
+
+    .intro-video-frame {
+      overflow: hidden;
+      line-height: 0;
+      background: transparent;
+      border: 3px solid var(--dark);
+      border-radius: 18px;
+      opacity: 1;
+      transition: opacity 0.65s ease;
+    }
+
+    .intro-screen video {
+      width: min(76vw, 860px);
+      max-height: 80vh;
+      object-fit: cover;
+      display: block;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      outline: none;
+      filter: saturate(1.02);
+      transform: scale(1.02);
+      opacity: 1;
+      transition: opacity 0.65s ease;
+    }
+
+    .skip-intro-btn {
+      position: fixed;
+      right: 20px;
+      bottom: 16px;
+      z-index: 25;
+      border: 2px solid var(--blue);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.9);
+      color: #111;
+      font-family: inherit;
+      font-size: 0.95rem;
       font-weight: 600;
+      padding: 10px 16px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.16);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .skip-intro-btn:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 1);
+    }
+
+    .page-content {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      pointer-events: none;
+    }
+
+    .page-content.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .home-arrow {
+      position: fixed;
+      left: 20px;
+      top: 16px;
+      z-index: 12;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 0;
+      background: linear-gradient(135deg, #64b1ce 0%, #4f8fbf 100%);
+      color: #ffffff;
+      display: grid;
+      place-items: center;
+      font-size: 1.4rem;
+      line-height: 1;
+      opacity: 0;
+      transform: translateX(-8px) scale(0.96);
+      transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+      pointer-events: none;
+      cursor: pointer;
+      user-select: none;
       text-decoration: none;
+      box-shadow: 0 8px 18px rgba(100, 177, 206, 0.28);
+    }
+
+    .home-arrow:hover {
+      transform: translateX(0) scale(1.03);
+      box-shadow: 0 10px 22px rgba(100, 177, 206, 0.34);
+    }
+
+    .home-arrow.is-visible {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+      pointer-events: auto;
+    }
+
+    @media (max-width: 768px) {
+      .story-section {
+        min-height: auto;
+        padding: 34px 14px;
+      }
+
+      .skip-intro-btn {
+        right: 12px;
+        bottom: 14px;
+        padding: 9px 14px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="box">
-    <h1>Math+ 4.-7.r.ZŠ</h1>
-    <p>Popis kurzu bude doplnený neskôr.</p>
-    <a href="index.html">Späť na hlavnú stránku</a>
+  <div class="intro-screen" id="introScreen">
+    <button type="button" class="skip-intro-btn" id="skipIntroBtn">Preskočiť</button>
+    <div class="intro-video-frame">
+      <video id="introVideo" autoplay muted playsinline>
+        <source src="345.11.mp4" type="video/mp4">
+      </video>
+    </div>
   </div>
+
+  <div class="page">
+    <div class="box page-content" id="pageContent">
+      <div class="story">
+        <section class="story-section text-section">
+          <article class="text-panel">
+            <span class="badge">Math+</span>
+            <p>Kurz <strong>Math+</strong> je určený pre deti vo veku <strong>7 až 15 rokov</strong>, ktoré si chcú zlepšiť školské výsledky z matematiky, získať väčšiu istotu pri počítaní alebo rozvíjať svoj matematický talent nad rámec školského učiva.</p>
+            <p>Na hodinách prepájame školskú matematiku s <span class="highlight">logickým myslením</span>, efektívnymi stratégiami počítania a zaujímavými matematickými aktivitami. Deti sa učia matematiku chápať, hľadať súvislosti a objavovať jednoduchšie spôsoby riešenia úloh.</p>
+            <p>Pracujeme s rôznymi matematickými pomôckami, hlavolamami a praktickými technikami, ktoré pomáhajú zrýchliť výpočty, zlepšiť logické uvažovanie a zvýšiť sebavedomie pri riešení matematických úloh.</p>
+          </article>
+        </section>
+
+        <section class="story-section image-section" style="padding: 0; background: transparent;">
+          <div class="image-frame" style="width: 100%; border-radius: 0; overflow: hidden;">
+            <img src="Math+ 1.png" alt="Math+ aktivita" style="width: 100vw; height: 100vh; object-fit: cover; display: block;">
+          </div>
+        </section>
+
+        <section class="story-section text-section">
+          <article class="text-panel">
+            <h3>Na kurze deti rozvíjajú</h3>
+            <ul>
+              <li>✓ porozumenie školskému učivu matematiky</li>
+              <li>✓ logické a analytické myslenie</li>
+              <li>✓ efektívne stratégie počítania</li>
+              <li>✓ rýchle a presné sčítanie, odčítanie, násobenie a delenie</li>
+              <li>✓ riešenie slovných úloh a matematických problémov</li>
+              <li>✓ matematické sebavedomie a istotu pri práci s číslami</li>
+            </ul>
+          </article>
+        </section>
+
+        <section class="story-section text-section">
+          <article class="text-panel">
+            <h3>Akonáhle dieťa ovláda malú násobilku, postupne pridávame</h3>
+            <ul>
+              <li>✓ rýchle násobenie a delenie pomocou matematických trikov</li>
+              <li>✓ mocniny a odmocniny z hlavy</li>
+              <li>✓ zlomky, pomery a percentá</li>
+              <li>✓ binárny kód</li>
+              <li>✓ náročnejšie logické úlohy a mnohé ďalšie</li>
+            </ul>
+            <h3>Ako kurz prebieha?</h3>
+            <p>Deti pracujú v malých skupinách s <strong>maximálne 10–12 deťmi</strong>, rozdelených podľa veku a aktuálnej matematickej úrovne. Každá hodina trvá <strong>60 minút</strong> a prebieha <strong>1× týždenne</strong>. V prípade záujmu je možné navštevovať kurz aj <strong>2× týždenne</strong>.</p>
+            <p><strong>Cena:</strong> 1× týždenne <strong>59 €/mesiac</strong> (4 lekcie), 2× týždenne <strong>99 €/mesiac</strong> (8 lekcií)</p>
+            <div class="action-row">
+              <a href="index.html">Späť na hlavnú stránku</a>
+              <a href="index.html#registracia">Zaregistrovať sa</a>
+            </div>
+          </article>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <a class="home-arrow" id="homeArrow" href="index.html" aria-label="Späť na hlavnú stránku" title="Späť na hlavnú stránku">←</a>
+
+  <script>
+    const introScreen = document.getElementById('introScreen');
+    const introVideo = document.getElementById('introVideo');
+    const skipIntroBtn = document.getElementById('skipIntroBtn');
+    const pageContent = document.getElementById('pageContent');
+    const homeArrow = document.getElementById('homeArrow');
+    const rootStyle = document.documentElement.style;
+    let hasRevealed = false;
+    let hasTransitionStarted = false;
+
+    const syncBackgroundFromVideo = () => {
+      if (!introVideo.videoWidth || !introVideo.videoHeight) return;
+
+      const canvas = document.createElement('canvas');
+      canvas.width = 1;
+      canvas.height = 1;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      try {
+        const sx = Math.floor(introVideo.videoWidth / 2);
+        const sy = Math.floor(introVideo.videoHeight / 2);
+        ctx.drawImage(introVideo, sx, sy, 1, 1, 0, 0, 1, 1);
+        const pixel = ctx.getImageData(0, 0, 1, 1).data;
+        const bg = `rgb(${pixel[0]}, ${pixel[1]}, ${pixel[2]})`;
+        rootStyle.setProperty('--video-bg', bg);
+      } catch (_) {
+        // Ignore sampling errors so the reveal transition still runs.
+      }
+    };
+
+    const revealContent = () => {
+      if (hasRevealed) return;
+      hasRevealed = true;
+      pageContent.classList.add('is-visible');
+      homeArrow.classList.add('is-visible');
+      introScreen.classList.add('is-hidden');
+    };
+
+    const startOutroTransition = () => {
+      if (hasTransitionStarted) return;
+      hasTransitionStarted = true;
+      revealContent();
+    };
+
+    window.addEventListener('load', () => {
+      const startPlayback = () => {
+        introVideo.play().catch(() => {});
+      };
+
+      introVideo.addEventListener('timeupdate', () => {
+        if (introVideo.currentTime >= 15) {
+          introVideo.pause();
+          startOutroTransition();
+        }
+      });
+
+      introVideo.addEventListener('ended', startOutroTransition, { once: true });
+      introVideo.addEventListener('error', startOutroTransition, { once: true });
+
+      if (introVideo.readyState >= 2) {
+        syncBackgroundFromVideo();
+        startPlayback();
+      } else {
+        introVideo.addEventListener('canplay', () => {
+          syncBackgroundFromVideo();
+          startPlayback();
+        }, { once: true });
+      }
+
+      setTimeout(startOutroTransition, 16000);
+
+      skipIntroBtn.addEventListener('click', () => {
+        introVideo.pause();
+        startOutroTransition();
+      });
+    });
+  </script>
 </body>
 </html>
