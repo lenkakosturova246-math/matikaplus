@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Doučovanie matematiky</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -11,6 +12,8 @@
       --blue: #64b1ce;
       --green: #169d53;
     }
+
+    html { scroll-behavior: smooth; }
 
     * { box-sizing: border-box; }
 
@@ -20,12 +23,88 @@
       background: linear-gradient(135deg, #f8fcff 0%, #edf8fb 100%);
       color: var(--dark);
       min-height: 100vh;
-      padding: 24px;
+      padding: 96px 24px 24px;
+    }
+
+    .navbar {
+      background: rgba(32,45,58,0.96) !important;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 24px rgba(20,36,59,0.22);
+    }
+
+    .navbar-brand {
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    .navbar-brand .plus {
+      color: #64b1ce;
+      font-weight: 800;
+    }
+
+    .navbar .nav-link {
+      color: #ffffff !important;
+      font-weight: 600;
+      margin-top: 0;
+      padding: 0.5rem 0;
+      background: transparent;
+      border-radius: 0;
+      box-shadow: none;
+      display: block;
+    }
+
+    .navbar .navbar-brand {
+      margin-top: 0;
+      padding: 0;
+      background: transparent;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .navbar .nav-link:hover,
+    .navbar .nav-link:focus-visible {
+      color: #b9ddff !important;
+      transform: none;
+    }
+
+    .navbar .navbar-toggler {
+      border-color: rgba(255,255,255,0.45);
+    }
+
+    .navbar .navbar-toggler-icon {
+      filter: brightness(0) invert(1);
     }
 
     .page {
       max-width: 980px;
       margin: 0 auto;
+    }
+
+    .down-arrow {
+      position: fixed;
+      right: 14px;
+      bottom: 14px;
+      z-index: 20;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 0;
+      background: linear-gradient(135deg, #64b1ce 0%, #3b79ae 100%);
+      color: #ffffff;
+      display: grid;
+      place-items: center;
+      font-size: 1.9rem;
+      font-weight: 800;
+      line-height: 1;
+      text-decoration: none;
+      box-shadow: 0 10px 24px rgba(38, 89, 136, 0.34);
+      margin-top: 0;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .down-arrow:hover {
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 12px 28px rgba(38, 89, 136, 0.42);
     }
 
     .card {
@@ -86,6 +165,27 @@
   </style>
 </head>
 <body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html#home">MATIKA<span class="plus">+</span></a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Prepnúť navigáciu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html#home">Domov</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#kurzy">Kurzy</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#registracia">Registrácia</a></li>
+          <li class="nav-item"><a class="nav-link" href="spoluprace-mszs.html">Spolupráce MŠ/ZŠ</a></li>
+          <li class="nav-item"><a class="nav-link" href="akcie.html">Akcie</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#kontakt">Kontakt</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <a class="down-arrow" href="#page-bottom" aria-label="Posun nadol" title="Posun nadol">&#8595;</a>
   <div class="page">
     <div class="card">
       <div class="badge">Doučovanie</div>
@@ -109,6 +209,8 @@
 
       <a href="index.html">Späť na hlavnú stránku</a>
     </div>
+    <div id="page-bottom"></div>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

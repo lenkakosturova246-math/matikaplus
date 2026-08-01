@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mathematík 3-7 rokov</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -29,6 +30,57 @@
       position: relative;
     }
 
+    .navbar {
+      background: rgba(32,45,58,0.96) !important;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 24px rgba(20,36,59,0.22);
+    }
+
+    .navbar-brand {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    .navbar-brand .plus {
+      color: #64b1ce;
+      font-weight: 800;
+    }
+
+    .navbar .nav-link {
+      color: #ffffff !important;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      margin-top: 0;
+      padding: 0.5rem 0;
+      background: transparent;
+      border-radius: 0;
+      box-shadow: none;
+      display: block;
+    }
+
+    .navbar .navbar-brand {
+      margin-top: 0;
+      padding: 0;
+      background: transparent;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .navbar .nav-link:hover,
+    .navbar .nav-link:focus-visible {
+      color: #b9ddff !important;
+      transform: none;
+    }
+
+    .navbar .navbar-toggler {
+      border-color: rgba(255,255,255,0.45);
+    }
+
+    .navbar .navbar-toggler-icon {
+      filter: brightness(0) invert(1);
+    }
+
     .page-background {
       position: fixed;
       inset: 0;
@@ -50,7 +102,7 @@
     }
 
     .page {
-      padding: 0;
+      padding: 88px 0 0;
       position: relative;
       z-index: 1;
       display: flex;
@@ -340,67 +392,38 @@
 
     .scroll-arrow {
       position: fixed;
-      right: 20px;
-      bottom: 16px;
+      right: 14px;
+      bottom: 14px;
       z-index: 12;
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      border: 1px solid rgba(32, 45, 58, 0.26);
-      background: rgba(255, 255, 255, 0.78);
-      color: var(--dark);
-      display: grid;
-      place-items: center;
-      font-size: 1.35rem;
-      line-height: 1;
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity 0.25s ease, transform 0.25s ease;
-      pointer-events: auto;
-      cursor: pointer;
-      user-select: none;
-      backdrop-filter: blur(3px);
-    }
-
-    .scroll-arrow.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .home-arrow {
-      position: fixed;
-      left: 20px;
-      top: 16px;
-      z-index: 12;
-      width: 46px;
-      height: 46px;
+      width: 56px;
+      height: 56px;
       border-radius: 50%;
       border: 0;
-      background: linear-gradient(135deg, #64b1ce 0%, #4f8fbf 100%);
+      background: linear-gradient(135deg, #64b1ce 0%, #3b79ae 100%);
       color: #ffffff;
       display: grid;
       place-items: center;
-      font-size: 1.4rem;
+      font-size: 1.9rem;
+      font-weight: 800;
       line-height: 1;
       opacity: 0;
-      transform: translateX(-8px) scale(0.96);
+      transform: scale(0.96);
       transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
       pointer-events: none;
       cursor: pointer;
       user-select: none;
-      text-decoration: none;
-      box-shadow: 0 8px 18px rgba(100, 177, 206, 0.28);
+      box-shadow: 0 10px 24px rgba(38, 89, 136, 0.34);
     }
 
-    .home-arrow:hover {
-      transform: translateX(0) scale(1.03);
-      box-shadow: 0 10px 22px rgba(100, 177, 206, 0.34);
-    }
-
-    .home-arrow.is-visible {
+    .scroll-arrow.is-visible {
       opacity: 1;
-      transform: translateX(0) scale(1);
+      transform: scale(1);
       pointer-events: auto;
+    }
+
+    .scroll-arrow:hover {
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 12px 28px rgba(38, 89, 136, 0.42);
     }
 
     @media (max-width: 768px) {
@@ -442,6 +465,27 @@
   </style>
 </head>
 <body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html#home">MATIKA<span class="plus">+</span></a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Prepnúť navigáciu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html#home">Domov</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#kurzy">Kurzy</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#registracia">Registrácia</a></li>
+          <li class="nav-item"><a class="nav-link" href="spoluprace-mszs.html">Spolupráce MŠ/ZŠ</a></li>
+          <li class="nav-item"><a class="nav-link" href="akcie.html">Akcie</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#kontakt">Kontakt</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
   <div class="page-background" aria-hidden="true"></div>
   <div class="page-overlay" aria-hidden="true"></div>
 
@@ -519,15 +563,14 @@
   </div>
 
   <div class="scroll-arrow" id="scrollArrow" aria-hidden="true">↓</div>
-  <a class="home-arrow" id="homeArrow" href="index.html" aria-label="Späť na hlavnú stránku" title="Späť na hlavnú stránku">←</a>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     const introScreen = document.getElementById('introScreen');
     const introVideo = document.getElementById('introVideo');
     const skipIntroBtn = document.getElementById('skipIntroBtn');
     const pageContent = document.getElementById('pageContent');
     const scrollArrow = document.getElementById('scrollArrow');
-    const homeArrow = document.getElementById('homeArrow');
     const rootStyle = document.documentElement.style;
     let hasRevealed = false;
     let hasTransitionStarted = false;
@@ -559,7 +602,6 @@
       hasRevealed = true;
       pageContent.classList.add('is-visible');
       scrollArrow.classList.add('is-visible');
-      homeArrow.classList.add('is-visible');
       requestAnimationFrame(() => {
         introScreen.classList.add('is-hidden');
       });

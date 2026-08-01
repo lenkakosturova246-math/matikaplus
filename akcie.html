@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Akcie | MATIKA+</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #f7fbff 0%, #eef6fb 100%);
+    color: #203040;
+}
+
+.navbar {
+    background: rgba(32,45,58,0.96) !important;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 24px rgba(20,36,59,0.22);
+}
+
+.navbar-brand {
+    font-weight: 800;
+    letter-spacing: 0.04em;
+}
+
+.navbar-brand .plus {
+    color: #64b1ce;
+    font-weight: 800;
+}
+
+.navbar .nav-link {
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus-visible {
+    color: #b9ddff !important;
+}
+
+.navbar .navbar-toggler {
+    border-color: rgba(255,255,255,0.45);
+}
+
+.navbar .navbar-toggler-icon {
+    filter: brightness(0) invert(1);
+}
+
+.page-wrap {
+    min-height: calc(100vh - 92px);
+    display: flex;
+    align-items: center;
+    padding: 112px 0 56px;
+}
+
+.hero-card {
+    background: rgba(255,255,255,0.94);
+    border: 1px solid rgba(100,177,206,0.18);
+    border-radius: 28px;
+    box-shadow: 0 20px 45px rgba(32,45,58,0.12);
+    padding: 32px;
+}
+
+.section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    margin-bottom: 14px;
+}
+
+.lead-copy {
+    color: #516273;
+    line-height: 1.7;
+}
+
+.placeholder-box {
+    min-height: 300px;
+    border-radius: 22px;
+    border: 2px dashed rgba(100,177,206,0.45);
+    background: linear-gradient(135deg, rgba(100,177,206,0.08), rgba(255,255,255,0.92));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #5b6b7a;
+    padding: 24px;
+}
+
+.btn-primary {
+    background: #64b1ce;
+    border-color: #64b1ce;
+    border-radius: 999px;
+    padding: 12px 22px;
+    font-weight: 700;
+}
+</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html#home">MATIKA<span class="plus">+</span></a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Prepnúť navigáciu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html#home">Domov</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#kurzy">Kurzy</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#registracia">Registrácia</a></li>
+                <li class="nav-item"><a class="nav-link" href="spoluprace-mszs.html">Spolupráce MŠ/ZŠ</a></li>
+                <li class="nav-item"><a class="nav-link" href="akcie.html">Akcie</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#kontakt">Kontakt</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<main class="page-wrap">
+    <div class="container">
+        <div class="hero-card">
+            <div class="row g-4 align-items-center">
+                <div class="col-lg-7">
+                    <h1 class="section-title">Akcie</h1>
+                    <p class="lead-copy mb-3">Sem neskôr doplníš text o pripravovaných akciách, workshopoch, podujatiach alebo ukážkových stretnutiach.</p>
+                    <p class="lead-copy mb-4">Táto stránka sa otvára v novom okne a môže obsahovať samostatnú fotogalériu aj ďalšie informácie.</p>
+                    <a class="btn btn-primary" href="index.html">Späť na domov</a>
+                </div>
+                <div class="col-lg-5">
+                    <div class="placeholder-box">
+                        Sem príde fotografia alebo galéria k akciám.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
