@@ -42,6 +42,33 @@ body {
     color: #b9ddff !important;
 }
 
+.navbar .contact-btn {
+    display: inline-block;
+    color: #ffffff !important;
+    background: #64b1ce;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    line-height: 1.1;
+    border: 0;
+}
+
+.navbar .contact-btn:hover,
+.navbar .contact-btn:focus-visible {
+    transform: translateY(-2px);
+    background: #1f3c63;
+    color: #ffffff !important;
+}
+
+@media (max-width: 991.98px) {
+    .navbar .contact-btn {
+        margin-top: 8px;
+        width: fit-content;
+    }
+}
+
 .navbar .navbar-toggler {
     border-color: rgba(255,255,255,0.45);
 }
@@ -76,17 +103,143 @@ body {
     line-height: 1.7;
 }
 
-.placeholder-box {
-    min-height: 300px;
+.event-list {
+    margin: 0 0 1.5rem;
+    padding-left: 1.2rem;
+    color: #516273;
+    line-height: 1.7;
+    column-count: 2;
+    column-gap: 24px;
+}
+
+.event-list li {
+    margin-bottom: 0.35rem;
+    break-inside: avoid;
+}
+
+@media (max-width: 991.98px) {
+    .event-list {
+        column-count: 1;
+    }
+}
+
+.contact-link {
+    color: #1f3c63;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.contact-link:hover,
+.contact-link:focus-visible {
+    color: #1f3c63;
+    text-decoration: none;
+}
+
+.photo-slider {
+    position: relative;
     border-radius: 22px;
-    border: 2px dashed rgba(100,177,206,0.45);
-    background: linear-gradient(135deg, rgba(100,177,206,0.08), rgba(255,255,255,0.92));
-    display: flex;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 14px 28px rgba(32,45,58,0.18);
+}
+
+.photo-slider-track {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    min-height: 420px;
+    background: #f2f6fb;
+}
+
+.photo-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.45s ease;
+}
+
+.photo-slide.active {
+    opacity: 1;
+}
+
+.photo-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 0;
+    background: rgba(255,255,255,0.94);
+    color: #1f3c63;
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    color: #5b6b7a;
-    padding: 24px;
+    box-shadow: 0 8px 20px rgba(31,60,99,0.25);
+    cursor: pointer;
+    z-index: 2;
+}
+
+.slider-arrow:hover,
+.slider-arrow:focus-visible {
+    background: #1f3c63;
+    color: #ffffff;
+}
+
+.slider-arrow.prev {
+    left: 14px;
+}
+
+.slider-arrow.next {
+    right: 14px;
+}
+
+.slider-dots {
+    position: absolute;
+    left: 50%;
+    bottom: 12px;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 2;
+}
+
+.slider-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: 0;
+    background: rgba(255,255,255,0.6);
+    padding: 0;
+}
+
+.slider-dot.active {
+    background: #ffffff;
+    box-shadow: 0 0 0 2px rgba(31,60,99,0.25);
+}
+
+.photo-column {
+    padding-top: 62px;
+}
+
+@media (max-width: 991.98px) {
+    .photo-slider-track {
+        min-height: 340px;
+    }
+
+    .photo-column {
+        padding-top: 0;
+    }
 }
 
 .btn-primary {
@@ -95,6 +248,45 @@ body {
     border-radius: 999px;
     padding: 12px 22px;
     font-weight: 700;
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+    background: #1f3c63;
+    border-color: #1f3c63;
+}
+
+.social-links-sub {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.fb-link,
+.insta-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: transparent;
+    text-decoration: none;
+    box-shadow: none;
+    border: 0;
+}
+
+.fb-link:hover,
+.fb-link:focus-visible,
+.insta-link:hover,
+.insta-link:focus-visible {
+    transform: translateY(-2px);
+}
+
+.fb-link svg,
+.insta-link svg {
+    width: 100%;
+    height: 100%;
 }
 </style>
 </head>
@@ -111,10 +303,11 @@ body {
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" href="index.html#home">Domov</a></li>
                 <li class="nav-item"><a class="nav-link" href="index.html#kurzy">Kurzy</a></li>
+                <li class="nav-item"><a class="nav-link" href="online-hodiny.html">Online hodiny</a></li>
                 <li class="nav-item"><a class="nav-link" href="index.html#registracia">Registrácia</a></li>
                 <li class="nav-item"><a class="nav-link" href="spoluprace-mszs.html">Spolupráce MŠ/ZŠ</a></li>
                 <li class="nav-item"><a class="nav-link" href="akcie.html">Akcie</a></li>
-                <li class="nav-item"><a class="nav-link" href="index.html#kontakt">Kontakt</a></li>
+                <li class="nav-item ms-lg-2"><a class="contact-btn" href="index.html#kontakt">Kontakt</a></li>
             </ul>
         </div>
     </div>
@@ -123,22 +316,99 @@ body {
 <main class="page-wrap">
     <div class="container">
         <div class="hero-card">
-            <div class="row g-4 align-items-center">
-                <div class="col-lg-7">
-                    <h1 class="section-title">Akcie</h1>
-                    <p class="lead-copy mb-3">Sem neskôr doplníš text o pripravovaných akciách, workshopoch, podujatiach alebo ukážkových stretnutiach.</p>
-                    <p class="lead-copy mb-4">Táto stránka sa otvára v novom okne a môže obsahovať samostatnú fotogalériu aj ďalšie informácie.</p>
+            <div class="row g-4 align-items-start">
+                <div class="col-lg-6">
+                    <h1 class="section-title">Akcie a podujatia</h1>
+                    <p class="lead-copy mb-3">Pravidelne sa zúčastňujeme rôznych <strong>podujatí, festivalov a komunitných akcií</strong>, kde si deti môžu matematiku nielen pozrieť, ale predovšetkým si ju samy vyskúšať.</p>
+                    <p class="lead-copy mb-3">Na našom stanovišti si deti môžu pracovať s pomôckou <strong>Numicon</strong>, vyskúšať si spôsoby počítania, ktoré používame na našich kurzoch, <strong>objaviť jednoduché triky</strong> na násobenie a delenie a pod. Pripravené sú aj logické hry, <strong>pracovné listy, hlavolamy a ďalšie aktivity</strong> prispôsobené veku detí.</p>
+                    <p class="lead-copy mb-3">Ak organizujete podujatie a chceli by ste obohatiť program o matematický kútik alebo <strong>interaktívne aktivity pre deti, stanovištia alebo kreatívne výrobky</strong>, radi sa s vami dohodneme na spolupráci. V prípade záujmu nás <a class="contact-link" href="index.html#kontakt">kontaktujte</a>.</p>
+                    <p class="lead-copy mb-2"><strong>Boli sme súčasťou:</strong></p>
+                    <ul class="event-list">
+                        <li>Festival letectva Piešťany</li>
+                        <li>Letecké dni Kuchyňa SIAF</li>
+                        <li>Festival Lodenica</li>
+                        <li>Hody Piešťany/Sokolovce</li>
+                        <li>Huncútko Vrbové</li>
+                        <li>Výtoky ožívajú</li>
+                        <li>Otvorenie centra Úsmev</li>
+                        <li>Dovidenia prázdniny Piešťany</li>
+                        <li>Intolerant Fest</li>
+                        <li>Pezinský Permoník</li>
+                        <li>Deň bez stresu</li>
+                        <li>Šarkaniáda Čerenec</li>
+                        <li>Športové popoludnie vo Veľkom Orvišti</li>
+                    </ul>
+                    <p class="lead-copy mb-2">Našu prácu, fotografie a videá z podujatí si môžete pozrieť na našej Facebook stránke.</p>
+                    <div class="mb-3 social-links-sub"><a class="fb-link" href="https://www.facebook.com/matikapluspn" target="_blank" rel="noopener noreferrer" aria-label="Facebook stránka Matika+" title="Facebook Matika+"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="12" fill="#1f3c63"/><path d="M13.45 20V12.7h2.46l.38-2.85h-2.84V8.04c0-.82.23-1.38 1.41-1.38h1.51V4.12c-.74-.08-1.48-.12-2.23-.11-2.22 0-3.75 1.36-3.75 3.87v1.97H7.93v2.85h2.46V20h3.06z" fill="#ffffff"/></svg></a><a class="insta-link" href="https://www.instagram.com/matikaplus_pn/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Matika+" title="Instagram Matika+"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="12" fill="#E1306C"/><path fill="#ffffff" d="M10.2 7.2h3.6A3 3 0 0 1 16.8 10.2v3.6a3 3 0 0 1-3 3h-3.6a3 3 0 0 1-3-3v-3.6a3 3 0 0 1 3-3zm0 1.2a1.8 1.8 0 0 0-1.8 1.8v3.6a1.8 1.8 0 0 0 1.8 1.8h3.6a1.8 1.8 0 0 0 1.8-1.8v-3.6a1.8 1.8 0 0 0-1.8-1.8h-3.6zm4.05.9a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5zM12 9.7A2.3 2.3 0 1 1 9.7 12 2.3 2.3 0 0 1 12 9.7zm0 1.2A1.1 1.1 0 1 0 13.1 12 1.1 1.1 0 0 0 12 10.9z"/></svg></a></div>
                     <a class="btn btn-primary" href="index.html">Späť na domov</a>
                 </div>
-                <div class="col-lg-5">
-                    <div class="placeholder-box">
-                        Sem príde fotografia alebo galéria k akciám.
+                <div class="col-lg-6 photo-column">
+                    <div class="photo-slider" id="akcie-slider" aria-label="Fotografie z akcií Matika+">
+                        <div class="photo-slider-track">
+                            <div class="photo-slide active"><img src="Akcie 1.jpeg" alt="Akcie Matika+ - fotografia 1"></div>
+                            <div class="photo-slide"><img src="Akcie 2.jpeg" alt="Akcie Matika+ - fotografia 2"></div>
+                            <div class="photo-slide"><img src="Akcie 3.jpeg" alt="Akcie Matika+ - fotografia 3"></div>
+                            <div class="photo-slide"><img src="Akcie 4.jpeg" alt="Akcie Matika+ - fotografia 4"></div>
+                            <div class="photo-slide"><img src="Akcie 5.jpeg" alt="Akcie Matika+ - fotografia 5"></div>
+                            <div class="photo-slide"><img src="Akcie 6.jpeg" alt="Akcie Matika+ - fotografia 6"></div>
+                            <div class="photo-slide"><img src="Akcie 7.jpeg" alt="Akcie Matika+ - fotografia 7"></div>
+                            <div class="photo-slide"><img src="Akcie 8.jpeg" alt="Akcie Matika+ - fotografia 8"></div>
+                            <div class="photo-slide"><img src="Akcie 9.jpeg" alt="Akcie Matika+ - fotografia 9"></div>
+                            <div class="photo-slide"><img src="Akcie 10.jpeg" alt="Akcie Matika+ - fotografia 10"></div>
+                            <div class="photo-slide"><img src="Akcie 11.jpeg" alt="Akcie Matika+ - fotografia 11"></div>
+                        </div>
+                        <button class="slider-arrow prev" type="button" aria-label="Predošlá fotografia">&#8249;</button>
+                        <button class="slider-arrow next" type="button" aria-label="Nasledujúca fotografia">&#8250;</button>
+                        <div class="slider-dots" aria-hidden="true">
+                            <button class="slider-dot active" type="button"></button>
+                            <button class="slider-dot" type="button"></button>
+                            <button class="slider-dot" type="button"></button>
+                            <button class="slider-dot" type="button"></button>
+                            <button class="slider-dot" type="button"></button>
+                            <button class="slider-dot" type="button"></button>
+                            <button class="slider-dot" type="button"></button>
+                            <button class="slider-dot" type="button"></button>
+                            <button class="slider-dot" type="button"></button>
+                            <button class="slider-dot" type="button"></button>
+                            <button class="slider-dot" type="button"></button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </main>
+<script>
+(() => {
+    const slider = document.getElementById('akcie-slider');
+    if (!slider) return;
+
+    const slides = Array.from(slider.querySelectorAll('.photo-slide'));
+    const dots = Array.from(slider.querySelectorAll('.slider-dot'));
+    const prevBtn = slider.querySelector('.slider-arrow.prev');
+    const nextBtn = slider.querySelector('.slider-arrow.next');
+    let current = 0;
+
+    const showSlide = (index) => {
+        current = (index + slides.length) % slides.length;
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === current);
+        });
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === current);
+        });
+    };
+
+    prevBtn?.addEventListener('click', () => showSlide(current - 1));
+    nextBtn?.addEventListener('click', () => showSlide(current + 1));
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => showSlide(index));
+    });
+
+    setInterval(() => showSlide(current + 1), 4500);
+})();
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

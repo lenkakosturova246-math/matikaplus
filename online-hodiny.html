@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Doučovanie | MATIKA+</title>
+<title>Online hodiny | MATIKA+</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -97,19 +97,33 @@ body {
     color: #64b1ce;
     font-size: clamp(2rem, 4.5vw, 3rem);
     font-weight: 700;
-    margin-bottom: 12px;
+    margin: 0;
     letter-spacing: 0.03em;
     line-height: 1;
     text-align: left;
 }
 
-.hero-card .col-lg-6:first-child {
-    text-align: left;
+.heading-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+}
+
+.heading-row .badge {
+    margin-bottom: 0;
+}
+
+.heading-icon {
+    width: clamp(88px, 11vw, 132px);
+    height: auto;
+    object-fit: contain;
+    flex-shrink: 0;
 }
 
 .lead-copy {
     color: #516273;
-    line-height: 1.7;
+    line-height: 1.75;
 }
 
 .highlight {
@@ -122,26 +136,26 @@ body {
     font-weight: 700;
 }
 
-.price {
-    color: #516273;
-    line-height: 1.7;
-    margin: 0 0 6px;
-}
-
 .placeholder-box {
     width: 100%;
-    aspect-ratio: 4 / 3;
-    min-height: 420px;
-    border-radius: 22px;
-    border: 2px dashed rgba(100,177,206,0.45);
-    background: linear-gradient(135deg, rgba(100,177,206,0.08), rgba(255,255,255,0.92));
+    aspect-ratio: 16 / 10;
+    min-height: 360px;
+    border-radius: 20px;
+    border: 0;
+    background: transparent;
     overflow: hidden;
     padding: 0;
+    position: relative;
+    box-shadow: none;
 }
 
 @media (max-width: 991.98px) {
     .placeholder-box {
-        min-height: 340px;
+        min-height: 280px;
+    }
+
+    .heading-icon {
+        width: 84px;
     }
 }
 
@@ -150,7 +164,9 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 0;
+    object-position: center;
+    border-radius: 20px;
+    box-shadow: none;
 }
 
 .action-row {
@@ -170,11 +186,13 @@ body {
     border-radius: 999px;
     font-weight: 600;
     text-decoration: none;
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-.action-row a:hover {
+.action-row a:hover,
+.action-row a:focus-visible {
     transform: translateY(-2px);
+    background: #1f3c63;
 }
 </style>
 </head>
@@ -205,27 +223,26 @@ body {
     <div class="container">
         <div class="hero-card">
             <div class="row g-4 align-items-center">
-                <div class="col-lg-6">
-                    <span class="badge">Doučovanie</span>
-                    <p class="lead-copy mb-3">Často sa zdá, že ťažkosti prichádzajú až na druhom stupni, no vo väčšine prípadov sa začínajú už v 3. ročníku základnej školy. <span class="highlight">Ak sa nepochopia základné pojmy a postupy včas, každé ďalšie učivo na ne nadväzuje a medzery sa postupne prehlbujú.</span> S pribúdajúcimi neúspechmi často prichádza aj demotivácia a negatívna skúsenosť s matematikou.</p>
+                <div class="col-lg-7">
+                    <div class="heading-row mb-3">
+                        <span class="badge">Online hodiny</span>
+                        <img class="heading-icon" src="notebook.png" alt="Notebook online hodiny">
+                    </div>
 
-                    <p class="lead-copy mb-3">Preto odporúčame začať s doučovaním <span class="highlight-soft">hneď pri prvých nejasnostiach</span>. Čím skôr sa problém podchytí, tým jednoduchšie sa odstráni.</p>
+                    <p class="lead-copy mb-3">Kurzy <span class="highlight">MedziMath</span>, <span class="highlight">Math+</span> a <span class="highlight">Doučovanie</span> prebiehajú aj v online forme. Fungujeme prostredníctvom Google Meet.</p>
 
-                    <p class="lead-copy mb-4">Doučovanie prebieha v <span class="highlight-soft">malých skupinkách 2 až 3 detí</span>. Hodiny sú orientované na individuálne potreby detí. Nejdeme sucho podľa presných plánov, ale zameriavame sa na konkrétne a aktuálne problémy. Pri riešení problémov <span class="highlight">hľadáme rôzne cesty</span>, ako nájsť to, čo dieťaťu najviac vyhovuje a pomáha. <span class="highlight-soft">Vždy je nejaký spôsob, ktorý sedí najlepšie :)</span>.</p>
+                    <p class="lead-copy mb-3">Výhodou online hodín je <span class="highlight">flexibilita</span> a <span class="highlight-soft">možnosť prihlásiť sa aj počas choroby, odcestovania a podobne</span>. Online <span class="highlight">hodiny sú plnohodnotné</span> v porovnaní s prezenčnou výučbou.</p>
 
-                    <p class="price"><strong>Cena:</strong></p>
-                    <p class="price"><strong>Skupina 2 detí:</strong> 80 € / mesiac / dieťa</p>
-                    <p class="price"><strong>Skupina 3 detí:</strong> 120 € / mesiac / dieťa</p>
-                    <p class="price mb-4"><strong>V cene sú 4 vyučovacie hodiny po 60 minút.</strong></p>
+                    <p class="lead-copy mb-4">Keďže pracujeme v <span class="highlight-soft">malých skupinách</span>, naše pani učiteľky sa venujú každému dieťaťu individuálne a dbajú na to, aby bol každý na hodine aktívny. Hodiny kombinujú <span class="highlight">priamu výučbu</span>, <span class="highlight">prácu so zdieľanou obrazovkou</span>, <span class="highlight">prácu v pracovnom zošite alebo pracovných listoch</span> a <span class="highlight">spoločné hry zamerané na opakovanie učiva</span>.</p>
 
                     <div class="action-row">
                         <a href="index.html">Späť na hlavnú stránku</a>
                         <a href="index.html#registracia">Zaregistrovať sa</a>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="placeholder-box" aria-label="Miesto na fotografiu doučovania">
-                        <img src="doucovanie1.jpeg" alt="Doučovanie matematiky">
+                <div class="col-lg-5">
+                    <div class="placeholder-box" aria-label="Online hodiny Matika+">
+                        <img src="Online 1.jpeg" alt="Online hodiny Matika+">
                     </div>
                 </div>
             </div>

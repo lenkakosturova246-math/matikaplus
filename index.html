@@ -12,8 +12,8 @@
 
 <style>
 html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 90px;
+    scroll-behavior: auto;
+    scroll-padding-top: 72px;
 }
 
 body {
@@ -35,7 +35,7 @@ body {
 .video-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(255,255,255,0.78);
+    background: rgba(255,255,255,0.72);
     z-index: -1;
 }
 
@@ -68,6 +68,33 @@ body {
 .navbar .nav-link:hover,
 .navbar .nav-link:focus-visible {
     color: #b9ddff !important;
+}
+
+.navbar .contact-btn {
+    display: inline-block;
+    color: #ffffff !important;
+    background: #64b1ce;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    line-height: 1.1;
+    border: 0;
+}
+
+.navbar .contact-btn:hover,
+.navbar .contact-btn:focus-visible {
+    transform: translateY(-2px);
+    background: #1f3c63;
+    color: #ffffff !important;
+}
+
+@media (max-width: 991.98px) {
+    .navbar .contact-btn {
+        margin-top: 8px;
+        width: fit-content;
+    }
 }
 
 .navbar .navbar-toggler {
@@ -128,6 +155,13 @@ body {
 
 .hero .btn-outline-dark {
     border-color: #203040;
+    color: #203040;
+}
+
+.hero .btn-outline-dark:hover,
+.hero .btn-outline-dark:focus-visible {
+    background: rgba(100,177,206,0.12);
+    border-color: #64b1ce;
     color: #203040;
 }
 
@@ -220,11 +254,84 @@ body {
     }
 
     .service-card .mathematik-title-row img:last-child {
-        width: 38px;
-        height: 38px;
+        width: 44px;
+        height: 44px;
         transform: rotate(8deg);
-        margin-bottom: -18px;
+        margin-bottom: -8px;
         margin-right: -2px;
+    }
+
+    .service-card .mathematik-title-row img.numicon-yellow {
+        filter: drop-shadow(0 1px 2px rgba(32, 45, 58, 0.18));
+    }
+
+    .service-card .mathematik-title-row img.numicon-red {
+        filter: drop-shadow(0 1px 2px rgba(32, 45, 58, 0.18));
+    }
+
+    .service-card .medzimath-name-row {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 8px;
+        margin-top: 8px;
+    }
+
+    .service-card .medzimath-name-row h4 {
+        margin: 0;
+        line-height: 1.1;
+    }
+
+    .service-card.medzimath-card {
+        position: relative;
+    }
+
+    .service-card.mathplus-card {
+        position: relative;
+        overflow: hidden;
+        background: #ffffff;
+    }
+
+    .service-card.mathplus-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: url('Math+ pozadie.png');
+        background-size: cover;
+        background-position: center;
+        opacity: 0.18;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .service-card.mathplus-card > .position-relative {
+        position: relative;
+        z-index: 1;
+    }
+
+    .service-card .medzimath-corner-image {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        width: 82px;
+        height: 82px;
+        object-fit: contain;
+        flex-shrink: 0;
+    }
+
+    .service-card .mathplus-corner-image {
+        position: absolute;
+        top: 8px;
+        right: 6px;
+        width: 112px;
+        height: 112px;
+        object-fit: contain;
+        transform: rotate(12deg);
+        transform-origin: center;
+        pointer-events: none;
+        z-index: 1;
+        opacity: 1;
     }
 
 .info-box ul {
@@ -376,6 +483,42 @@ body {
     flex-shrink: 0;
 }
 
+.social-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.social-link {
+    width: 42px;
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #64b1ce;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.social-link:hover,
+.social-link:focus-visible {
+    transform: translateY(-2px);
+    background: #7dc2db;
+}
+
+.social-link svg {
+    width: 22px;
+    height: 22px;
+    display: block;
+}
+
+.social-row {
+    background: transparent;
+    padding: 0;
+    margin-bottom: 0;
+}
+
 .map-frame {
     width: 100%;
     height: 220px;
@@ -396,7 +539,14 @@ footer {
 #pribeh,
 #registracia,
 #kontakt {
-    scroll-margin-top: 90px;
+    scroll-margin-top: 72px;
+}
+
+#kurzy,
+#pribeh,
+#registracia,
+#kontakt {
+    padding-top: 0.75rem !important;
 }
 </style>
 </head>
@@ -419,10 +569,11 @@ footer {
         <ul class="navbar-nav ms-auto">
             <li class="nav-item"><a class="nav-link" href="#home">Domov</a></li>
             <li class="nav-item"><a class="nav-link" href="#kurzy">Kurzy</a></li>
+            <li class="nav-item"><a class="nav-link" href="online-hodiny.html">Online hodiny</a></li>
             <li class="nav-item"><a class="nav-link" href="#registracia">Registrácia</a></li>
             <li class="nav-item"><a class="nav-link" href="spoluprace-mszs.html">Spolupráce MŠ/ZŠ</a></li>
             <li class="nav-item"><a class="nav-link" href="akcie.html">Akcie</a></li>
-            <li class="nav-item"><a class="nav-link" href="#kontakt">Kontakt</a></li>
+            <li class="nav-item ms-lg-2"><a class="contact-btn" href="#kontakt">Kontakt</a></li>
         </ul>
     </div>
 </div>
@@ -473,8 +624,8 @@ footer {
                     <div class="d-flex align-items-center justify-content-between gap-2 mb-2">
                         <div class="icon" style="background: #b1d8b7;">01</div>
                         <div class="mathematik-title-row">
-                            <img src="Numicon Math1.png" alt="Numicon Math 1">
-                            <img src="Numicon Math2.png" alt="Numicon Math 2">
+                            <img class="numicon-red" src="numicon-math1-clean.png" alt="Numicon Math 1">
+                            <img class="numicon-yellow" src="numicon-math2-clean.png" alt="Numicon Math 2">
                         </div>
                     </div>
                     <h4>Mathematík</h4>
@@ -484,23 +635,31 @@ footer {
         </div>
 
         <div class="col-md-6 col-lg-3">
-            <a class="service-card text-decoration-none d-block" href="mezimath-2-3.html">
+            <a class="service-card medzimath-card text-decoration-none d-block" href="mezimath-2-3.html">
                 <div class="icon" style="background: #51b7c9;">02</div>
-                <h4>MedziMath</h4>
+                <img class="medzimath-corner-image" src="MedziMath 1.png" alt="MedziMath obrázok">
+                <div class="medzimath-name-row">
+                    <h4>MedziMath</h4>
+                </div>
                 <p>2.–3. ročník ZŠ</p>
             </a>
         </div>
 
         <div class="col-md-6 col-lg-3">
-            <a class="service-card text-decoration-none d-block" href="math-plus-4-7.html">
-                <div class="icon" style="background: #2f5f9f; color: #ffffff;">03</div>
-                <h4>Math+</h4>
-                <p>4.–7. ročník ZŠ</p>
+            <a class="service-card mathplus-card text-decoration-none d-block position-relative overflow-hidden" href="math-plus-4-7.html">
+                <div class="position-relative">
+                    <div class="icon" style="background: #2f5f9f; color: #ffffff;">03</div>
+                    <img class="mathplus-corner-image" src="Math+ 2.png" alt="Math+ obrázok">
+                    <div class="medzimath-name-row">
+                        <h4>Math+</h4>
+                    </div>
+                    <p>4.–7. ročník ZŠ</p>
+                </div>
             </a>
         </div>
 
         <div class="col-md-6 col-lg-3">
-            <a class="service-card text-decoration-none d-block" href="doucovanie-math.html">
+            <a class="service-card doucovanie-card text-decoration-none d-block" href="doucovanie-math.html">
                 <div class="icon" style="background: #169d53;">04</div>
                 <h4>Doučovanie</h4>
                 <p>Osobitné podporu a príprava</p>
@@ -561,7 +720,7 @@ footer {
                             <input class="form-control" type="text" name="child_name" placeholder="Meno dieťaťa" required>
                         </div>
                         <div class="col-md-6">
-                            <input class="form-control" type="date" name="birth_date" placeholder="Dátum narodenia">
+                            <input class="form-control" id="birth-date-field" type="text" name="birth_date" placeholder="Dátum narodenia" autocomplete="bday">
                         </div>
                         <div class="col-md-6">
                             <input class="form-control" type="tel" name="phone" placeholder="Telefón" required>
@@ -602,8 +761,24 @@ footer {
                 <div class="contact-item">
                     <span class="dot"></span>
                     <div>
-                        <strong>Mgr. Barbora Almášiová</strong><br>
+                        <strong>Barbora Almášiová</strong><br>
                         0918 502 669
+                    </div>
+                </div>
+                <div class="contact-item social-row">
+                    <div>
+                        <div class="social-links">
+                            <a class="social-link" href="https://www.facebook.com/matikapluspn" target="_blank" rel="noopener noreferrer" aria-label="Facebook stránka Matika+" title="Facebook Matika+">
+                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                    <path fill="#1f3c63" d="M13.45 20V12.7h2.46l.38-2.85h-2.84V8.04c0-.82.23-1.38 1.41-1.38h1.51V4.12c-.74-.08-1.48-.12-2.23-.11-2.22 0-3.75 1.36-3.75 3.87v1.97H7.93v2.85h2.46V20h3.06z"/>
+                                </svg>
+                            </a>
+                            <a class="social-link" href="https://www.instagram.com/matikaplus_pn/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Matika+" title="Instagram Matika+">
+                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                    <path fill="#E1306C" d="M7.6 3h8.8A4.6 4.6 0 0 1 21 7.6v8.8a4.6 4.6 0 0 1-4.6 4.6H7.6A4.6 4.6 0 0 1 3 16.4V7.6A4.6 4.6 0 0 1 7.6 3zm0 1.9A2.7 2.7 0 0 0 4.9 7.6v8.8a2.7 2.7 0 0 0 2.7 2.7h8.8a2.7 2.7 0 0 0 2.7-2.7V7.6a2.7 2.7 0 0 0-2.7-2.7H7.6zm8.95 1.43a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2zM12 7.85A4.15 4.15 0 1 1 7.85 12 4.16 4.16 0 0 1 12 7.85zm0 1.9A2.25 2.25 0 1 0 14.25 12 2.25 2.25 0 0 0 12 9.75z"/>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -640,62 +815,77 @@ footer {
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx02arUgI3G8JJ7jNOZD-gEJVZc1HhYotSInVmuKaO3l2CdsK15COm_8lejBhkXskHjnQ/exec';
 
 if ('scrollRestoration' in history) {
-    history.scrollRestoration = 'manual';
+    history.scrollRestoration = 'auto';
 }
+
+document.querySelectorAll('.navbar .nav-link[href^="#"]').forEach((link) => {
+    link.addEventListener('click', () => {
+        const navMenuEl = document.getElementById('navMenu');
+        if (!navMenuEl || typeof bootstrap === 'undefined') return;
+        const expanded = navMenuEl.classList.contains('show');
+        if (!expanded) return;
+        const instance = bootstrap.Collapse.getInstance(navMenuEl);
+        instance?.hide();
+    });
+});
 
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
     link.addEventListener('click', (event) => {
         const targetId = link.getAttribute('href');
-        const target = targetId ? document.querySelector(targetId) : null;
+        if (!targetId || targetId === '#') return;
 
+        const target = document.querySelector(targetId);
         if (!target) return;
 
         event.preventDefault();
 
+        const navbar = document.querySelector('.navbar.fixed-top');
+        const navbarOffset = navbar ? navbar.offsetHeight : 72;
+        const targetTop = target.getBoundingClientRect().top + window.pageYOffset - navbarOffset;
+
+        window.scrollTo({ top: Math.max(0, targetTop), behavior: 'auto' });
+
         if (targetId === '#home') {
-            history.pushState({}, '', window.location.pathname + window.location.search);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            return;
+            history.replaceState({}, '', window.location.pathname + window.location.search);
+        } else {
+            history.replaceState({}, '', targetId);
         }
-
-        history.pushState({}, '', targetId);
-
-        const heading = target.querySelector('.section-title, h1, h2, h3');
-        const scrollTarget = heading || target;
-
-        scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
-});
-
-window.addEventListener('load', () => {
-    if (window.location.hash) {
-        if (window.location.hash === '#registracia') {
-            const card = document.getElementById('registracia-form-card');
-            if (card) {
-                setTimeout(() => {
-                    const heading = document.querySelector('#registracia .section-title');
-                    (heading || card).scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 120);
-            }
-            return;
-        }
-
-        const target = document.querySelector(window.location.hash);
-        if (target) {
-            setTimeout(() => {
-                const heading = target.querySelector('.section-title, h1, h2, h3');
-                (heading || target).scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 120);
-        }
-        return;
-    }
-
-    window.scrollTo(0, 0);
 });
 
 const registraciaForm = document.getElementById('registracia-form');
 const registraciaSubmit = document.getElementById('registracia-submit');
 const submittedAtField = document.getElementById('submitted-at-field');
+const birthDateField = document.getElementById('birth-date-field');
+
+if (birthDateField) {
+    const resetBirthDatePlaceholder = () => {
+        if (!birthDateField.value) {
+            birthDateField.type = 'text';
+            birthDateField.placeholder = 'Dátum narodenia';
+        }
+    };
+
+    const openBirthDatePicker = () => {
+        if (birthDateField.type !== 'date') {
+            birthDateField.type = 'date';
+        }
+        birthDateField.placeholder = '';
+        if (typeof birthDateField.showPicker === 'function') {
+            try {
+                birthDateField.showPicker();
+            } catch (_) {
+                // Some browsers block showPicker without explicit user gesture.
+            }
+        }
+    };
+
+    resetBirthDatePlaceholder();
+    birthDateField.addEventListener('focus', openBirthDatePicker);
+    birthDateField.addEventListener('click', openBirthDatePicker);
+    birthDateField.addEventListener('blur', resetBirthDatePlaceholder);
+    birthDateField.addEventListener('change', resetBirthDatePlaceholder);
+}
 
 if (registraciaForm && registraciaSubmit && submittedAtField) {
     registraciaForm.addEventListener('submit', async (event) => {

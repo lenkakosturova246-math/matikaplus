@@ -41,6 +41,33 @@
       color: #b9ddff !important;
       transform: none;
     }
+
+    .navbar .contact-btn {
+      display: inline-block;
+      color: #ffffff !important;
+      background: #64b1ce;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+      line-height: 1.1;
+      border: 0;
+    }
+
+    .navbar .contact-btn:hover,
+    .navbar .contact-btn:focus-visible {
+      transform: translateY(-2px);
+      background: #1f3c63;
+      color: #ffffff !important;
+    }
+
+    @media (max-width: 991.98px) {
+      .navbar .contact-btn {
+        margin-top: 8px;
+        width: fit-content;
+      }
+    }
     .navbar .navbar-toggler {
       border-color: rgba(255,255,255,0.45);
     }
@@ -80,10 +107,11 @@
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="index.html#home">Domov</a></li>
           <li class="nav-item"><a class="nav-link" href="index.html#kurzy">Kurzy</a></li>
+          <li class="nav-item"><a class="nav-link" href="online-hodiny.html">Online hodiny</a></li>
           <li class="nav-item"><a class="nav-link" href="index.html#registracia">Registrácia</a></li>
           <li class="nav-item"><a class="nav-link" href="spoluprace-mszs.html">Spolupráce MŠ/ZŠ</a></li>
           <li class="nav-item"><a class="nav-link" href="akcie.html">Akcie</a></li>
-          <li class="nav-item"><a class="nav-link" href="index.html#kontakt">Kontakt</a></li>
+          <li class="nav-item ms-lg-2"><a class="contact-btn" href="index.html#kontakt">Kontakt</a></li>
         </ul>
       </div>
     </div>
