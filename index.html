@@ -47,11 +47,18 @@ body {
     #kurzy,
     #pribeh,
     #kontakt {
-        scroll-margin-top: 92px;
+        scroll-margin-top: 66px;
     }
 
     #registracia {
         scroll-margin-top: 66px;
+    }
+
+    #kurzy,
+    #pribeh,
+    #registracia,
+    #kontakt {
+        padding-top: 0 !important;
     }
 
     .info-box.info-panel,
@@ -84,6 +91,7 @@ body {
 }
 
 .navbar-brand {
+    font-family: 'Montserrat', sans-serif;
     font-weight: 800;
     letter-spacing: 0.04em;
 }
@@ -95,12 +103,14 @@ body {
 
 .navbar .nav-link {
     color: #ffffff !important;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
 }
 
 .navbar .nav-link:hover,
 .navbar .nav-link:focus-visible {
     color: #b9ddff !important;
+    transform: none;
 }
 
 .navbar .contact-btn {
@@ -615,11 +625,25 @@ footer {
     scroll-margin-top: 72px;
 }
 
+#kurzy {
+    scroll-margin-top: 52px;
+    padding-top: 0 !important;
+}
+
 #kurzy,
 #pribeh,
 #registracia,
 #kontakt {
     padding-top: 0.75rem !important;
+}
+
+@media (max-width: 768px) {
+    #kurzy,
+    #pribeh,
+    #registracia,
+    #kontakt {
+        padding-top: 0 !important;
+    }
 }
 </style>
 </head>
@@ -896,6 +920,19 @@ footer {
 <script>
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx02arUgI3G8JJ7jNOZD-gEJVZc1HhYotSInVmuKaO3l2CdsK15COm_8lejBhkXskHjnQ/exec';
 
+const scrollToSection = (targetId) => {
+    if (!targetId || targetId === '#') return;
+
+    const target = document.querySelector(targetId);
+    if (!target) return;
+
+    const navbar = document.querySelector('.navbar.fixed-top');
+    const navbarOffset = navbar ? navbar.offsetHeight : 72;
+    const targetTop = target.getBoundingClientRect().top + window.pageYOffset - navbarOffset;
+
+    window.scrollTo({ top: Math.max(0, targetTop), behavior: 'auto' });
+};
+
 if ('scrollRestoration' in history) {
     history.scrollRestoration = 'auto';
 }
@@ -916,16 +953,9 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
         const targetId = link.getAttribute('href');
         if (!targetId || targetId === '#') return;
 
-        const target = document.querySelector(targetId);
-        if (!target) return;
-
         event.preventDefault();
 
-        const navbar = document.querySelector('.navbar.fixed-top');
-        const navbarOffset = navbar ? navbar.offsetHeight : 72;
-        const targetTop = target.getBoundingClientRect().top + window.pageYOffset - navbarOffset;
-
-        window.scrollTo({ top: Math.max(0, targetTop), behavior: 'auto' });
+        scrollToSection(targetId);
 
         if (targetId === '#home') {
             history.replaceState({}, '', window.location.pathname + window.location.search);
@@ -935,23 +965,14 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
     });
 });
 
-const scrollToHashTarget = () => {
-    if (!window.location.hash) return;
-    const target = document.querySelector(window.location.hash);
+window.addEventListener('load', () => {
+    const params = new URLSearchParams(window.location.search);
+    const target = params.get('target');
     if (!target) return;
 
-    const navbar = document.querySelector('.navbar.fixed-top');
-    const navbarOffset = navbar ? navbar.offsetHeight : 72;
-    const targetTop = target.getBoundingClientRect().top + window.pageYOffset - navbarOffset;
-    window.scrollTo({ top: Math.max(0, targetTop), behavior: 'auto' });
-};
-
-window.addEventListener('load', () => {
-    scrollToHashTarget();
-});
-
-window.addEventListener('hashchange', () => {
-    scrollToHashTarget();
+    const targetId = `#${target}`;
+    scrollToSection(targetId);
+    history.replaceState({}, '', targetId);
 });
 
 const registraciaForm = document.getElementById('registracia-form');
