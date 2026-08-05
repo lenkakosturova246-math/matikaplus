@@ -50,6 +50,22 @@ body {
     #kontakt {
         scroll-margin-top: 92px;
     }
+
+    .info-box.info-panel,
+    .info-box.info-panel .section-title,
+    .emotion-list,
+    .emotion-list li {
+        text-align: left;
+    }
+
+    .emotion-list li {
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    .emotion-icon {
+        margin-top: 1px;
+    }
 }
 
 .navbar {
@@ -931,13 +947,17 @@ const birthDateNative = document.getElementById('birth-date-native');
 
 if (birthDateField) {
     const formatBirthDateValue = (rawValue) => {
-        const digits = rawValue.replace(/\D/g, '').slice(0, 8);
-        const day = digits.slice(0, 2);
-        const month = digits.slice(2, 4);
-        const year = digits.slice(4, 8);
+        const digits = rawValue.replace(/\D/g, '').slice(0, 6);
 
-        if (digits.length <= 2) return day;
-        if (digits.length <= 4) return `${day}.${month}`;
+        if (!digits.length) return '';
+
+        const day = `0${digits[0]}`;
+        if (digits.length === 1) return `${day}.`;
+
+        const month = `0${digits[1]}`;
+        if (digits.length === 2) return `${day}.${month}.`;
+
+        const year = digits.slice(2, 6);
         return `${day}.${month}.${year}`;
     };
 
