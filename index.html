@@ -46,9 +46,12 @@ body {
     #home,
     #kurzy,
     #pribeh,
-    #registracia,
     #kontakt {
         scroll-margin-top: 92px;
+    }
+
+    #registracia {
+        scroll-margin-top: 66px;
     }
 
     .info-box.info-panel,
@@ -61,10 +64,16 @@ body {
     .emotion-list li {
         align-items: flex-start;
         justify-content: flex-start;
+        margin-left: -14px;
     }
 
     .emotion-icon {
         margin-top: 1px;
+    }
+
+    .info-box.info-panel {
+        padding-left: 14px;
+        padding-right: 14px;
     }
 }
 
@@ -133,7 +142,14 @@ body {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: 100px 0 70px;
+    padding: 88px 0 52px;
+}
+
+@media (max-width: 991.98px) {
+    .hero {
+        align-items: flex-start;
+        padding: 76px 0 34px;
+    }
 }
 
 .hero-card {
@@ -946,19 +962,46 @@ const birthDatePickerBtn = document.getElementById('birth-date-picker-btn');
 const birthDateNative = document.getElementById('birth-date-native');
 
 if (birthDateField) {
-    const formatBirthDateValue = (rawValue) => {
-        const digits = rawValue.replace(/\D/g, '').slice(0, 6);
+    const dateState = {
+        day: '',
+        month: '',
+        year: '',
+        dayLocked: false,
+        monthLocked: false,
+        activePart: 'day'
+    };
 
-        if (!digits.length) return '';
+    const resetDateState = () => {
+        dateState.day = '';
+        dateState.month = '';
+        dateState.year = '';
+        dateState.dayLocked = false;
+        dateState.monthLocked = false;
+        dateState.activePart = 'day';
+    };
 
-        const day = `0${digits[0]}`;
-        if (digits.length === 1) return `${day}.`;
+    const formatBirthDateValue = () => {
+        let formatted = '';
 
-        const month = `0${digits[1]}`;
-        if (digits.length === 2) return `${day}.${month}.`;
+        if (dateState.day) {
+            formatted += dateState.day;
+        }
+        if (dateState.dayLocked) {
+            formatted += '.';
+        }
 
-        const year = digits.slice(2, 6);
-        return `${day}.${month}.${year}`;
+        if (dateState.month) {
+            formatted += dateState.month;
+        }
+        if (dateState.monthLocked) {
+            formatted += '.';
+        }
+
+        if (dateState.year) {
+            formatted += dateState.year;
+        }
+
+        return formatted;
     };
 
     const convertDateToSlovakFormat = (isoDate) => {
@@ -967,8 +1010,154 @@ if (birthDateField) {
         return `${parts[2]}.${parts[1]}.${parts[0]}`;
     };
 
-    birthDateField.addEventListener('input', () => {
-        birthDateField.value = formatBirthDateValue(birthDateField.value);
+    const placeCaretToEnd = () => {
+        const cursorPosition = birthDateField.value.length;
+        birthDateField.setSelectionRange(cursorPosition, cursorPosition);
+    };
+
+    const renderManualBirthDate = () => {
+        birthDateField.value = formatBirthDateValue();
+        placeCaretToEnd();
+    };
+
+    const handleDigitInput = (digit) => {
+        if (!/^\d$/.test(digit)) return;
+
+        if (dateState.activePart === 'day') {
+            if (dateState.day.length < 2) {
+                dateState.day += digit;
+            }
+            return;
+        }
+
+        if (dateState.activePart === 'month') {
+            if (dateState.month.length < 2) {
+                dateState.month += digit;
+            }
+            return;
+        }
+
+        if (dateState.activePart === 'year' && dateState.year.length < 4) {
+            dateState.year += digit;
+        }
+    };
+
+    const handleDotInput = () => {
+        if (dateState.activePart === 'day' && dateState.day.length >= 1) {
+            if (dateState.day.length === 1) {
+                dateState.day = `0${dateState.day}`;
+            }
+            dateState.dayLocked = true;
+            dateState.activePart = 'month';
+            return;
+        }
+
+        if (dateState.activePart === 'month' && dateState.month.length >= 1) {
+            if (dateState.month.length === 1) {
+                dateState.month = `0${dateState.month}`;
+            }
+            dateState.monthLocked = true;
+            dateState.activePart = 'year';
+        }
+    };
+
+    const handleBackspaceInput = () => {
+        if (dateState.activePart === 'year') {
+            if (dateState.year.length > 0) {
+                dateState.year = dateState.year.slice(0, -1);
+                return;
+            }
+
+            if (dateState.monthLocked) {
+                dateState.monthLocked = false;
+                dateState.activePart = 'month';
+                return;
+            }
+        }
+
+        if (dateState.activePart === 'month') {
+            if (dateState.month.length > 0) {
+                dateState.month = dateState.month.slice(0, -1);
+                return;
+            }
+
+            if (dateState.dayLocked) {
+                dateState.dayLocked = false;
+                dateState.activePart = 'day';
+                return;
+            }
+        }
+
+        if (dateState.activePart === 'day' && dateState.day.length > 0) {
+            dateState.day = dateState.day.slice(0, -1);
+        }
+    };
+
+    const applyTextToDateState = (rawText) => {
+        resetDateState();
+        const normalized = (rawText || '').replace(/,/g, '.');
+
+        for (const char of normalized) {
+            if (/\d/.test(char)) {
+                handleDigitInput(char);
+            } else if (char === '.') {
+                handleDotInput();
+            }
+        }
+    };
+
+    birthDateField.addEventListener('beforeinput', (event) => {
+        const inputType = event.inputType || '';
+
+        if (inputType === 'insertText') {
+            const typedChar = event.data || '';
+            event.preventDefault();
+
+            if (/\d/.test(typedChar)) {
+                handleDigitInput(typedChar);
+            } else if (typedChar === '.') {
+                handleDotInput();
+            }
+
+            renderManualBirthDate();
+            return;
+        }
+
+        if (inputType === 'insertFromPaste') {
+            event.preventDefault();
+            applyTextToDateState(event.data || '');
+            renderManualBirthDate();
+            return;
+        }
+
+        if (inputType === 'deleteContentBackward') {
+            event.preventDefault();
+            handleBackspaceInput();
+            renderManualBirthDate();
+            return;
+        }
+
+        if (inputType === 'deleteContentForward' || inputType === 'deleteByCut') {
+            event.preventDefault();
+            resetDateState();
+            renderManualBirthDate();
+            return;
+        }
+    });
+
+    birthDateField.addEventListener('paste', (event) => {
+        const clipboardText = event.clipboardData?.getData('text') || '';
+        event.preventDefault();
+        applyTextToDateState(clipboardText);
+        renderManualBirthDate();
+    });
+
+    birthDateField.addEventListener('focus', () => {
+        placeCaretToEnd();
+    });
+
+    birthDateField.addEventListener('click', () => {
+        placeCaretToEnd();
     });
 
     birthDatePickerBtn?.addEventListener('click', () => {
@@ -987,7 +1176,9 @@ if (birthDateField) {
 
     birthDateNative?.addEventListener('change', () => {
         if (!birthDateNative.value) return;
+        applyTextToDateState(convertDateToSlovakFormat(birthDateNative.value));
         birthDateField.value = convertDateToSlovakFormat(birthDateNative.value);
+        placeCaretToEnd();
     });
 }
 
