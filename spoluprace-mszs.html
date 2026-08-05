@@ -23,6 +23,7 @@ body {
 }
 
 .navbar-brand {
+    font-family: 'Montserrat', sans-serif;
     font-weight: 800;
     letter-spacing: 0.04em;
 }
@@ -34,12 +35,14 @@ body {
 
 .navbar .nav-link {
     color: #ffffff !important;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
 }
 
 .navbar .nav-link:hover,
 .navbar .nav-link:focus-visible {
     color: #b9ddff !important;
+    transform: none;
 }
 
 .navbar .contact-btn {
@@ -81,7 +84,14 @@ body {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: 112px 0 56px;
+    padding: 86px 0 44px;
+}
+
+@media (max-width: 991.98px) {
+    .page-wrap {
+        align-items: flex-start;
+        padding: 62px 0 22px;
+    }
 }
 
 .hero-card {
@@ -287,7 +297,7 @@ body {
         <div class="collapse navbar-collapse" id="navMenu">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" href="index.html#home">Domov</a></li>
-                <li class="nav-item"><a class="nav-link" href="index.html#kurzy">Kurzy</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html?target=kurzy">Kurzy</a></li>
                 <li class="nav-item"><a class="nav-link" href="online-hodiny.html">Online hodiny</a></li>
                 <li class="nav-item"><a class="nav-link" href="spoluprace-mszs.html">Spolupráce MŠ/ZŠ</a></li>
                 <li class="nav-item"><a class="nav-link" href="akcie.html">Akcie</a></li>

@@ -23,6 +23,7 @@ body {
 }
 
 .navbar-brand {
+    font-family: 'Montserrat', sans-serif;
     font-weight: 800;
     letter-spacing: 0.04em;
 }
@@ -34,12 +35,14 @@ body {
 
 .navbar .nav-link {
     color: #ffffff !important;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
 }
 
 .navbar .nav-link:hover,
 .navbar .nav-link:focus-visible {
     color: #b9ddff !important;
+    transform: none;
 }
 
 .navbar .contact-btn {
@@ -81,7 +84,14 @@ body {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: 112px 0 56px;
+    padding: 86px 0 44px;
+}
+
+@media (max-width: 991.98px) {
+    .page-wrap {
+        align-items: flex-start;
+        padding: 62px 0 22px;
+    }
 }
 
 .hero-card {
@@ -155,15 +165,23 @@ body {
 
 .action-row {
     display: flex;
-    gap: 12px;
+    gap: 8px;
     justify-content: flex-start;
     flex-wrap: wrap;
-    margin-top: 8px;
+    margin-top: 6px;
+}
+
+.action-row-desktop {
+    display: flex;
+}
+
+.action-row-mobile {
+    display: none;
 }
 
 .action-row a {
     display: inline-block;
-    margin-top: 20px;
+    margin-top: 0;
     color: white;
     background: #64b1ce;
     padding: 10px 18px;
@@ -175,6 +193,25 @@ body {
 
 .action-row a:hover {
     transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .action-row-desktop {
+        display: none;
+    }
+
+    .action-row-mobile {
+        display: flex;
+    }
+
+    .action-row {
+        gap: 6px;
+    }
+
+    .action-row a {
+        padding: 9px 14px;
+        font-size: 0.95rem;
+    }
 }
 </style>
 </head>
@@ -190,7 +227,7 @@ body {
         <div class="collapse navbar-collapse" id="navMenu">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" href="index.html#home">Domov</a></li>
-                <li class="nav-item"><a class="nav-link" href="index.html#kurzy">Kurzy</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html?target=kurzy">Kurzy</a></li>
                 <li class="nav-item"><a class="nav-link" href="online-hodiny.html">Online hodiny</a></li>
                 <li class="nav-item"><a class="nav-link" href="spoluprace-mszs.html">Spolupráce MŠ/ZŠ</a></li>
                 <li class="nav-item"><a class="nav-link" href="akcie.html">Akcie</a></li>
@@ -218,12 +255,17 @@ body {
                     <p class="price"><strong>Skupina 3 detí:</strong> 120 € / mesiac / dieťa</p>
                     <p class="price mb-4"><strong>V cene sú 4 vyučovacie hodiny po 60 minút.</strong></p>
 
+                    <div class="action-row action-row-desktop">
+                        <a href="index.html">Späť na hlavnú stránku</a>
+                        <a href="index.html#registracia">Zaregistrovať sa</a>
+                    </div>
+
                 </div>
                 <div class="col-lg-6">
                     <div class="placeholder-box" aria-label="Miesto na fotografiu doučovania">
                         <img src="doucovanie1.jpeg" alt="Doučovanie matematiky">
                     </div>
-                    <div class="action-row">
+                    <div class="action-row action-row-mobile">
                         <a href="index.html">Späť na hlavnú stránku</a>
                         <a href="index.html#registracia">Zaregistrovať sa</a>
                     </div>
