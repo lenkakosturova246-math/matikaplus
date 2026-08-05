@@ -42,6 +42,14 @@ body {
 @media (max-width: 768px) {
     .background-video { display: none; }
     .video-overlay { display: none; }
+
+    #home,
+    #kurzy,
+    #pribeh,
+    #registracia,
+    #kontakt {
+        scroll-margin-top: 92px;
+    }
 }
 
 .navbar {
@@ -393,12 +401,12 @@ body {
 
 .emotion-icon {
     flex-shrink: 0;
-    width: 32px;
-    height: 32px;
+    width: 42px;
+    height: 42px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.35rem;
+    font-size: 1.9rem;
     font-weight: 800;
     color: #64b1ce;
 }
@@ -427,6 +435,39 @@ body {
     border-radius: 999px;
     padding: 12px 16px;
     border-color: #dbe7f0;
+}
+
+.date-input-group .form-control {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.date-input-group .date-picker-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-top-right-radius: 999px;
+    border-bottom-right-radius: 999px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border: 1px solid #dbe7f0;
+    border-left: 0;
+    background: #f4f9fd;
+    color: #2b4354;
+    font-weight: 700;
+    padding: 0 12px;
+    min-width: 48px;
+}
+
+.date-input-group .date-picker-btn:hover,
+.date-input-group .date-picker-btn:focus-visible {
+    background: #e9f4fb;
+}
+
+.date-input-group .date-picker-btn svg {
+    width: 20px;
+    height: 20px;
+    display: block;
 }
 
 .form-control:focus,
@@ -570,9 +611,9 @@ footer {
             <li class="nav-item"><a class="nav-link" href="#home">Domov</a></li>
             <li class="nav-item"><a class="nav-link" href="#kurzy">Kurzy</a></li>
             <li class="nav-item"><a class="nav-link" href="online-hodiny.html">Online hodiny</a></li>
-            <li class="nav-item"><a class="nav-link" href="#registracia">Registrácia</a></li>
             <li class="nav-item"><a class="nav-link" href="spoluprace-mszs.html">Spolupráce MŠ/ZŠ</a></li>
             <li class="nav-item"><a class="nav-link" href="akcie.html">Akcie</a></li>
+            <li class="nav-item"><a class="nav-link" href="#registracia">Registrácia</a></li>
             <li class="nav-item ms-lg-2"><a class="contact-btn" href="#kontakt">Kontakt</a></li>
         </ul>
     </div>
@@ -662,7 +703,7 @@ footer {
             <a class="service-card doucovanie-card text-decoration-none d-block" href="doucovanie-math.html">
                 <div class="icon" style="background: #169d53;">04</div>
                 <h4>Doučovanie</h4>
-                <p>Osobitné podporu a príprava</p>
+                <p>3.–7. ročník ZŠ</p>
             </a>
         </div>
     </div>
@@ -720,7 +761,15 @@ footer {
                             <input class="form-control" type="text" name="child_name" placeholder="Meno dieťaťa" required>
                         </div>
                         <div class="col-md-6">
-                            <input class="form-control" id="birth-date-field" type="text" name="birth_date" placeholder="Dátum narodenia" autocomplete="bday">
+                            <div class="input-group date-input-group">
+                                <input class="form-control" id="birth-date-field" type="text" name="birth_date" placeholder="Dátum narodenia" inputmode="numeric" autocomplete="bday" maxlength="10" pattern="^\d{2}\.\d{2}\.\d{4}$">
+                                <button class="btn date-picker-btn" type="button" id="birth-date-picker-btn" aria-label="Otvoriť kalendár" title="Otvoriť kalendár">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                        <path fill="currentColor" d="M7 2a1 1 0 0 1 1 1v1h8V3a1 1 0 1 1 2 0v1h1.25A2.75 2.75 0 0 1 22 6.75v12.5A2.75 2.75 0 0 1 19.25 22H4.75A2.75 2.75 0 0 1 2 19.25V6.75A2.75 2.75 0 0 1 4.75 4H6V3a1 1 0 0 1 1-1Zm12.25 8H4v9.25c0 .41.34.75.75.75h14.5c.41 0 .75-.34.75-.75V10ZM4.75 6A.75.75 0 0 0 4 6.75V8h16V6.75a.75.75 0 0 0-.75-.75H18v1a1 1 0 1 1-2 0V6H8v1a1 1 0 1 1-2 0V6H4.75Z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <input id="birth-date-native" type="date" tabindex="-1" aria-hidden="true" style="position:absolute;opacity:0;pointer-events:none;width:1px;height:1px;">
                         </div>
                         <div class="col-md-6">
                             <input class="form-control" type="tel" name="phone" placeholder="Telefón" required>
@@ -751,6 +800,7 @@ footer {
             <div class="col-lg-7">
                 <h3 class="mb-3">Kontakt</h3>
                 <p class="mb-3">Ak máš záujem o kurz alebo chceš doplniť informácie, napíš nám.</p>
+                <p class="mb-3">Email: <a href="mailto:info@matikaplus.sk">info@matikaplus.sk</a></p>
                 <div class="contact-item">
                     <span class="dot"></span>
                     <div>
@@ -806,7 +856,7 @@ footer {
 
 <footer>
 <div class="container text-center">
-    © 2026 MATIKA+
+    © 2026 MATIKA+. Všetky práva vyhradené.
 </div>
 </footer>
 
@@ -853,38 +903,72 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
     });
 });
 
+const scrollToHashTarget = () => {
+    if (!window.location.hash) return;
+    const target = document.querySelector(window.location.hash);
+    if (!target) return;
+
+    const navbar = document.querySelector('.navbar.fixed-top');
+    const navbarOffset = navbar ? navbar.offsetHeight : 72;
+    const targetTop = target.getBoundingClientRect().top + window.pageYOffset - navbarOffset;
+    window.scrollTo({ top: Math.max(0, targetTop), behavior: 'auto' });
+};
+
+window.addEventListener('load', () => {
+    scrollToHashTarget();
+});
+
+window.addEventListener('hashchange', () => {
+    scrollToHashTarget();
+});
+
 const registraciaForm = document.getElementById('registracia-form');
 const registraciaSubmit = document.getElementById('registracia-submit');
 const submittedAtField = document.getElementById('submitted-at-field');
 const birthDateField = document.getElementById('birth-date-field');
+const birthDatePickerBtn = document.getElementById('birth-date-picker-btn');
+const birthDateNative = document.getElementById('birth-date-native');
 
 if (birthDateField) {
-    const resetBirthDatePlaceholder = () => {
-        if (!birthDateField.value) {
-            birthDateField.type = 'text';
-            birthDateField.placeholder = 'Dátum narodenia';
-        }
+    const formatBirthDateValue = (rawValue) => {
+        const digits = rawValue.replace(/\D/g, '').slice(0, 8);
+        const day = digits.slice(0, 2);
+        const month = digits.slice(2, 4);
+        const year = digits.slice(4, 8);
+
+        if (digits.length <= 2) return day;
+        if (digits.length <= 4) return `${day}.${month}`;
+        return `${day}.${month}.${year}`;
     };
 
-    const openBirthDatePicker = () => {
-        if (birthDateField.type !== 'date') {
-            birthDateField.type = 'date';
-        }
-        birthDateField.placeholder = '';
-        if (typeof birthDateField.showPicker === 'function') {
+    const convertDateToSlovakFormat = (isoDate) => {
+        const parts = isoDate.split('-');
+        if (parts.length !== 3) return '';
+        return `${parts[2]}.${parts[1]}.${parts[0]}`;
+    };
+
+    birthDateField.addEventListener('input', () => {
+        birthDateField.value = formatBirthDateValue(birthDateField.value);
+    });
+
+    birthDatePickerBtn?.addEventListener('click', () => {
+        if (!birthDateNative) return;
+        if (typeof birthDateNative.showPicker === 'function') {
             try {
-                birthDateField.showPicker();
+                birthDateNative.showPicker();
+                return;
             } catch (_) {
-                // Some browsers block showPicker without explicit user gesture.
+                // Fallback to focus if showPicker is blocked.
             }
         }
-    };
+        birthDateNative.focus();
+        birthDateNative.click();
+    });
 
-    resetBirthDatePlaceholder();
-    birthDateField.addEventListener('focus', openBirthDatePicker);
-    birthDateField.addEventListener('click', openBirthDatePicker);
-    birthDateField.addEventListener('blur', resetBirthDatePlaceholder);
-    birthDateField.addEventListener('change', resetBirthDatePlaceholder);
+    birthDateNative?.addEventListener('change', () => {
+        if (!birthDateNative.value) return;
+        birthDateField.value = convertDateToSlovakFormat(birthDateNative.value);
+    });
 }
 
 if (registraciaForm && registraciaSubmit && submittedAtField) {
