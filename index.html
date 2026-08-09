@@ -53,7 +53,7 @@ body {
     }
 
     #registracia {
-        scroll-margin-top: 92px;
+        scroll-margin-top: 110px;
     }
 
     #kurzy,
@@ -715,7 +715,7 @@ footer {
 }
 
 #registracia {
-    scroll-margin-top: 92px;
+    scroll-margin-top: 110px;
 }
 
 #kurzy {
@@ -1054,6 +1054,15 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
         const targetId = link.getAttribute('href');
         if (!targetId || targetId === '#') return;
 
+        const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+        if (isMobile && targetId !== '#home') {
+            event.preventDefault();
+            scrollToSection(targetId, targetId === '#registracia' ? 110 : 92);
+            history.replaceState({}, '', targetId);
+            return;
+        }
+
         // Keep native hash scrolling so position matches subpage-to-home navigation.
         if (targetId === '#home') {
             event.preventDefault();
@@ -1232,43 +1241,10 @@ if (birthDateField) {
         }
     };
 
-    birthDateField.addEventListener('beforeinput', (event) => {
-        const inputType = event.inputType || '';
-
-        if (inputType === 'insertText') {
-            const typedChar = event.data || '';
-            event.preventDefault();
-
-            if (/\d/.test(typedChar)) {
-                handleDigitInput(typedChar);
-            } else if (typedChar === '.') {
-                handleDotInput();
-            }
-
-            renderManualBirthDate();
-            return;
-        }
-
-        if (inputType === 'insertFromPaste') {
-            event.preventDefault();
-            applyTextToDateState(event.data || '');
-            renderManualBirthDate();
-            return;
-        }
-
-        if (inputType === 'deleteContentBackward') {
-            event.preventDefault();
-            handleBackspaceInput();
-            renderManualBirthDate();
-            return;
-        }
-
-        if (inputType === 'deleteContentForward' || inputType === 'deleteByCut') {
-            event.preventDefault();
-            resetDateState();
-            renderManualBirthDate();
-            return;
-        }
+    birthDateField.addEventListener('input', () => {
+        const rawValue = birthDateField.value || '';
+        applyTextToDateState(rawValue);
+        renderManualBirthDate();
     });
 
     birthDateField.addEventListener('paste', (event) => {
@@ -1302,8 +1278,9 @@ if (birthDateField) {
 
     birthDateNative?.addEventListener('change', () => {
         if (!birthDateNative.value) return;
-        applyTextToDateState(convertDateToSlovakFormat(birthDateNative.value));
-        birthDateField.value = convertDateToSlovakFormat(birthDateNative.value);
+        const formattedDate = convertDateToSlovakFormat(birthDateNative.value);
+        applyTextToDateState(formattedDate);
+        birthDateField.value = formattedDate;
         placeCaretToEnd();
     });
 }
