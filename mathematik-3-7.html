@@ -175,16 +175,6 @@
       position: relative;
     }
 
-    .story-section:not(:last-child)::after {
-      content: "";
-      position: absolute;
-      left: 6vw;
-      right: 6vw;
-      bottom: 0;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(32, 45, 58, 0) 0%, rgba(32, 45, 58, 0.32) 12%, rgba(32, 45, 58, 0.32) 88%, rgba(32, 45, 58, 0) 100%);
-      z-index: 3;
-    }
 
     .story-section.text-section {
       background: linear-gradient(180deg, rgba(249, 253, 255, 0.58) 0%, rgba(238, 247, 253, 0.64) 100%);
@@ -317,16 +307,18 @@
     .intro-video-frame {
       overflow: hidden;
       line-height: 0;
-      background: transparent;
-      border: 0 solid var(--dark);
-      border-radius: 18px;
-      opacity: 0;
-      transition: opacity 0.08s ease, border 0.08s ease;
-    }
-
-    .intro-video-frame.is-ready {
-      opacity: 1;
+      background: #ffffff;
+      border-top: 3px solid var(--dark);
+      border-right: 3px solid var(--dark);
+      border-bottom: 3px solid var(--dark);
+      border-left: 3px solid var(--dark);
       border-width: 3px;
+      border-style: solid;
+      border-color: var(--dark);
+      border-radius: 18px;
+      opacity: 1;
+      transition: opacity 0.65s ease;
+      box-sizing: border-box;
     }
 
     .intro-screen.is-fading .intro-video-frame {
@@ -340,17 +332,12 @@
       display: block;
       border: 0;
       border-radius: 0;
-      box-shadow: none;
       background: transparent;
       outline: none;
       filter: saturate(1.02);
       transform: scale(1.02);
-      opacity: 0;
-      transition: opacity 0.08s ease;
-    }
-
-    .intro-screen video.is-ready {
       opacity: 1;
+      transition: opacity 0.65s ease;
     }
 
     .skip-intro-btn {
@@ -384,13 +371,15 @@
 
     .page-content {
       opacity: 0;
+      visibility: hidden;
       transform: translateY(8px);
-      transition: opacity 0.2s ease, transform 0.2s ease;
+      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
       pointer-events: none;
     }
 
     .page-content.is-visible {
       opacity: 1;
+      visibility: visible;
       transform: translateY(0);
       pointer-events: auto;
     }
@@ -459,6 +448,40 @@
 
       .skip-intro-btn:hover {
         transform: translateX(-2px);
+      }
+
+      .intro-screen {
+        background: rgba(255, 255, 255, 0.78);
+        padding: 20px;
+      }
+
+      .intro-video-frame {
+        width: min(92vw, 520px);
+        max-height: min(78vh, 560px);
+        opacity: 1;
+        border-top: 3px solid var(--dark);
+        border-right: 3px solid var(--dark);
+        border-bottom: 3px solid var(--dark);
+        border-left: 3px solid var(--dark);
+        border-width: 3px;
+        border-style: solid;
+        border-color: var(--dark);
+        border-radius: 18px;
+        overflow: hidden;
+        background: #ffffff;
+        box-sizing: border-box;
+      }
+
+      .intro-screen video {
+        width: min(92vw, 520px);
+        height: auto;
+        max-width: 100%;
+        max-height: min(78vh, 560px);
+        object-fit: cover;
+        opacity: 1;
+        border-radius: 0;
+        display: block;
+        background: transparent;
       }
     }
   </style>
@@ -610,16 +633,24 @@
     };
 
     window.addEventListener('load', () => {
-      if (window.matchMedia('(max-width: 768px)').matches) {
-        introVideo.pause();
-        startOutroTransition();
-        return;
-      }
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
-      const startPlayback = () => {
+      const startPlayback = async () => {
+        if (!introVideo) return;
+
         introVideo.preload = 'auto';
-        introVideo.load();
-        introVideo.play().catch(() => {});
+
+        try {
+          await introVideo.play();
+        } catch (_) {
+          if (!hasTransitionStarted) {
+            setTimeout(() => {
+              if (!hasTransitionStarted) {
+                startOutroTransition();
+              }
+            }, 800);
+          }
+        }
       };
 
       introVideo.addEventListener('timeupdate', () => {
@@ -630,26 +661,44 @@
       });
 
       introVideo.addEventListener('ended', startOutroTransition, { once: true });
-      introVideo.addEventListener('error', startOutroTransition, { once: true });
+      introVideo.addEventListener('error', () => {
+        if (!hasTransitionStarted) {
+          startOutroTransition();
+        }
+      }, { once: true });
 
       const revealVideo = () => {
         introVideo.classList.add('is-ready');
         introVideo.parentElement.classList.add('is-ready');
       };
 
-      if (introVideo.readyState >= 2) {
+      const handleVideoReady = () => {
         syncBackgroundFromVideo();
         revealVideo();
-        startPlayback();
+      };
+
+      if (introVideo.readyState >= 2) {
+        handleVideoReady();
       } else {
-        introVideo.addEventListener('canplay', () => {
-          syncBackgroundFromVideo();
-          revealVideo();
-          startPlayback();
-        }, { once: true });
+        introVideo.addEventListener('canplay', handleVideoReady, { once: true });
       }
 
-      setTimeout(startOutroTransition, 16000);
+      if (isMobile) {
+        handleVideoReady();
+        startPlayback();
+      } else {
+        startPlayback();
+      }
+
+      const startIntroFromInteraction = () => {
+        if (!hasTransitionStarted) {
+          startPlayback();
+        }
+      };
+
+      document.addEventListener('pointerdown', startIntroFromInteraction, { once: true, passive: true });
+      document.addEventListener('touchstart', startIntroFromInteraction, { once: true, passive: true });
+      document.addEventListener('keydown', startIntroFromInteraction, { once: true });
 
       skipIntroBtn.addEventListener('click', () => {
         introVideo.pause();
