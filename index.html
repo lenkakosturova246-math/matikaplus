@@ -53,7 +53,7 @@ body {
     }
 
     #registracia {
-        scroll-margin-top: 50px;
+        scroll-margin-top: 92px;
     }
 
     #kurzy,
@@ -715,7 +715,7 @@ footer {
 }
 
 #registracia {
-    scroll-margin-top: 50px;
+    scroll-margin-top: 92px;
 }
 
 #kurzy {
@@ -1020,7 +1020,7 @@ footer {
 <script>
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx02arUgI3G8JJ7jNOZD-gEJVZc1HhYotSInVmuKaO3l2CdsK15COm_8lejBhkXskHjnQ/exec';
 
-const scrollToSection = (targetId) => {
+const scrollToSection = (targetId, forceOffset) => {
     if (!targetId || targetId === '#') return;
 
     const target = document.querySelector(targetId);
@@ -1028,7 +1028,7 @@ const scrollToSection = (targetId) => {
 
     const navbar = document.querySelector('.navbar.fixed-top');
     const navbarOffset = navbar ? navbar.offsetHeight : 72;
-    const sectionOffset = targetId === '#registracia' ? 50 : navbarOffset;
+    const sectionOffset = forceOffset ?? (targetId === '#registracia' ? 92 : navbarOffset + 8);
     const targetTop = target.getBoundingClientRect().top + window.pageYOffset - sectionOffset;
 
     window.scrollTo({ top: Math.max(0, targetTop), behavior: 'auto' });
@@ -1066,11 +1066,18 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 window.addEventListener('load', () => {
     const params = new URLSearchParams(window.location.search);
     const target = params.get('target');
-    if (!target) return;
+    const hash = window.location.hash;
 
-    const targetId = `#${target}`;
-    scrollToSection(targetId);
-    history.replaceState({}, '', targetId);
+    if (target) {
+        const targetId = `#${target}`;
+        scrollToSection(targetId, target === 'registracia' ? 92 : undefined);
+        history.replaceState({}, '', targetId);
+        return;
+    }
+
+    if (hash) {
+        scrollToSection(hash, hash === '#registracia' ? 92 : undefined);
+    }
 });
 
 const registraciaForm = document.getElementById('registracia-form');
