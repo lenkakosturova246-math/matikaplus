@@ -1,0 +1,89 @@
+.navbar {
+    background: rgba(32,45,58,0.96) !important;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 24px rgba(20,36,59,0.22);
+    color: #203040;
+    font-family: 'Nunito Sans', 'Montserrat', sans-serif;
+    text-align: start;
+}
+
+.navbar-brand {
+    font-family: 'Nunito Sans', 'Montserrat', sans-serif;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+}
+
+.navbar-brand .plus {
+    color: #64b1ce;
+    font-weight: 800;
+}
+
+.navbar .nav-link {
+    color: #ffffff !important;
+    font-family: 'Nunito Sans', 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus-visible {
+    color: #b9ddff !important;
+    transform: none;
+}
+
+.navbar .contact-btn {
+    display: inline-block;
+    color: #ffffff !important;
+    background: #64b1ce;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    line-height: 1.1;
+    border: 1px solid #64b1ce;
+}
+
+.navbar .contact-btn:hover,
+.navbar .contact-btn:focus-visible {
+    background: #d9eef8;
+    border-color: #64b1ce;
+    color: #203040 !important;
+}
+
+.navbar-rule-link {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 8px;
+    padding: 5px 10px;
+    border: 1px solid rgba(255,255,255,0.45);
+    border-radius: 999px;
+    background: rgba(255,255,255,0.1);
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.navbar-rule-link:hover,
+.navbar-rule-link:focus-visible {
+    background: #d9eef8;
+    border-color: #64b1ce;
+    color: #203040;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 991.98px) {
+    .navbar .contact-btn {
+        margin-top: 8px;
+        width: fit-content;
+    }
+}
+
+.navbar .navbar-toggler {
+    border-color: rgba(255,255,255,0.45);
+}
+
+.navbar .navbar-toggler-icon {
+    filter: brightness(0) invert(1);
+}

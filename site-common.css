@@ -1,0 +1,96 @@
+html {
+    scroll-behavior: auto;
+    scroll-padding-top: 72px;
+}
+
+body {
+    margin: 0;
+    font-family: 'Nunito Sans', 'Montserrat', sans-serif;
+    font-size: 17px;
+    background: linear-gradient(135deg, #f7fbff 0%, #eef6fb 100%);
+    color: #203040;
+}
+
+.page-wrap,
+.page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 88px 0 52px;
+}
+
+@media (max-width: 991.98px) {
+    .page-wrap,
+    .page {
+        align-items: flex-start;
+        padding: 76px 0 34px;
+    }
+
+}
+
+.hero-card,
+.rules-card,
+.content-card,
+.box {
+    background: rgba(255,255,255,0.94);
+    border: 1px solid rgba(100,177,206,0.18);
+    border-radius: 28px;
+    box-shadow: 0 20px 45px rgba(32,45,58,0.12);
+    padding: 32px;
+}
+
+.box {
+    width: 100%;
+    margin: 0;
+    color: #203040;
+    border-radius: 28px;
+    box-shadow: 0 20px 45px rgba(32,45,58,0.12);
+}
+
+.section-title,
+.page-title,
+.hero-title {
+    font-family: 'Nunito Sans', 'Montserrat', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 800;
+    color: #1f3c63;
+    margin-bottom: 12px;
+    line-height: 1.2;
+}
+
+.btn {
+    border-radius: 999px;
+    padding: 12px 24px;
+    font-weight: 700;
+}
+
+.btn-primary {
+    background: #64b1ce;
+    border-color: #64b1ce;
+}
+
+.btn-outline-dark {
+    border-color: #203040;
+    color: #203040;
+}
+
+.btn-outline-dark:hover,
+.btn-outline-dark:focus-visible {
+    background: rgba(100,177,206,0.12);
+    border-color: #64b1ce;
+    color: #203040;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #1f3c63;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.back-link:hover,
+.back-link:focus-visible {
+    color: #64b1ce;
+    text-decoration: none;
+}

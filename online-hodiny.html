@@ -9,6 +9,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700;800&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="navbar.css">
+<link rel="stylesheet" href="site-common.css">
 <style>
 body {
     margin: 0;
@@ -16,70 +18,6 @@ body {
     font-size: 17px;
     background: linear-gradient(135deg, #f7fbff 0%, #eef6fb 100%);
     color: #203040;
-}
-
-.navbar {
-    background: rgba(32,45,58,0.96) !important;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 8px 24px rgba(20,36,59,0.22);
-}
-
-.navbar-brand {
-    font-family: 'Nunito Sans', 'Montserrat', sans-serif;
-    font-weight: 800;
-    letter-spacing: 0.04em;
-}
-
-.navbar-brand .plus {
-    color: #64b1ce;
-    font-weight: 800;
-}
-
-.navbar .nav-link {
-    color: #ffffff !important;
-    font-family: 'Nunito Sans', 'Montserrat', sans-serif;
-    font-weight: 600;
-}
-
-.navbar .nav-link:hover,
-.navbar .nav-link:focus-visible {
-    color: #b9ddff !important;
-    transform: none;
-}
-
-.navbar .contact-btn {
-    display: inline-block;
-    color: #ffffff !important;
-    background: #64b1ce;
-    padding: 10px 18px;
-    border-radius: 999px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-    line-height: 1.1;
-    border: 1px solid #64b1ce;
-}
-
-.navbar .contact-btn:hover,
-.navbar .contact-btn:focus-visible {
-    background: #d9eef8;
-    border-color: #64b1ce;
-    color: #203040 !important;
-}
-
-@media (max-width: 991.98px) {
-    .navbar .contact-btn {
-        margin-top: 8px;
-        width: fit-content;
-    }
-}
-
-.navbar .navbar-toggler {
-    border-color: rgba(255,255,255,0.45);
-}
-
-.navbar .navbar-toggler-icon {
-    filter: brightness(0) invert(1);
 }
 
 .page-wrap {
@@ -153,11 +91,10 @@ body {
 
 .placeholder-box {
     width: 100%;
-    aspect-ratio: 16 / 10;
-    min-height: 360px;
+    aspect-ratio: 1076 / 669;
     border-radius: 20px;
     border: 0;
-    background: transparent;
+    background: #f2f6fb;
     overflow: hidden;
     padding: 0;
     position: relative;
@@ -165,10 +102,6 @@ body {
 }
 
 @media (max-width: 991.98px) {
-    .placeholder-box {
-        min-height: 280px;
-    }
-
     .heading-icon {
         width: 84px;
     }
@@ -200,6 +133,80 @@ body {
     object-position: center;
     border-radius: 20px;
     box-shadow: none;
+}
+
+.placeholder-box .photo-slide:first-child img {
+    object-fit: contain;
+}
+
+.photo-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.45s ease;
+}
+
+.photo-slide.active {
+    opacity: 1;
+}
+
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 0;
+    background: rgba(255,255,255,0.94);
+    color: #1f3c63;
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(31,60,99,0.25);
+    cursor: pointer;
+    z-index: 2;
+}
+
+.slider-arrow:hover,
+.slider-arrow:focus-visible {
+    background: #1f3c63;
+    color: #ffffff;
+}
+
+.slider-arrow.prev {
+    left: 14px;
+}
+
+.slider-arrow.next {
+    right: 14px;
+}
+
+.slider-dots {
+    position: absolute;
+    left: 50%;
+    bottom: 12px;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 2;
+}
+
+.slider-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: 0;
+    background: rgba(255,255,255,0.6);
+    padding: 0;
+}
+
+.slider-dot.active {
+    background: #ffffff;
+    box-shadow: 0 0 0 2px rgba(31,60,99,0.25);
 }
 
 .action-row {
@@ -257,27 +264,7 @@ body {
 </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="index.html#home">MATIKA<span class="plus">+</span></a>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navMenu">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="index.html#home">Domov</a></li>
-                <li class="nav-item"><a class="nav-link" href="index.html?target=kurzy">Kurzy</a></li>
-                <li class="nav-item"><a class="nav-link" href="online-hodiny.html">Online hodiny</a></li>
-                <li class="nav-item"><a class="nav-link" href="spoluprace-mszs.html">Spolupráce MŠ/ZŠ</a></li>
-                <li class="nav-item"><a class="nav-link" href="akcie.html">Akcie</a></li>
-                <li class="nav-item"><a class="nav-link" href="index.html#registracia">Registrácia</a></li>
-                <li class="nav-item ms-lg-2"><a class="contact-btn" href="index.html#kontakt">Kontakt</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<div id="navbar-placeholder"></div>
 
 <main class="page-wrap">
     <div class="container">
@@ -291,7 +278,7 @@ body {
 
                     <p class="lead-copy mb-3">Kurzy <span class="highlight">MedziMath</span>, <span class="highlight">Math+</span> a <span class="highlight">Doučovanie</span> prebiehajú aj v online forme. Fungujeme prostredníctvom Google Meet.</p>
 
-                    <p class="lead-copy mb-3">Výhodou online hodín je <span class="highlight">flexibilita</span> a <span class="highlight-soft">možnosť prihlásiť sa aj počas choroby, odcestovania a podobne</span>. Online <span class="highlight">hodiny sú plnohodnotné</span> v porovnaní s prezenčnou výučbou.</p>
+                    <p class="lead-copy mb-3">Výhodou online hodín je <span class="highlight">flexibilita</span> a <span class="highlight-soft">možnosť prihlásiť sa aj počas choroby, odcestovania a podobne</span>. Online <span class="highlight">hodiny sú plnohodnotné, </span> rovnako ako prezenčná výučba.</p>
 
                     <p class="lead-copy mb-4">Keďže pracujeme v <span class="highlight-soft">malých skupinách</span>, naše pani učiteľky sa venujú každému dieťaťu individuálne a dbajú na to, aby bol každý na hodine aktívny. Hodiny kombinujú <span class="highlight">priamu výučbu</span>, <span class="highlight">prácu so zdieľanou obrazovkou</span>, <span class="highlight">prácu v pracovnom zošite alebo pracovných listoch</span> a <span class="highlight">spoločné hry zamerané na opakovanie učiva</span>.</p>
 
@@ -302,8 +289,17 @@ body {
 
                 </div>
                 <div class="col-lg-5">
-                    <div class="placeholder-box" aria-label="Online hodiny Matika+">
-                        <img src="Online 1.jpeg" alt="Online hodiny Matika+">
+                    <div class="placeholder-box" id="online-slider" aria-label="Fotografie z online hodín Matika+">
+                        <div class="photo-slide active"><img src="Online 1.jpeg" alt="Online hodiny Matika+ - fotografia 1"></div>
+                        <div class="photo-slide"><img src="Online2.png" alt="Online hodiny Matika+ - fotografia 2"></div>
+                        <div class="photo-slide"><img src="online 3.png" alt="Online hodiny Matika+ - fotografia 3"></div>
+                        <button class="slider-arrow prev" type="button" aria-label="Predošlá fotografia">&#8249;</button>
+                        <button class="slider-arrow next" type="button" aria-label="Nasledujúca fotografia">&#8250;</button>
+                        <div class="slider-dots" aria-hidden="true">
+                            <button class="slider-dot active" type="button"></button>
+                            <button class="slider-dot" type="button"></button>
+                            <button class="slider-dot" type="button"></button>
+                        </div>
                     </div>
                     <div class="action-row action-row-mobile">
                         <a href="index.html">Späť na hlavnú stránku</a>
@@ -315,7 +311,52 @@ body {
     </div>
 </main>
 
+<script>
+(() => {
+    const slider = document.getElementById('online-slider');
+    if (!slider) return;
+
+    const slides = Array.from(slider.querySelectorAll('.photo-slide'));
+    const dots = Array.from(slider.querySelectorAll('.slider-dot'));
+    const prevBtn = slider.querySelector('.slider-arrow.prev');
+    const nextBtn = slider.querySelector('.slider-arrow.next');
+    let current = 0;
+
+    const showSlide = (index) => {
+        current = (index + slides.length) % slides.length;
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === current);
+        });
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === current);
+        });
+    };
+
+    prevBtn?.addEventListener('click', () => showSlide(current - 1));
+    nextBtn?.addEventListener('click', () => showSlide(current + 1));
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => showSlide(index));
+    });
+
+    setInterval(() => showSlide(current + 1), 4500);
+})();
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="navbar-loader.js"></script>
+<script>
+document.querySelectorAll('a[href^="index.html#"]').forEach((link) => {
+    const href = link.getAttribute('href');
+    const hash = href.includes('#') ? href.slice(href.indexOf('#')) : '';
+    if (!hash || !['#registracia', '#kurzy'].includes(hash)) return;
+
+    link.addEventListener('click', (event) => {
+        event.preventDefault();
+        const target = hash === '#registracia' ? 'registracia' : 'kurzy';
+        window.location.href = `index.html?target=${target}`;
+    });
+});
+</script>
 </body>
 </html>
 

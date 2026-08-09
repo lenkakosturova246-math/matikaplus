@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800&family=Montserrat:wght@500;600;700;800&family=Safira+March&family=Edu+VIC+WA+NT+Hand&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="navbar.css">
 
 <style>
 html {
@@ -86,70 +87,6 @@ body {
     }
 }
 
-.navbar {
-    background: rgba(32,45,58,0.96) !important;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 8px 24px rgba(20,36,59,0.22);
-}
-
-.navbar-brand {
-    font-family: 'Nunito Sans', 'Montserrat', sans-serif;
-    font-weight: 800;
-    letter-spacing: 0.04em;
-}
-
-.navbar-brand .plus {
-    color: #64b1ce;
-    font-weight: 800;
-}
-
-.navbar .nav-link {
-    color: #ffffff !important;
-    font-family: 'Nunito Sans', 'Montserrat', sans-serif;
-    font-weight: 600;
-}
-
-.navbar .nav-link:hover,
-.navbar .nav-link:focus-visible {
-    color: #b9ddff !important;
-    transform: none;
-}
-
-.navbar .contact-btn {
-    display: inline-block;
-    color: #ffffff !important;
-    background: #64b1ce;
-    padding: 10px 18px;
-    border-radius: 999px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-    line-height: 1.1;
-    border: 1px solid #64b1ce;
-}
-
-.navbar .contact-btn:hover,
-.navbar .contact-btn:focus-visible {
-    background: #d9eef8;
-    border-color: #64b1ce;
-    color: #203040 !important;
-}
-
-@media (max-width: 991.98px) {
-    .navbar .contact-btn {
-        margin-top: 8px;
-        width: fit-content;
-    }
-}
-
-.navbar .navbar-toggler {
-    border-color: rgba(255,255,255,0.45);
-}
-
-.navbar .navbar-toggler-icon {
-    filter: brightness(0) invert(1);
-}
-
 .hero {
     min-height: 100vh;
     display: flex;
@@ -217,6 +154,44 @@ body {
     color: #203040;
 }
 
+.rules-card {
+    background: rgba(255,255,255,0.94);
+    border: 1px solid rgba(100,177,206,0.18);
+    border-radius: 28px;
+    box-shadow: 0 20px 45px rgba(32,45,58,0.12);
+    padding: 32px;
+}
+
+.rules-card h4 {
+    font-size: 1.12rem;
+    font-weight: 800;
+    color: #1f3c63;
+    margin-bottom: 8px;
+}
+
+.rules-card p,
+.rules-card li {
+    color: #516273;
+    line-height: 1.75;
+}
+
+.rules-card ul {
+    margin: 0 0 0 1.1rem;
+    padding: 0;
+}
+
+.rule-block {
+    padding-top: 16px;
+    margin-top: 16px;
+    border-top: 1px solid rgba(100,177,206,0.18);
+}
+
+.rule-block:first-of-type {
+    padding-top: 0;
+    margin-top: 0;
+    border-top: 0;
+}
+
 .section-title {
     font-size: 2rem;
     font-weight: 800;
@@ -225,7 +200,7 @@ body {
 }
 
 .course-flow-title {
-    color: #64b1ce;
+    color: #64b1ce !important;
 }
 
 .info-box.info-panel .section-title {
@@ -743,6 +718,7 @@ footer {
     }
 }
 </style>
+<link rel="stylesheet" href="site-common.css">
 </head>
 
 <body>
@@ -751,27 +727,7 @@ footer {
 </video>
 <div class="video-overlay"></div>
 
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-<div class="container">
-    <a class="navbar-brand" href="#home">MATIKA<span class="plus">+</span></a>
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navMenu">
-        <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="#home">Domov</a></li>
-            <li class="nav-item"><a class="nav-link" href="#kurzy">Kurzy</a></li>
-            <li class="nav-item"><a class="nav-link" href="online-hodiny.html">Online hodiny</a></li>
-            <li class="nav-item"><a class="nav-link" href="spoluprace-mszs.html">Spolupráce MŠ/ZŠ</a></li>
-            <li class="nav-item"><a class="nav-link" href="akcie.html">Akcie</a></li>
-            <li class="nav-item"><a class="nav-link" href="#registracia">Registrácia</a></li>
-            <li class="nav-item ms-lg-2"><a class="contact-btn" href="#kontakt">Kontakt</a></li>
-        </ul>
-    </div>
-</div>
-</nav>
+<div id="navbar-placeholder"></div>
 
 <section id="home" class="hero">
 <div class="container">
@@ -826,7 +782,7 @@ footer {
                         </div>
                     </div>
                     <h4>Mathematík</h4>
-                    <p>3–7 rokov · 1. ročník ZŠ</p>
+                    <p>3–7 rokov (1. ročník ZŠ)</p>
                 </div>
             </a>
         </div>
@@ -955,7 +911,7 @@ footer {
         <div class="row g-4 align-items-start">
             <div class="col-lg-7">
                 <h3 class="mb-3">Kontakt</h3>
-                <p class="mb-3">Ak máš záujem o kurz alebo chceš doplniť informácie, napíš nám.</p>
+                <p class="mb-3">Ak máte záujem o kurz alebo chcete doplniť informácie, napíšte nám.</p>
                 <p class="mb-3">Email: <a href="mailto:info@matikaplus.sk">info@matikaplus.sk</a></p>
                 <div class="contact-item">
                     <span class="dot"></span>
@@ -1017,6 +973,7 @@ footer {
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="navbar-loader.js"></script>
 <script>
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx02arUgI3G8JJ7jNOZD-gEJVZc1HhYotSInVmuKaO3l2CdsK15COm_8lejBhkXskHjnQ/exec';
 

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pravidlá školy | MATIKA+</title>
+<link rel="icon" type="image/svg+xml" href="favicon-circle.svg?v=2">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="navbar.css">
+<link rel="stylesheet" href="site-common.css">
+<style>
+.page-wrap {
+    padding: 96px 0 48px;
+}
+
+.rules-card {
+    background: rgba(255,255,255,0.94);
+    border: 1px solid rgba(100,177,206,0.18);
+    border-radius: 28px;
+    box-shadow: 0 20px 45px rgba(32,45,58,0.12);
+    padding: 32px;
+}
+
+.rules-card h4 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #1f3c63;
+    margin-bottom: 8px;
+}
+
+.rules-card p,
+.rules-card li {
+    color: #516273;
+    line-height: 1.75;
+}
+
+.rules-card ul {
+    margin: 0 0 0 1.1rem;
+    padding: 0;
+}
+
+.rule-block {
+    padding-top: 16px;
+    margin-top: 16px;
+    border-top: 1px solid rgba(100,177,206,0.18);
+}
+
+.rule-block:first-of-type {
+    padding-top: 0;
+    margin-top: 0;
+    border-top: 0;
+}
+</style>
+</head>
+<body>
+<div id="navbar-placeholder"></div>
+
+<main class="page-wrap">
+    <div class="container">
+        <a class="back-link" href="index.html">← Späť na domov</a>
+        <div class="rules-card">
+            <h1 class="section-title">Pravidlá školy</h1>
+
+            <div class="rule-block">
+                <h4>1. Organizácia kurzu</h4>
+                <p>Kurzy sú organizované v rozsahu po semestroch, pričom jeden semester trvá 5 mesiacov. Škola sa zaväzuje zabezpečiť minimálny rozsah výučby nasledovne:</p>
+                <ul>
+                    <li>20 hodín za semester pri navštevovaní 1x týždenne,</li>
+                    <li>40 hodín za semester pri navštevovaní 2x týždenne.</li>
+                </ul>
+            </div>
+
+            <div class="rule-block">
+                <h4>2. Náhrada vymeškaných hodín</h4>
+                <p>V prípade neúčasti žiaka na vyučovaní zo strany rodičov alebo zákonných zástupcov škola neposkytuje žiadny nárok na náhradné hodiny.</p>
+                <p>Škola však umožňuje nahradenie vymeškaných hodín v iných skupinách v priebehu školského roka, v závislosti od voľných kapacít. Informácie o dostupných termínoch sú komunikované prostredníctvom WhatsApp skupín.</p>
+                <p>V prípade záujmu o náhradné hodiny v iných skupinách škola odporúča aj možnosť absolvovania hodín dopredu navyše a zabezpečiť si tým hodiny v prípade vymeškania v budúcnosti.</p>
+            </div>
+
+            <div class="rule-block">
+                <h4>3. Zodpovednosť za dochádzku a platobné podmienky</h4>
+                <p>Za neúčasť žiaka na vyučovaní z dôvodov na strane rodičov alebo žiaka škola nenešie zodpovednosť. Pravidelné poplatky za kurz sa v takýchto prípadoch nevracajú ani neodpúšťajú.</p>
+                <p>Nie je možné prerušiť dochádzku z osobných dôvodov (napr. dovolenka, voľnočasové aktivity a pod.) a následne ďalej navštevovať kurz, bez povinnosti úhrady kurzovného za vymeškané obdobie. Kurzovné sa uhrádza v plnej výške za každý mesiac bez ohľadu na dochádzku.</p>
+                <p>V prípade vážnych zdravotných dôvodov a dlhodobej neprítomnosti je možné riešiť situáciu individuálnou dohodou.</p>
+            </div>
+
+            <div class="rule-block">
+                <h4>4. Platobné podmienky</h4>
+                <p>Kurzovné sa uhrádza mesačne, vždy vopred, najneskôr do 5. dňa v mesiaci.</p>
+                <p>V prípade omeškania s úhradou si škola vyhradzuje právo obmedziť účasť žiaka na vyučovaní až do vyrovnania záväzkov.</p>
+            </div>
+
+            <div class="rule-block">
+                <h4>5. Organizácia vyučovania</h4>
+                <p>Škola si vyhradzuje právo na zmenu termínu alebo času vyučovania zo zdravotných a iných dôvodov lektoriek. O takýchto zmenách budú rodičia informovaní v primeranom predstihu.</p>
+                <p>V prípade zrušenia hodiny zo strany školy bude zabezpečená náhrada v inom termíne.</p>
+            </div>
+
+            <div class="rule-block">
+                <h4>6. Komunikácia</h4>
+                <p>Oficiálna komunikácia medzi školou a rodičmi prebieha prostredníctvom e-mailu a WhatsApp skupín. Rodičia sú povinní sledovať tieto komunikačné kanály.</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="navbar-loader.js"></script>
+<script>
+document.querySelectorAll('a[href^="index.html#"]').forEach((link) => {
+    const href = link.getAttribute('href');
+    const hash = href.includes('#') ? href.slice(href.indexOf('#')) : '';
+    if (!hash || !['#registracia', '#kurzy'].includes(hash)) return;
+
+    link.addEventListener('click', (event) => {
+        event.preventDefault();
+        const target = hash === '#registracia' ? 'registracia' : 'kurzy';
+        window.location.href = `index.html?target=${target}`;
+    });
+});
+</script>
+</body>
+</html>
