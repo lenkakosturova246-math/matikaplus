@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="sk">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mathematík 3-7 rokov</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Baloo+2:wght@500;600&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700;800&family=Baloo+2:wght@500;600&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --dark: #202d3a;
@@ -21,7 +21,8 @@
 
     body {
       margin: 0;
-      font-family: 'Fredoka', 'Montserrat', Arial, sans-serif;
+      font-family: 'Nunito Sans', 'Montserrat', Arial, sans-serif;
+      font-size: 17px;
       color: var(--dark);
       padding: 0;
       background: transparent;
@@ -37,7 +38,7 @@
     }
 
     .navbar-brand {
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Nunito Sans', 'Montserrat', sans-serif;
       font-weight: 800;
       letter-spacing: 0.04em;
     }
@@ -49,7 +50,7 @@
 
     .navbar .nav-link {
       color: #ffffff !important;
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Nunito Sans', 'Montserrat', sans-serif;
       font-weight: 600;
     }
 
@@ -67,16 +68,16 @@
       border-radius: 999px;
       font-weight: 600;
       text-decoration: none;
-      transition: transform 0.2s ease, background-color 0.2s ease;
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
       line-height: 1.1;
-      border: 0;
+      border: 1px solid #64b1ce;
     }
 
     .navbar .contact-btn:hover,
     .navbar .contact-btn:focus-visible {
-      transform: translateY(-2px);
-      background: #1f3c63;
-      color: #ffffff !important;
+      background: #d9eef8;
+      border-color: #64b1ce;
+      color: #203040 !important;
     }
 
     @media (max-width: 991.98px) {
@@ -136,6 +137,7 @@
 
     .badge {
       display: inline-block;
+      font-family: 'Fredoka', 'Montserrat', sans-serif;
       color: var(--blue);
       font-size: clamp(2.1rem, 5.2vw, 3.4rem);
       font-weight: 700;
@@ -145,8 +147,17 @@
     }
 
     .highlight {
-      color: var(--blue);
+      color: #64b1ce;
+      font-weight: 800;
+    }
+
+    .soft-blue {
+      color: #1f3c63;
       font-weight: 700;
+    }
+
+    .tick {
+      font-weight: 900;
     }
 
     .story {
@@ -193,6 +204,7 @@
     }
 
     .text-panel h2 {
+      font-family: 'Fredoka', 'Montserrat', sans-serif;
       margin: 0 0 16px;
       font-size: clamp(1.9rem, 4vw, 3rem);
       line-height: 1.1;
@@ -200,6 +212,7 @@
     }
 
     .text-panel h3 {
+      font-family: 'Fredoka', 'Montserrat', sans-serif;
       margin: 24px 0 12px;
       font-size: clamp(1.3rem, 2.5vw, 1.9rem);
       color: var(--blue);
@@ -207,7 +220,7 @@
 
     .text-panel p,
     .text-panel li {
-      font-size: clamp(1.03rem, 1.9vw, 1.24rem);
+      font-size: clamp(1.04rem, 1.95vw, 1.24rem);
       color: #273747;
       margin: 0 0 14px;
       text-wrap: pretty;
@@ -215,7 +228,8 @@
 
     .text-panel ul {
       margin: 0;
-      padding-left: 1.3rem;
+      padding-left: 0;
+      list-style: none;
     }
 
     .text-panel li {
@@ -274,7 +288,7 @@
     }
 
     .price {
-      font-size: clamp(1.03rem, 1.9vw, 1.24rem);
+      font-size: clamp(1.04rem, 1.95vw, 1.22rem);
       color: #273747;
       font-weight: 500;
       margin: 0 0 6px;
@@ -348,7 +362,7 @@
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.9);
       color: #111;
-      font-family: 'Baloo 2', 'Fredoka', 'Montserrat', sans-serif;
+      font-family: 'Baloo 2', 'Nunito Sans', 'Montserrat', sans-serif;
       font-size: 0.95rem;
       font-weight: 600;
       letter-spacing: 0.01em;
@@ -492,9 +506,9 @@
               <span class="badge">Mathematík</span>
               <img src="Numi Mathematik.png" alt="Numi Mathematik" style="max-height:70px; width:auto; border-radius:10px;">
             </div>
-            <p>Kurz <strong>Mathematík</strong> je určený pre deti od <strong>3 do 7 rokov</strong>, ktoré si chcú vytvoriť pevné základy matematického myslenia ešte pred nástupom do školy alebo si rozvíjať svoje schopnosti zábavnou a prirodzenou formou.</p>
-            <p>V hodinách využívame <span class="highlight">Oxfordskú matematickú pomôcku Numicon</span>, ktorá pomáha deťom pochopiť čísla nielen vizuálne, ale aj prostredníctvom hmatu a praktickej skúsenosti. Deti si vďaka nej postupne vytvárajú predstavu o množstve, porovnávaní čísel, rozklade čísel a základných matematických vzťahoch.</p>
-            <p>Matematiku prepájame s pohybom, hrou, tvorivými aktivitami a rôznymi pomôckami, aby deti matematické pojmy skutočne pochopili – nielen si ich zapamätali.</p>
+            <p>Kurz <strong>Mathematík</strong> je určený pre deti od <strong>3 do 7 rokov</strong>, ktoré si chcú vytvoriť <strong>pevné základy matematického myslenia</strong> ešte pred nástupom do školy alebo si rozvíjať svoje schopnosti zábavnou a prirodzenou formou.</p>
+            <p>V hodinách využívame <span class="highlight">oxfordskú matematickú pomôcku Numicon</span>, ktorá pomáha deťom pochopiť čísla nielen vizuálne, ale aj prostredníctvom hmatu a praktickej skúsenosti. Deti si vďaka nej postupne <strong class="soft-blue">vytvárajú predstavu o číselnej hodnote</strong>, učia sa porovnávať čísla, rozklady čísel a základné matematické vzťahy (deti si môžu číslo chytiť, <strong class="soft-blue">pracovať s príkladmi v hmotnej forme</strong> a konkrétnej podobe).</p>
+            <p>Matematiku prepájame s hrou, pohybom, tvorivými aktivitami a rôznymi ďalšími pomôckami, aby deti základným matematickým operáciám skutočne porozumeli.</p>
           </article>
         </section>
 
@@ -508,20 +522,20 @@
           <article class="text-panel">
             <h3>Na kurze deti rozvíjajú</h3>
             <ul>
-              <li>✓ poznávanie a porozumenie číslam</li>
-              <li>✓ počítanie a prácu s množstvom</li>
-              <li>✓ rozklad a skladanie čísel</li>
-              <li>✓ základy sčítania a odčítania</li>
-              <li>✓ logické myslenie a riešenie problémov</li>
-              <li>✓ grafomotorické zručnosti</li>
-              <li>✓ priestorové vnímanie a základy geometrie</li>
+              <li><span class="tick">✓</span> poznávanie a porozumenie číslam</li>
+              <li><span class="tick">✓</span> počítanie a prácu s množstvom</li>
+              <li><span class="tick">✓</span> rozklad a skladanie čísel</li>
+              <li><span class="tick">✓</span> základy sčítania a odčítania</li>
+              <li><span class="tick">✓</span> grafomotorické zručnosti</li>
+              <li><span class="tick">✓</span> priestorové vnímanie a základy geometrie</li>
+              <li><span class="tick">✓</span> adaptácia v malom kolektíve</li>
             </ul>
             <p><strong>Pre staršie deti postupne pridávame:</strong></p>
             <ul>
-              <li>✓ prácu s dvojcifernými číslami</li>
-              <li>✓ jednoduché slovné úlohy</li>
-              <li>✓ základy násobenia a delenia</li>
-              <li>✓ matematické stratégie a hľadanie rôznych riešení</li>
+              <li><span class="tick">✓</span> prácu s dvojcifernými číslami</li>
+              <li><span class="tick">✓</span> jednoduché slovné úlohy</li>
+              <li><span class="tick">✓</span> základy násobenia a delenia</li>
+              <li><span class="tick">✓</span> úvod do zlomkov</li>
             </ul>
           </article>
         </section>
@@ -644,3 +658,7 @@
   </script>
 </body>
 </html>
+
+
+
+

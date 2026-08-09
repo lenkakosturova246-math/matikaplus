@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="sk">
 <head>
 <meta charset="UTF-8">
@@ -8,7 +8,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Safira+March&family=Edu+VIC+WA+NT+Hand&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800&family=Montserrat:wght@500;600;700;800&family=Safira+March&family=Edu+VIC+WA+NT+Hand&display=swap" rel="stylesheet">
 
 <style>
 html {
@@ -18,7 +18,8 @@ html {
 
 body {
     margin: 0;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito Sans', 'Montserrat', sans-serif;
+    font-size: 17px;
     background: linear-gradient(135deg, #f7fbff 0%, #eef6fb 100%);
     color: #203040;
 }
@@ -91,7 +92,7 @@ body {
 }
 
 .navbar-brand {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito Sans', 'Montserrat', sans-serif;
     font-weight: 800;
     letter-spacing: 0.04em;
 }
@@ -103,7 +104,7 @@ body {
 
 .navbar .nav-link {
     color: #ffffff !important;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito Sans', 'Montserrat', sans-serif;
     font-weight: 600;
 }
 
@@ -121,16 +122,16 @@ body {
     border-radius: 999px;
     font-weight: 600;
     text-decoration: none;
-    transition: transform 0.2s ease, background-color 0.2s ease;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
     line-height: 1.1;
-    border: 0;
+    border: 1px solid #64b1ce;
 }
 
 .navbar .contact-btn:hover,
 .navbar .contact-btn:focus-visible {
-    transform: translateY(-2px);
-    background: #1f3c63;
-    color: #ffffff !important;
+    background: #d9eef8;
+    border-color: #64b1ce;
+    color: #203040 !important;
 }
 
 @media (max-width: 991.98px) {
@@ -182,13 +183,13 @@ body {
 }
 
 .hero p {
-    font-size: 1.08rem;
+    font-size: 1.14rem;
     color: #516273;
     line-height: 1.7;
 }
 
 .hero .lead {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: #304255;
 }
 
@@ -222,15 +223,19 @@ body {
     color: #203040;
 }
 
+.course-flow-title {
+    color: #64b1ce;
+}
+
 .info-box.info-panel .section-title {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito Sans', 'Montserrat', sans-serif;
     font-size: 2.2rem;
     line-height: 1.1;
     letter-spacing: 0.03em;
 }
 
 .handwriting-title {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito Sans', 'Montserrat', sans-serif;
     font-optical-sizing: auto;
     font-weight: 700;
     font-style: normal;
@@ -238,6 +243,7 @@ body {
 
 .section-subtitle {
     color: #5b6b7a;
+    font-size: 1.2rem;
     max-width: 700px;
     margin: 0 auto 30px;
 }
@@ -265,6 +271,7 @@ body {
 
 .service-card p {
     color: #5b6b7a;
+    font-size: 1.14rem;
     margin-bottom: 0;
 }
 
@@ -390,13 +397,44 @@ body {
     line-height: 1.8;
 }
 
+.course-flow-list {
+    list-style: disc;
+    padding-left: 1.35rem;
+    margin: 0;
+    color: #000000;
+    font-size: 1.22rem;
+    line-height: 2;
+}
+
+.course-flow-list li {
+    margin-bottom: 0.55rem;
+    color: #000000;
+}
+
+.course-flow-list li:last-child {
+    margin-bottom: 0;
+}
+
+.info-highlight {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.info-highlight img {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+}
+
 .info-box.info-panel {
     border-radius: 28px;
     padding: 28px 26px;
     background: transparent;
     box-shadow: 0 10px 22px rgba(100,177,206,0.08);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.1rem;
+    font-family: 'Nunito Sans', 'Montserrat', sans-serif;
+    font-size: 1.16rem;
     line-height: 1.7;
 }
 
@@ -409,7 +447,7 @@ body {
 
 .info-box.info-panel li {
     margin-bottom: 0.75rem;
-    font-size: 1rem;
+    font-size: 1.14rem;
     color: #24344c;
 }
 
@@ -433,8 +471,19 @@ body {
     align-items: center;
     gap: 10px;
     margin-bottom: 0.75rem;
-    font-size: 1rem;
+    font-size: 1.08rem;
     color: #24344c;
+}
+
+.emotion-list li::before {
+    content: "+";
+    flex-shrink: 0;
+    width: 28px;
+    text-align: center;
+    font-size: 1.58rem;
+    font-weight: 900;
+    line-height: 1;
+    color: #64b1ce;
 }
 
 .emotion-list li:last-child {
@@ -454,7 +503,7 @@ body {
 }
 
 .info-card {
-    border: 1px dashed rgba(32,45,58,0.24);
+    border: 0;
     border-radius: 22px;
     background: rgba(255,255,255,0.88);
     padding: 24px;
@@ -462,7 +511,46 @@ body {
 
 .info-card ul {
     margin: 0;
-    padding-left: 1.2rem;
+    padding-left: 0;
+    list-style: none;
+    text-align: left;
+    display: grid;
+    gap: 12px;
+}
+
+.info-card li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 1.24rem;
+    font-weight: 500;
+    line-height: 1.75;
+}
+
+.info-card li strong {
+    font-weight: 500;
+}
+
+.info-card li::before {
+    content: "+";
+    flex-shrink: 0;
+    width: 24px;
+    text-align: center;
+    font-size: 1.45rem;
+    font-weight: 900;
+    line-height: 1.2;
+    color: #64b1ce;
+}
+
+.info-card .info-highlight {
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.info-card .info-highlight img {
+    width: 74px;
+    height: 74px;
+    transform: rotate(14deg);
 }
 
 .form-card {
@@ -681,7 +769,7 @@ footer {
     <div class="row justify-content-center">
         <div class="col-lg-12">
             <div class="hero-card">
-                <div class="row align-items-center g-4">
+                <div class="row align-items-start g-4">
                     <div class="col-lg-7">
                         <h1>MATIKA<span>+</span></h1>
                         <p class="lead">Pomáhame s matematikou tým, ktorí s ňou majú problém, ale sme tu aj pre tých, ktorí majú na matematiku nadanie a chcú od klasickej matematiky niečo viac.</p>
@@ -693,11 +781,14 @@ footer {
                     </div>
                     <div class="col-lg-5">
                         <div class="info-box info-card">
+                            <div class="info-highlight">
+                                <img src="ziarovka.png" alt="Nápad a podpora">
+                            </div>
                             <ul>
-                                <li>Individuálny prístup a malé skupiny</li>
-                                <li>Štruktúrovaná pomoc pri pochopení učiva</li>
-                                <li>Podpora pre deti od 3 do 15 rokov</li>
-                                <li>Možnosť online aj prezenčne</li>
+                                <li><strong>Individuálny prístup a malé skupiny</strong></li>
+                                <li><strong>Štruktúrovaná pomoc pri pochopení učiva</strong></li>
+                                <li><strong>Podpora pre deti od 3 do 15 rokov</strong></li>
+                                <li><strong>Možnosť online aj prezenčne</strong></li>
                             </ul>
                         </div>
                     </div>
@@ -771,8 +862,8 @@ footer {
     <div class="row g-4 align-items-center">
         <div class="col-lg-6">
             <div class="info-box">
-                <h3 class="section-title">Ako kurz prebieha</h3>
-                <ul>
+                <h3 class="section-title course-flow-title">Ako kurz prebieha</h3>
+                <ul class="course-flow-list">
                     <li>Malé skupiny podľa veku a úrovne</li>
                     <li>Jedna až dve hodiny týždenne</li>
                     <li>Praktické aktivity, hry a postupné budovanie vedomostí</li>
@@ -784,11 +875,11 @@ footer {
             <div class="info-box info-panel">
                 <h3 class="section-title handwriting-title">K čomu deti vedieme</h3>
                 <ul class="emotion-list">
-                    <li><span class="emotion-icon">+</span> Radosť z matiky a objavovanie matematických vzťahov v malých skupinách</li>
-                    <li><span class="emotion-icon">+</span> Pocit, že matematika je jednoduchá a že je možné ju zvládnuť</li>
-                    <li><span class="emotion-icon">+</span> Príjemné, komorné prostredie oproti klasickej základnej škole</li>
-                    <li><span class="emotion-icon">+</span> Dobrú skúsenosť s učiteľom – láskaví a empatickí pedagógovia a prístup bez tlaku</li>
-                    <li><span class="emotion-icon">+</span> Učivo nad rámec a popredu – aby deti nevideli učivo v škole prvýkrát a neučili sa ho v škole pod tlakom za krátky čas</li>
+                    <li>Radosť z matiky a objavovanie matematických vzťahov v malých skupinách</li>
+                    <li>Pocit, že matematika je jednoduchá a že je možné ju zvládnuť</li>
+                    <li>Príjemné, komorné prostredie oproti klasickej základnej škole</li>
+                    <li>Dobrú skúsenosť s učiteľom – láskaví a empatickí pedagógovia a prístup bez tlaku</li>
+                    <li>Učivo nad rámec a popredu – aby deti nevideli učivo v škole prvýkrát a neučili sa ho v škole pod tlakom za krátky čas</li>
                 </ul>
             </div>
         </div>

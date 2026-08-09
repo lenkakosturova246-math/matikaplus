@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="sk">
 <head>
 <meta charset="UTF-8">
@@ -7,11 +7,12 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700;800&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
 body {
     margin: 0;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito Sans', 'Montserrat', sans-serif;
+    font-size: 17px;
     background: linear-gradient(135deg, #f7fbff 0%, #eef6fb 100%);
     color: #203040;
 }
@@ -23,7 +24,7 @@ body {
 }
 
 .navbar-brand {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito Sans', 'Montserrat', sans-serif;
     font-weight: 800;
     letter-spacing: 0.04em;
 }
@@ -35,7 +36,7 @@ body {
 
 .navbar .nav-link {
     color: #ffffff !important;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito Sans', 'Montserrat', sans-serif;
     font-weight: 600;
 }
 
@@ -53,16 +54,16 @@ body {
     border-radius: 999px;
     font-weight: 600;
     text-decoration: none;
-    transition: transform 0.2s ease, background-color 0.2s ease;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
     line-height: 1.1;
-    border: 0;
+    border: 1px solid #64b1ce;
 }
 
 .navbar .contact-btn:hover,
 .navbar .contact-btn:focus-visible {
-    transform: translateY(-2px);
-    background: #1f3c63;
-    color: #ffffff !important;
+    background: #d9eef8;
+    border-color: #64b1ce;
+    color: #203040 !important;
 }
 
 @media (max-width: 991.98px) {
@@ -104,6 +105,7 @@ body {
 
 .badge {
     display: block;
+    font-family: 'Fredoka', 'Montserrat', sans-serif;
     color: #64b1ce;
     font-size: clamp(2rem, 4.5vw, 3rem);
     font-weight: 700;
@@ -134,6 +136,7 @@ body {
 
 .lead-copy {
     color: #516273;
+    font-size: 1.12rem;
     line-height: 1.75;
 }
 
@@ -314,3 +317,7 @@ body {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+
+
+

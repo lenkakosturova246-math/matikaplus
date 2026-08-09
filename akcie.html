@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="sk">
 <head>
 <meta charset="UTF-8">
@@ -7,11 +7,12 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700;800&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
 body {
     margin: 0;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito Sans', 'Montserrat', sans-serif;
+    font-size: 17px;
     background: linear-gradient(135deg, #f7fbff 0%, #eef6fb 100%);
     color: #203040;
 }
@@ -23,7 +24,7 @@ body {
 }
 
 .navbar-brand {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito Sans', 'Montserrat', sans-serif;
     font-weight: 800;
     letter-spacing: 0.04em;
 }
@@ -35,7 +36,7 @@ body {
 
 .navbar .nav-link {
     color: #ffffff !important;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito Sans', 'Montserrat', sans-serif;
     font-weight: 600;
 }
 
@@ -53,16 +54,16 @@ body {
     border-radius: 999px;
     font-weight: 600;
     text-decoration: none;
-    transition: transform 0.2s ease, background-color 0.2s ease;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
     line-height: 1.1;
-    border: 0;
+    border: 1px solid #64b1ce;
 }
 
 .navbar .contact-btn:hover,
 .navbar .contact-btn:focus-visible {
-    transform: translateY(-2px);
-    background: #1f3c63;
-    color: #ffffff !important;
+    background: #d9eef8;
+    border-color: #64b1ce;
+    color: #203040 !important;
 }
 
 @media (max-width: 991.98px) {
@@ -103,6 +104,7 @@ body {
 }
 
 .section-title {
+    font-family: 'Fredoka', 'Montserrat', sans-serif;
     font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 800;
     margin-bottom: 14px;
@@ -110,12 +112,14 @@ body {
 
 .lead-copy {
     color: #516273;
+    font-size: 1.12rem;
     line-height: 1.7;
 }
 
 .event-list {
     margin: 0 0 1.5rem;
     padding-left: 1.2rem;
+    font-size: 1.1rem;
     color: #516273;
     line-height: 1.7;
     column-count: 2;
@@ -349,7 +353,7 @@ body {
                         <li>Športové popoludnie vo Veľkom Orvišti</li>
                         <li>Firemná vianočná akcia - Elektrárňa Piešťany</li>
                     </ul>
-                    <p class="lead-copy mb-2">Našu prácu si môžete pozrieť na našom instagrame a facebookovskej stránke:</p>
+                    <p class="lead-copy mb-2">Našu prácu si môžete pozrieť na <strong>našom instagrame a facebookovskej stránke</strong>:</p>
                     <div class="mb-3 social-links-sub"><a class="fb-link" href="https://www.facebook.com/matikapluspn" target="_blank" rel="noopener noreferrer" aria-label="Facebook stránka Matika+" title="Facebook Matika+"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="12" fill="#1f3c63"/><path d="M13.45 20V12.7h2.46l.38-2.85h-2.84V8.04c0-.82.23-1.38 1.41-1.38h1.51V4.12c-.74-.08-1.48-.12-2.23-.11-2.22 0-3.75 1.36-3.75 3.87v1.97H7.93v2.85h2.46V20h3.06z" fill="#ffffff"/></svg></a><a class="insta-link" href="https://www.instagram.com/matikaplus_pn/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Matika+" title="Instagram Matika+"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="12" fill="#E1306C"/><path fill="#ffffff" d="M10.2 7.2h3.6A3 3 0 0 1 16.8 10.2v3.6a3 3 0 0 1-3 3h-3.6a3 3 0 0 1-3-3v-3.6a3 3 0 0 1 3-3zm0 1.2a1.8 1.8 0 0 0-1.8 1.8v3.6a1.8 1.8 0 0 0 1.8 1.8h3.6a1.8 1.8 0 0 0 1.8-1.8v-3.6a1.8 1.8 0 0 0-1.8-1.8h-3.6zm4.05.9a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5zM12 9.7A2.3 2.3 0 1 1 9.7 12 2.3 2.3 0 0 1 12 9.7zm0 1.2A1.1 1.1 0 1 0 13.1 12 1.1 1.1 0 0 0 12 10.9z"/></svg></a></div>
                     <a class="btn btn-primary" href="index.html">Späť na domov</a>
                 </div>
@@ -423,3 +427,6 @@ body {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+
+
