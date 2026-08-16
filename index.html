@@ -829,7 +829,7 @@ footer {
             <div class="info-box">
                 <h3 class="section-title course-flow-title">Ako kurz prebieha</h3>
                 <ul class="course-flow-list">
-                    <li>Malé skupiny podľa veku a úrovne</li>
+                    <li>Malé skupiny podľa veku a úrovne vedomostí</li>
                     <li>Jedna až dve hodiny týždenne</li>
                     <li>Praktické aktivity, hry a postupné budovanie vedomostí</li>
                     <li>Dôraz na porozumenie, nie len memorovanie</li>
@@ -842,8 +842,12 @@ footer {
                 <ul class="emotion-list">
                     <li>Radosť z matiky a objavovanie matematických vzťahov v malých skupinách</li>
                     <li>Pocit, že matematika je jednoduchá a že je možné ju zvládnuť</li>
+                    
+                </ul>
+                <h3 class="section-title handwriting-title">Získajú</h3>
+                <ul class="emotion-list">
+                    <li>Dobrú skúsenosť s učiteľom – láskavých a empatických pedagógov a prístup bez tlaku</li>
                     <li>Príjemné, komorné prostredie oproti klasickej základnej škole</li>
-                    <li>Dobrú skúsenosť s učiteľom – láskaví a empatickí pedagógovia a prístup bez tlaku</li>
                     <li>Učivo nad rámec a popredu – aby deti nevideli učivo v škole prvýkrát a neučili sa ho v škole pod tlakom za krátky čas</li>
                 </ul>
             </div>
@@ -973,11 +977,11 @@ footer {
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="navbar-loader.js"></script>
+<script src="navbar-loader.js?v=3"></script>
 <script>
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx02arUgI3G8JJ7jNOZD-gEJVZc1HhYotSInVmuKaO3l2CdsK15COm_8lejBhkXskHjnQ/exec';
 
-const scrollToSection = (targetId, forceOffset) => {
+const scrollToSection = (targetId) => {
     if (!targetId || targetId === '#') return;
 
     const target = document.querySelector(targetId);
@@ -985,10 +989,10 @@ const scrollToSection = (targetId, forceOffset) => {
 
     const navbar = document.querySelector('.navbar.fixed-top');
     const navbarOffset = navbar ? navbar.offsetHeight : 72;
-    const sectionOffset = forceOffset ?? (targetId === '#registracia' ? 92 : navbarOffset + 8);
-    const targetTop = target.getBoundingClientRect().top + window.pageYOffset - sectionOffset;
+    const heading = target.querySelector('.section-title, h1, h2, h3') || target;
+    const targetTop = heading.getBoundingClientRect().top + window.pageYOffset - navbarOffset - 12;
 
-    window.scrollTo({ top: Math.max(0, targetTop), behavior: 'auto' });
+    window.scrollTo({ top: Math.max(0, targetTop), behavior: 'instant' });
 };
 
 if ('scrollRestoration' in history) {
@@ -1011,21 +1015,9 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
         const targetId = link.getAttribute('href');
         if (!targetId || targetId === '#') return;
 
-        const isMobile = window.matchMedia('(max-width: 768px)').matches;
-
-        if (isMobile && targetId !== '#home') {
-            event.preventDefault();
-            scrollToSection(targetId, targetId === '#registracia' ? 110 : 92);
-            history.replaceState({}, '', targetId);
-            return;
-        }
-
-        // Keep native hash scrolling so position matches subpage-to-home navigation.
-        if (targetId === '#home') {
-            event.preventDefault();
-            scrollToSection(targetId);
-            history.replaceState({}, '', window.location.pathname + window.location.search);
-        }
+        event.preventDefault();
+        scrollToSection(targetId);
+        history.replaceState({}, '', targetId === '#home' ? window.location.pathname + window.location.search : targetId);
     });
 });
 
@@ -1036,13 +1028,13 @@ window.addEventListener('load', () => {
 
     if (target) {
         const targetId = `#${target}`;
-        scrollToSection(targetId, target === 'registracia' ? 92 : undefined);
+        scrollToSection(targetId);
         history.replaceState({}, '', targetId);
         return;
     }
 
     if (hash) {
-        scrollToSection(hash, hash === '#registracia' ? 92 : undefined);
+        scrollToSection(hash);
     }
 });
 

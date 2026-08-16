@@ -67,12 +67,30 @@ document.addEventListener('DOMContentLoaded', () => {
       const href = link.getAttribute('href') || '';
       if (!href.startsWith('#')) return;
 
-      link.addEventListener('click', () => {
-        if (!navMenuEl || typeof bootstrap === 'undefined') return;
-        const expanded = navMenuEl.classList.contains('show');
-        if (!expanded) return;
-        const instance = bootstrap.Collapse.getInstance(navMenuEl);
-        instance?.hide();
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        const targetId = href.slice(1);
+        const finishNavigation = () => {
+          scrollToSection(targetId);
+          history.replaceState({}, '', href === '#home' ? window.location.pathname + window.location.search : href);
+        };
+
+        const toggler = root.querySelector('.navbar-toggler');
+        const expanded = navMenuEl && (navMenuEl.classList.contains('show') || toggler?.getAttribute('aria-expanded') === 'true');
+        if (expanded && typeof bootstrap !== 'undefined') {
+          navMenuEl.addEventListener('hidden.bs.collapse', finishNavigation, { once: true });
+          const collapse = bootstrap.Collapse.getOrCreateInstance(navMenuEl);
+
+          if (navMenuEl.classList.contains('collapsing')) {
+            navMenuEl.addEventListener('shown.bs.collapse', () => collapse.hide(), { once: true });
+          } else {
+            collapse.hide();
+          }
+          return;
+        }
+
+        finishNavigation();
       });
     });
   };
@@ -85,10 +103,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const navbar = document.querySelector('.navbar.fixed-top');
     const navbarOffset = navbar ? navbar.offsetHeight : 72;
-    const sectionOffset = targetId === 'registracia' ? 92 : navbarOffset + 8;
-    const targetTop = section.getBoundingClientRect().top + window.pageYOffset - sectionOffset;
+    const heading = section.querySelector('.section-title, h1, h2, h3') || section;
+    const targetTop = heading.getBoundingClientRect().top + window.pageYOffset - navbarOffset - 12;
 
-    window.scrollTo({ top: Math.max(0, targetTop), behavior: 'auto' });
+    window.scrollTo({ top: Math.max(0, targetTop), behavior: 'instant' });
   };
 
   const handleInitialTarget = () => {
