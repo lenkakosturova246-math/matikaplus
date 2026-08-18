@@ -15,22 +15,24 @@ function doPost(e) {
     var formatovanyDatumNarodenia = "";
     var vypocitanyVek = "";
 
-    // Spracovanie dátumu narodenia a výpočet veku
-    if (birthDateRaw) {
-      var birthDate = new Date(birthDateRaw);
-      if (!isNaN(birthDate.getTime())) {
-        var today = new Date();
-        var age = today.getFullYear() - birthDate.getFullYear();
-        var m = today.getMonth() - birthDate.getMonth();
-        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-          age--;
-        }
-        vypocitanyVek = age;
-        formatovanyDatumNarodenia = Utilities.formatDate(birthDate, "Europe/Bratislava", "dd.MM.yyyy");
-      } else {
-        formatovanyDatumNarodenia = birthDateRaw;
-      }
+    if (!birthDateRaw) {
+      throw new Error('Datum narodenia je povinny.');
     }
+
+    var birthDateParts = parseBirthDate(birthDateRaw);
+    if (!birthDateParts) {
+      throw new Error('Neplatny datum narodenia: ' + birthDateRaw);
+    }
+
+    var today = new Date();
+    var age = today.getFullYear() - birthDateParts.year;
+    var monthDifference = (today.getMonth() + 1) - birthDateParts.month;
+    if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDateParts.day)) {
+      age--;
+    }
+    vypocitanyVek = age;
+    formatovanyDatumNarodenia = padTwoDigits(birthDateParts.day) + '.' +
+      padTwoDigits(birthDateParts.month) + '.' + birthDateParts.year;
 
     // Čas odoslania z webu (Slovenský formát)
     var submittedAtRaw = getValue(e, 'submitted_at');
@@ -95,4 +97,24 @@ function getValue(e, key) {
   if (!e || !e.parameter) return '';
   var value = e.parameter[key];
   return value === undefined || value === null ? '' : value;
+}
+
+function parseBirthDate(value) {
+  var match = String(value).trim().match(/^(\d{2})\.(\d{2})\.(\d{4})$/);
+  if (!match) return null;
+
+  var day = Number(match[1]);
+  var month = Number(match[2]);
+  var year = Number(match[3]);
+  var date = new Date(year, month - 1, day, 12);
+
+  if (date.getFullYear() !== year || date.getMonth() !== month - 1 || date.getDate() !== day) {
+    return null;
+  }
+
+  return { day: day, month: month, year: year };
+}
+
+function padTwoDigits(value) {
+  return value < 10 ? '0' + value : String(value);
 }
